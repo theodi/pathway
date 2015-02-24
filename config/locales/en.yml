@@ -21,3 +21,7 @@
 
 en:
   site_title: "Open Data Maturity Assessment Tool"
+  sign_up: "Register"
+  login: "Login"
+  logout: "Logout"
+  account: "Account"
