@@ -17,3 +17,8 @@
 /tmp
 
 *~
+
+# Eclipse stuff
+.buildpath
+.project
+
