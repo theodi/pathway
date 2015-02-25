@@ -52,7 +52,9 @@ group :development, :test do
   gem 'spring'
   
   gem 'rspec-rails', '~> 2.0'
+  gem 'cucumber-rails', require: false
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'simplecov', '~> 0.7.1'
 end
 
