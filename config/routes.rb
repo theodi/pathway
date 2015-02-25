@@ -56,4 +56,6 @@ Rails.application.routes.draw do
   #   end
   
   root to: "home#index"
+  
+  get "admin" => "admin#index"
 end
