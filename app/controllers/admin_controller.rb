@@ -1,6 +1,11 @@
 class AdminController < ApplicationController
 before_filter :authenticate_user!, :ensure_admin!
   
+  def index
+    #@users = User.find(:all)
+    @users = User.all
+  end
+  
   private
 
   def ensure_admin!
