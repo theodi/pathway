@@ -55,6 +55,6 @@ group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'factory_girl_rails'
   gem 'database_cleaner'
-  gem 'simplecov', '~> 0.7.1'
+  gem 'simplecov', :group => :test
 end
 
