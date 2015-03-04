@@ -11,7 +11,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.email %></td>
+        <td><%= link_to user.email, edit_user_path(user.id), :class => 'navbar-link' %></td>
         <td><%= user.admin? %></td>
       </tr>
     <% end %>    
