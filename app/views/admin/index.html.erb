@@ -1,0 +1,19 @@
+<h1>Admin</h1>
+
+<h2>Registered Users</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>User</th><th>Admin?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.email, edit_user_path(user.id), :class => 'navbar-link' %></td>
+        <td><%= user.admin? %></td>
+      </tr>
+    <% end %>    
+  </tbody>  
+</table>

@@ -18,6 +18,8 @@
 
 *~
 
+coverage
+
 # Eclipse stuff
 .buildpath
 .project
