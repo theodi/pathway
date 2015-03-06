@@ -1,16 +1,8 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
+
   devise_for :users, :controllers => {:registrations => "registrations"}
-  
-  scope '/admin' do
-    resources :user
-  end
-  
-=======
-  devise_for :users
   resources :user, :controller => "user"
-        
->>>>>>> 9c5e696c138d283dc2b8c111c1efe0a3bfebe826
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
