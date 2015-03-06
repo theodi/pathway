@@ -23,7 +23,8 @@
 
   <div class="field">
     <%= f.label :associated_organisation %><br />
-    <%= f.text_field :associated_organisation %>
+    <%#= f.text_field :associated_organisation %>
+    <%= f.hidden_field :associated_organisation, class: 'select2 ajax', data: { source: organisations_path(format: :json) }, style: "width:40%;" %>
   </div>
 
   <div class="actions">
