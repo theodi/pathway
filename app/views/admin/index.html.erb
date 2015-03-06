@@ -5,7 +5,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>User</th><th>Admin?</th>
+      <th>User</th><th>Admin?</th><th></th>
     </tr>
   </thead>
   <tbody>
@@ -13,6 +13,11 @@
       <tr>
         <td><%= link_to user.email, edit_user_path(user.id), :class => 'navbar-link' %></td>
         <td><%= user.admin? %></td>
+        <td>
+            <% unless user.email == current_user.email %>
+              <%= link_to "Delete User", user, :confirm => "Are you sure?", :method => :delete %>
+            <% end %>
+        </td>
       </tr>
     <% end %>    
   </tbody>  

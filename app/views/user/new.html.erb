@@ -1,0 +1,5 @@
+<h2>New User</h2>
+
+<%= form_for @user, :url => user_index_path do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>

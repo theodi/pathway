@@ -1,24 +1,5 @@
 <h2>Edit User</h2>
 
-<%= form_for(@user, as: :user, url: user_path(@user.id), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <% if devise_mapping.confirmable? && @user.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= @user.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :admin %><br />
-    <%= f.check_box :admin %>
-  </div>
-
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+<%= form_for @user, :url => user_path do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
 <% end %>
