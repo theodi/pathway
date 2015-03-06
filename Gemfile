@@ -37,6 +37,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_12factor' # For heroku
 
 gem 'devise'
+gem 'cancancan', '~> 1.10'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -56,5 +57,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'simplecov', :group => :test
+
+  gem 'travisify', github: 'theodi/travisify'
+  gem 'badgerbadgerbadger'
 end
 
