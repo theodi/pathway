@@ -1,7 +1,8 @@
-class AdminController < BaseAdminController
+class AdminController < ApplicationController
+  before_filter :authenticate_user!
   
   def index
-    #@users = User.find(:all)
+    authorize! :manage, :users
     @users = User.all
   end
         
