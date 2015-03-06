@@ -7,4 +7,8 @@ class Organisation < ActiveRecord::Base
     self.title
   end
 
+  def as_json(options)
+    { id: title, text: title }
+  end
+
 end
