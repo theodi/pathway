@@ -38,8 +38,6 @@ gem 'rails_12factor' # For heroku
 
 gem 'devise'
 
-gem 'travisify', github: 'theodi/travisify'
-
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
@@ -58,5 +56,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'simplecov', :group => :test
+
+  gem 'travisify', github: 'theodi/travisify'
+  gem 'badgerbadgerbadger'
 end
 
