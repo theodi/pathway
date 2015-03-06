@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates :organisation_id, uniqueness: true, unless: "organisation_id.nil?"
 
   def associated_organisation=(title)
-    org = Organisation.where(title: name).first_or_create
+    org = Organisation.where(title: title).first_or_create
     self.organisation = org
   end
 
