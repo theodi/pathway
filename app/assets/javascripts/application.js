@@ -37,6 +37,10 @@ $( document ).ready(function() {
            return {id:term, text:term};
         }
       }
+      options.initSelection = function (element, callback) {
+        var data = [];
+        callback({ id: element.val(), text: element.val() });
+      }
     }
     select.select2(options)
   });

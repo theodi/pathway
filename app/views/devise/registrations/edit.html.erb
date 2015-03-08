@@ -27,6 +27,11 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label :associated_organisation %><br />
+    <%= f.hidden_field :associated_organisation, value: resource.organisation.to_s, class: 'select2 ajax', data: { source: organisations_path(format: :json) }, style: "width:40%;" %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

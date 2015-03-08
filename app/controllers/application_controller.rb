@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :associated_organisation
+    devise_parameter_sanitizer.for(:account_update) << :associated_organisation
   end
   
   rescue_from CanCan::AccessDenied do |exception|
