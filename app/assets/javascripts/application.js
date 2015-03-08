@@ -17,8 +17,7 @@
 //= require_tree .
 //= require select2
 
-$( document ).ready(function() {
-
+var attachTypeAhead = function(){
   $('.select2').each(function(i, e){
     var select = $(e)
     options = { minimumInputLength: 3 }
@@ -44,5 +43,4 @@ $( document ).ready(function() {
     }
     select.select2(options)
   });
-  
-});
+};

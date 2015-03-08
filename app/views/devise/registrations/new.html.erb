@@ -32,3 +32,9 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<% content_for :javascript_footer do %>
+  $(document).ready(function(){ 
+    attachTypeAhead(); 
+  });
+<% end %>
