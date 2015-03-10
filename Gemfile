@@ -39,6 +39,8 @@ gem 'rails_12factor' # For heroku
 gem 'devise'
 gem 'cancancan', '~> 1.10'
 
+gem "select2-rails"
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
@@ -61,4 +63,3 @@ group :development, :test do
   gem 'travisify', github: 'theodi/travisify'
   gem 'badgerbadgerbadger'
 end
-

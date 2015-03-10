@@ -15,3 +15,32 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+//= require select2
+
+var attachTypeAhead = function(){
+  $('.select2').each(function(i, e){
+    var select = $(e)
+    options = { minimumInputLength: 3 }
+    if (select.hasClass('ajax')) {
+      options.ajax = {
+        url: select.data('source'),
+        dataType: 'json',
+        data: function(term, page) { return { q: term } },
+        results: function(data, page) { return { results: data } }
+      }
+      options.dropdownCssClass = "bigdrop"
+      options.createSearchChoice = function(term, data) {
+        if ( $(data).filter( function() {
+          return this.text.localeCompare(term)===0;
+        }).length===0) {
+           return {id:term, text:term};
+        }
+      }
+      options.initSelection = function (element, callback) {
+        var data = [];
+        callback({ id: element.val(), text: element.val() });
+      }
+    }
+    select.select2(options)
+  });
+};

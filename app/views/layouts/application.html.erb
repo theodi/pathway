@@ -92,9 +92,10 @@
         </div>
       </div>    
     </footer>
+
+    <%= javascript_tag do %>
+      <%= yield :javascript_footer %>
+    <% end %>
     
   </body>
 </html>
-
-
-<body>

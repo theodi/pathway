@@ -21,9 +21,20 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label :associated_organisation %><br />
+    <%= f.hidden_field :associated_organisation, class: 'select2 ajax', data: { source: organisations_path(format: :json) }, style: "width:40%;" %>
+  </div>
+
   <div class="actions">
     <%= f.submit t(:sign_up) %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<% content_for :javascript_footer do %>
+  $(document).ready(function(){ 
+    attachTypeAhead(); 
+  });
+<% end %>

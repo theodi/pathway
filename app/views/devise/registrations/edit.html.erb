@@ -27,6 +27,11 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label :associated_organisation %><br />
+    <%= f.hidden_field :associated_organisation, value: resource.organisation.to_s, class: 'select2 ajax', data: { source: organisations_path(format: :json) }, style: "width:40%;" %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
@@ -37,3 +42,9 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+<% content_for :javascript_footer do %>
+  $(document).ready(function(){ 
+    attachTypeAhead(); 
+  });
+<% end %>
