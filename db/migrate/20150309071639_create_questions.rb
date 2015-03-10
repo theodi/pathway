@@ -6,7 +6,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.integer :questionnaire_id
       t.string :text
       t.string :notes
-      t.integer :question_id 
+      t.references :dependency 
       
       t.timestamps null: false
     end

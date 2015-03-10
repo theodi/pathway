@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20150309071711) do
     t.integer  "questionnaire_id"
     t.string   "text"
     t.string   "notes"
-    t.integer  "question_id"
+    t.integer  "dependency_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end

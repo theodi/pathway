@@ -2,7 +2,10 @@ class Question < ActiveRecord::Base
   has_many :answers
   belongs_to :activity
   belongs_to :questionnaire
-  belongs_to :dependency, :class_name => 'Question'
+
+  has_many :dependents, class_name: "Question",
+                           foreign_key: "dependency_id"   
+  belongs_to :dependency, class_name: "Question"  
   
   validates :text, presence: true    
   validates :code, presence: true      

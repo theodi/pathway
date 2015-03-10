@@ -38,6 +38,7 @@ gem 'rails_12factor' # For heroku
 
 gem 'devise'
 gem 'cancancan', '~> 1.10'
+gem 'spreadsheet'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
