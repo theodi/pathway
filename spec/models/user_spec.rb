@@ -1,4 +1,5 @@
 require 'spec_helper'
+require "cancan/matchers"
 
 describe User do
 
@@ -35,6 +36,15 @@ describe User do
         user2.should_not be_valid
       end
     end
+  end
+
+  describe 'abilities' do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:assessment) { user.assessments.create(FactoryGirl.attributes_for(:assessment)) }
+
+    subject(:ability) { Ability.new(user) }
+
+    it { should be_able_to :manage, assessment }
   end
 
 end
