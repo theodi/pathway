@@ -1,4 +1,17 @@
-<h1>Assessments</h1>
+<h1>My Assessments</h1>
+
+<% if @assessments.empty? %>
+  <h2>Looks like you haven't started any assessments yet!</h2>
+  <p>Click below to start your first assessment or if you would like to see the questions in advance to give you opportunity to prepare your responses you can download the assessment questions as a PDF.</p>
+  <%= link_to 'Start your first assessment', '#' %>
+<% end %>
+
 <% for assessment in @assessments %>
-  <%= content_tag :p, assessment.title %>
+  <div class = "assessment">
+    <%= content_tag :h4, assessment.title %>
+    <%= content_tag :p, assessment.status %>
+    <%= content_tag :p, assessment.notes %>
+    <%= content_tag :p, "Started: #{assessment.start_date} Completed: #{assessment.completion_date}" %>
+    <%= link_to 'Results', '#' %>
+  </div>
 <% end %>
