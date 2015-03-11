@@ -8,7 +8,7 @@ FactoryGirl.define do
     notes "This is a test assessment"
   end
 
-  factory :unfinished_assessment do
+  factory :unfinished_assessment, class: Assessment do
     user nil
     start_date "2015-02-10 11:07:10"
     completion_date nil
