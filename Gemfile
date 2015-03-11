@@ -64,3 +64,5 @@ group :development, :test do
   gem 'travisify', github: 'theodi/travisify'
   gem 'badgerbadgerbadger'
 end
+
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
