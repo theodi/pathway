@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'assessments/index'
+
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :user, :controller => "user"
   
