@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :user, :controller => "user"
   
   get 'organisations' => 'organisations#index', as: 'organisations'
-  get 'assessments' => 'assessments#index', as: 'assessments'
+  resources :assessments
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

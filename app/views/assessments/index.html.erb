@@ -13,5 +13,6 @@
     <%= content_tag :p, assessment.notes %>
     <%= content_tag :p, "Started: #{assessment.start_date} Completed: #{assessment.completion_date}" %>
     <%= link_to 'Results', '#' %>
+    <%= link_to 'Delete', assessment_path(assessment), method: :delete, data: { confirm: "Are you sure?" } %>
   </div>
 <% end %>
