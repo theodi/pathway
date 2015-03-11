@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150311121727) do
+ActiveRecord::Schema.define(version: 20150311123734) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "name"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20150311121727) do
     t.datetime "start_date"
     t.datetime "completion_date"
     t.string   "title"
-    t.string   "notes"
+    t.text     "notes"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
