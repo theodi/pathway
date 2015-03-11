@@ -1,2 +1,4 @@
-<h1>Assessments#index</h1>
-<p>Find me in app/views/assessments/index.html.erb</p>
+<h1>Assessments</h1>
+<% for assessment in @assessments %>
+  <%= content_tag :p, assessment.title %>
+<% end %>

@@ -6,6 +6,10 @@ When(/^I go to the register page$/) do
   visit new_user_registration_path
 end
 
+When(/^I go to "(.*?)"$/) do |path|
+  visit path
+end
+
 When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
   fill_in field, :with=>value
 end
