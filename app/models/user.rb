@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :organisation
+  has_many :assessments, dependent: :destroy
 
   validates :organisation_id, uniqueness: true, unless: "organisation_id.nil?"
 
