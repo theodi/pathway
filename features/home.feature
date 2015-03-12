@@ -14,4 +14,8 @@ Feature: Home page
     And I should see a link called "Logout" to "/users/sign_out"
     And I should see a link called "Account" to "/users/edit"
     And I should see "user@example.org" 
+
+  Scenario: Google Analytics
+    When I go to the homepage
+    Then I should see "UA-XXXX-Y"
     

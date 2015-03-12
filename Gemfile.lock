@@ -184,6 +184,9 @@ GEM
       json
       websocket (~> 1.0)
     rack (1.6.0)
+    rack-google-analytics (1.2.0)
+      actionpack
+      activesupport
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.0)
@@ -323,6 +326,7 @@ DEPENDENCIES
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
+  rack-google-analytics
   rails (= 4.2.0)
   rails_12factor
   rspec-rails (~> 2.0)
