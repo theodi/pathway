@@ -1,0 +1,11 @@
+<h1><%= @assessment.title %></h1>
+<h3>My assessments > <%= @assessment.title %> > <%= @dimension.title %> > <%= @activity.title %> </h3>
+
+<hr/>
+
+<h2>Assessing: <%= @activity.title %></h2>
+
+<h4><%= @question.text %></h4>
+<% for answer in @question.answers %>
+  <p><%= answer.text %></p>
+<% end %>
