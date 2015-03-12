@@ -1,18 +1,26 @@
 <h1>My Assessments</h1>
 
-<% if @assessments.empty? %>
+<% if @current_assessment.blank? %>
   <h2>Looks like you haven't started any assessments yet!</h2>
   <p>Click below to start your first assessment or if you would like to see the questions in advance to give you opportunity to prepare your responses you can download the assessment questions as a PDF.</p>
   <%= link_to 'Start your first assessment', '#' %>
+<% else %>
+  <div class = "assessment current">
+    <%= content_tag :h4, @current_assessment.title %>
+    <%= content_tag :p, @current_assessment.notes %>
+    <%= content_tag :p, "Started: #{pretty_date(@current_assessment.start_date)}" %>
+    <%= link_to 'Continue assessment', '#' %>
+    <%= link_to 'Delete', assessment_path(@current_assessment), method: :delete, data: { confirm: "Are you sure?" } %>
+  </div>
 <% end %>
 
 <% for assessment in @assessments %>
   <div class = "assessment">
     <%= content_tag :h4, assessment.title %>
-    <%= content_tag :p, assessment.status %>
     <%= content_tag :p, assessment.notes %>
-    <%= content_tag :p, "Started: #{assessment.start_date} Completed: #{assessment.completion_date}" %>
-    <%= link_to 'Results', '#' %>
+    <%= content_tag :p, "Started: #{pretty_date(assessment.start_date)}" %> 
+    <%= content_tag :p, "Completed: #{pretty_date(assessment.completion_date)}" %>
+    <%= link_to 'View assessment', '#' %>
     <%= link_to 'Delete', assessment_path(assessment), method: :delete, data: { confirm: "Are you sure?" } %>
   </div>
 <% end %>
