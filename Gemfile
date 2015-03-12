@@ -39,6 +39,7 @@ gem 'rails_12factor' # For heroku
 
 gem 'devise'
 gem 'cancancan', '~> 1.10'
+gem 'spreadsheet'
 
 gem "select2-rails"
 
