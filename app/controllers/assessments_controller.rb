@@ -6,6 +6,7 @@ class AssessmentsController < ApplicationController
 
   def begin
     if current_user.current_assessment.blank?
+      authorize! :create, Assessment
       @assessment = current_user.assessments.create(title: "New assessment")
       @dimensions = Dimension.all
       render 'show'
@@ -16,10 +17,12 @@ class AssessmentsController < ApplicationController
 
   def edit
     @assessment = current_user.assessments.find(params[:id])
+    authorize! :update, @assessment
   end
 
   def update
     @assessment = current_user.assessments.find(params[:id])
+    authorize! :update, @assessment
     if @assessment.update_attributes(assessment_params)
       @assessment.update_attribute(:start_date, Time.now)
       redirect_to assessment_path(@assessment)
@@ -30,11 +33,13 @@ class AssessmentsController < ApplicationController
 
   def show
     @assessment = Assessment.find(params[:id])
+    authorize! :read, @assessment
     @dimensions = Dimension.all
   end
 
   def destroy
     @assessment = current_user.assessments.find(params[:id])
+    authorize! :destroy, @assessment
     @assessment.destroy
     redirect_to assessments_path
   end
