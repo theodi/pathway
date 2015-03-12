@@ -1,0 +1,32 @@
+<h1><%= @assessment.title %></h1>
+<h2>My assessments > <%= @assessment.title %></h1>
+
+<hr/>
+
+<div class = "row">
+  <div class = "col-md-4">
+    
+    <% if @assessment.start_date.blank? %>
+      <h3>You are about to start a new assessment</h3>
+      <p>You can click on the start assessment button to start from the beginning or you can click on one of the 'start' buttons to begin the assessment at a particular activity.</p>
+    <% else %>
+      <h3><%= @assessment.title %></h3>
+      <p>Started <%= pretty_date(@assessment.start_date) %></p>
+    <% end %>
+
+  </div>
+  <div class = "col-md-8">
+  
+    <div class="row">
+      <div class="col-md-8">
+        This assessment is x% complete 
+      </div>
+      <div class="col-md-4">
+        <% link_text = @assessment.start_date.blank? ? "Start assessment >" : "Continue assessment >" %>
+        <%= link_to link_text, edit_assessment_path(@assessment) %>
+      </div>
+    </div>
+
+    <%= render 'overview', assessment: @assessment %>
+  </div>
+</div>

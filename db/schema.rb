@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309071711) do
+ActiveRecord::Schema.define(version: 20150311170825) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "name"
@@ -34,6 +34,31 @@ ActiveRecord::Schema.define(version: 20150309071711) do
     t.datetime "updated_at",                       null: false
   end
 
+  create_table "assessment_answers", force: :cascade do |t|
+    t.integer  "question_id"
+    t.integer  "answer_id"
+    t.text     "notes"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "assessment_id"
+  end
+
+  add_index "assessment_answers", ["answer_id"], name: "index_assessment_answers_on_answer_id"
+  add_index "assessment_answers", ["assessment_id"], name: "index_assessment_answers_on_assessment_id"
+  add_index "assessment_answers", ["question_id"], name: "index_assessment_answers_on_question_id"
+
+  create_table "assessments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "start_date"
+    t.datetime "completion_date"
+    t.string   "title"
+    t.text     "notes"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "assessments", ["user_id"], name: "index_assessments_on_user_id"
+
   create_table "dimensions", force: :cascade do |t|
     t.string   "name"
     t.string   "title"
@@ -41,6 +66,16 @@ ActiveRecord::Schema.define(version: 20150309071711) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
+
+  create_table "links", force: :cascade do |t|
+    t.integer  "assessment_answer_id"
+    t.string   "link"
+    t.string   "text"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "links", ["assessment_answer_id"], name: "index_links_on_assessment_answer_id"
 
   create_table "organisations", force: :cascade do |t|
     t.string   "name"
