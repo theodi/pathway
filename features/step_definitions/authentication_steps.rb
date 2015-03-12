@@ -1,7 +1,8 @@
 Given(/^I am logged in as an administrator$/) do
   
   user =  FactoryGirl.create(:admin)
-  
+  @current_user = user
+
   visit '/users/sign_in'
   fill_in "user_email", :with => user.email
   fill_in "user_password", :with => user.password
@@ -12,6 +13,7 @@ end
 Given(/^I am logged in as a user$/) do
   
   user =  FactoryGirl.create(:user)
+  @current_user = user
   
   visit '/users/sign_in'
   fill_in "user_email", :with => user.email

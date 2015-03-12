@@ -29,11 +29,12 @@
               <% if current_user.admin? %>
                 <li><%= link_to t(:admin), "/admin", :class => 'navbar-link' %></li>
               <% end %>
+              <li><%= link_to 'My Assessments', assessments_path %></li>
               <li><%= link_to t(:account), edit_user_registration_path, :class => 'navbar-link' %></li>
               <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
             <% else %>
               <li><%= link_to t(:sign_up), new_user_registration_path, :class => 'navbar-link'  %></li>
-              <li><%= link_to t(:login), new_user_session_path, :class => 'navbar-link'  %></li>            
+              <li><%= link_to t(:login), new_user_session_path, :class => 'navbar-link'  %></li>
             <% end %>
           </ul>
         </div><!--/.nav-collapse -->

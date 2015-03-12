@@ -1,4 +1,5 @@
 require 'spec_helper'
+require "cancan/matchers"
 
 describe User do
 
@@ -7,6 +8,20 @@ describe User do
       user = FactoryGirl.build(:user)
       user.associated_organisation = "Department of Social Affairs and Citizenship"
       user.associated_organisation.persisted?.should be_truthy
+    end
+  end
+
+  describe '#current_assessment' do
+    it "should return the asssessment that has not been completed" do
+      user = FactoryGirl.create(:user)
+      a = user.assessments.create(FactoryGirl.attributes_for(:unfinished_assessment))
+      expect(user.current_assessment).to eql(a)
+    end
+
+    it "should return nil when all assessments have been completed" do
+      user = FactoryGirl.create(:user)
+      a = user.assessments.create(FactoryGirl.attributes_for(:assessment))
+      expect(user.current_assessment).to eql(nil)
     end
   end
 
@@ -35,6 +50,15 @@ describe User do
         user2.should_not be_valid
       end
     end
+  end
+
+  describe 'abilities' do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:assessment) { user.assessments.create(FactoryGirl.attributes_for(:assessment)) }
+
+    subject(:ability) { Ability.new(user) }
+
+    it { should be_able_to :manage, assessment }
   end
 
 end

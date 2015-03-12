@@ -64,9 +64,12 @@ group :development, :test do
 
   gem 'travisify', github: 'theodi/travisify'
   gem 'badgerbadgerbadger'
+  gem 'dotenv-rails'
 end
 
 group :production do
   # Postgres on Heroku in production
   gem 'pg'
 end
+
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
