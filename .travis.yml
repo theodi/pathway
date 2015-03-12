@@ -1,9 +1,12 @@
 language: ruby
 rvm:
-   - 2.2.0
+- 2.2.0
 after_success:
-- ! '[ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && curl -v -X DELETE -u $GITHUB_USER:$GITHUB_PASSWORD "https://api.github.com/repos/$TRAVIS_REPO_SLUG/git/refs/tags/CURRENT"'
-- ! '[ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && curl -v -X POST -d ''{"ref":"refs/tags/CURRENT","sha":"''$TRAVIS_COMMIT''"}''  --header "Content-Type:application/json" -u $GITHUB_USER:$GITHUB_PASSWORD "https://api.github.com/repos/$TRAVIS_REPO_SLUG/git/refs"'
+- '[ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && curl
+  -v -X DELETE -u $GITHUB_USER:$GITHUB_PASSWORD "https://api.github.com/repos/$TRAVIS_REPO_SLUG/git/refs/tags/CURRENT"'
+- '[ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && curl
+  -v -X POST -d ''{"ref":"refs/tags/CURRENT","sha":"''$TRAVIS_COMMIT''"}''  --header
+  "Content-Type:application/json" -u $GITHUB_USER:$GITHUB_PASSWORD "https://api.github.com/repos/$TRAVIS_REPO_SLUG/git/refs"'
 branches:
   except:
   - CURRENT
@@ -15,3 +18,11 @@ notifications:
     - "%{repository} %{branch} - %{message} %{build_url}"
     on_success: change
     on_failure: always
+deploy:
+  provider: heroku
+  app: odmat
+  run: 
+    - "rake db:migrate"
+    - restart
+  api_key:
+    secure: a2Tuz4rT6F7F7ThoYx8u62yRd/mSmfI4JL1kH0Zk4FBNHo5tgUAscSSxQOUxk1irBMdG5zqF28m4SUGLtep3i/0h9JE3ygKnhq6aPGsh5a/OSZWAi7lbpIJgB77m6vx4jiVTX0SqMHLUs3IT4DUkFYwIAwKCPoRXTHEHtdIs7qw=
