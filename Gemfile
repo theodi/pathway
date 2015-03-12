@@ -63,4 +63,5 @@ group :development, :test do
 
   gem 'travisify', github: 'theodi/travisify'
   gem 'badgerbadgerbadger'
+  gem 'dotenv-rails'
 end
