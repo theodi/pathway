@@ -11,6 +11,20 @@ describe User do
     end
   end
 
+  describe '#current_assessment' do
+    it "should return the asssessment that has not been completed" do
+      user = FactoryGirl.create(:user)
+      a = user.assessments.create(FactoryGirl.attributes_for(:unfinished_assessment))
+      expect(user.current_assessment).to eql(a)
+    end
+
+    it "should return nil when all assessments have been completed" do
+      user = FactoryGirl.create(:user)
+      a = user.assessments.create(FactoryGirl.attributes_for(:assessment))
+      expect(user.current_assessment).to eql(nil)
+    end
+  end
+
   describe "creation" do
     context "valid attributes" do
       it "should be valid" do
