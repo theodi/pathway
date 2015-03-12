@@ -63,3 +63,8 @@ group :development, :test do
   gem 'travisify', github: 'theodi/travisify'
   gem 'badgerbadgerbadger'
 end
+
+group :production do
+  # Postgres on Heroku in production
+  gem 'pg'
+end
