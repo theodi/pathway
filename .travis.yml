@@ -21,7 +21,6 @@ notifications:
 deploy:
   provider: heroku
   app: odmat
-  on: travis-deploy
   run: 
     - "rake db:migrate"
     - restart
