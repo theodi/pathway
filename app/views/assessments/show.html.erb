@@ -22,7 +22,8 @@
         This assessment is x% complete 
       </div>
       <div class="col-md-4">
-        <%= link_to 'Start assessment >', '#' %>
+        <% link_text = @assessment.start_date.blank? ? "Start assessment >" : "Continue assessment >" %>
+        <%= link_to link_text, edit_assessment_path(@assessment) %>
       </div>
     </div>
 

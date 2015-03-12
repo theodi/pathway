@@ -20,7 +20,8 @@ class AssessmentsController < ApplicationController
 
   def update
     @assessment = current_user.assessments.find(params[:id])
-    if @assessment.update_attributes(params[:assessment])
+    if @assessment.update_attributes(assessment_params)
+      @assessment.update_attribute(:start_date, Time.now)
       redirect_to assessment_path(@assessment)
     else
       render 'edit'
@@ -36,5 +37,11 @@ class AssessmentsController < ApplicationController
     @assessment = current_user.assessments.find(params[:id])
     @assessment.destroy
     redirect_to assessments_path
+  end
+
+  private
+  
+  def assessment_params
+    params.require(:assessment).permit(:title, :notes)
   end
 end
