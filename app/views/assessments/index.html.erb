@@ -4,14 +4,14 @@
   
   <h2>Looks like you haven't started any assessments yet!</h2>
   <p>Click below to start your first assessment or if you would like to see the questions in advance to give you opportunity to prepare your responses you can download the assessment questions as a PDF.</p>
-  <%= link_to 'Start your first assessment', '#' %>
+  <%= link_to 'Start your first assessment', begin_assessment_path %>
   <%= link_to 'Download assessment qusetions', '#' %>
  
 <% elsif @current_assessment.blank? %> 
 
   <h2>No assessments in progress</h2>
   <p>Click below to start an assessment. If you would like to see the questions in advance to give you opportunity to prepare your responses you can download the assessment questions as a PDF.</p>
-  <%= link_to 'Start an assessment', '#' %>
+  <%= link_to 'Start an assessment', begin_assessment_path %>
   <%= link_to 'Download assessment qusetions', '#' %>
 
 <% else %>

@@ -4,16 +4,26 @@ class AssessmentsController < ApplicationController
     @assessments = current_user.assessments.completed.order(:completion_date)
   end
 
-  def new
-    @assessment = current_user.assessments.build
+  def begin
+    if current_user.current_assessment.blank?
+      @assessment = current_user.assessments.create(title: "New assessment")
+      @dimensions = Dimension.all
+      render 'show'
+    else
+      redirect_to assessment_path(current_user.current_assessment)
+    end
   end
 
-  def create
-    @assessment = current_user.assessments.build(params[:assessment])
-    if @assessment.save
-      redirect_to assessments_path
+  def edit
+    @assessment = current_user.assessments.find(params[:id])
+  end
+
+  def update
+    @assessment = current_user.assessments.find(params[:id])
+    if @assessment.update_attributes(params[:assessment])
+      redirect_to assessment_path(@assessment)
     else
-      render 'new'
+      render 'edit'
     end
   end
 

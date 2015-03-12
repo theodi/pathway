@@ -1,0 +1,13 @@
+<h1><%= @assessment.title %></h1>
+<h2>My assessments > <%= @assessment.title %></h1>
+
+<hr/>
+<%= form_for @assessment do |f| %>
+  <p><%= f.label :title, "What would you like to call the assessment?" %></p>
+  <%= f.text_field :title %>
+
+  <p><%= f.label :notes, "Tell us why you are taking this assessment and any other relevant information" %></p>
+  <%= f.text_area :notes %>
+
+  <%= f.submit 'Start assessment' %>
+<% end %>
