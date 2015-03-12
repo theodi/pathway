@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-12">
+    This assessment is x complete 
+  </div>
+
+  <div class="row">
+    <div class="col-md-4"><h4>Dimension</h4></div>
+    <div class="col-md-8"><h4>Activity</h4></div>
+  </div>
+
+  <% for dimension in @dimensions %>
+    <div class="row">
+      <div class="col-md-4"><h5><%= dimension.title %></h5></div>
+      <div class="col-md-8">
+
+        <% for activity in dimension.activities %>
+          <div class = "row">
+            <div class="col-md-6"><%= activity.title %></div>
+            <div class="col-md-6"><%= link_to 'Start', '#' %></div>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  <% end %>
+</div>

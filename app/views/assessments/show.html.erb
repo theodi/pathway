@@ -1,0 +1,13 @@
+<h1>My assessments > <%= @assessment.title %></h1>
+
+<hr/>
+
+<div class = "row">
+  <div class = "col-md-4">
+    <h3>Your assessment</h3>
+    <p>Side panel stuff</p>
+  </div>
+  <div class = "col-md-8">
+    <%= render 'overview', assessment: @assessment %>
+  </div>
+</div>
