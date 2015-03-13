@@ -4,7 +4,7 @@ require 'progress_calculator'
 
 describe ProgressCalculator do
   
-  before(:all) do
+  before(:each) do
     config = File.join( __dir__, "test-survey.xls" )    
     QuestionnaireImporter.load(1, config)    
   end

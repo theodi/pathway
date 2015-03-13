@@ -11,6 +11,10 @@ class ProgressCalculator
     @assessment.status == "Completed"
   end
     
+  def activity_completed?(activity)
+    return progress_for_activity(activity) == :completed
+  end
+  
   #progress for a single activity
   def progress_for_activity(activity)
     #if there are no questions, then skipped
