@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   
   resources :assessments do
     get 'questions/:question_id' => 'assessment_answers#new', as: 'question'
-    post 'questions/:question_id' => 'assessment_answers#create'
+    post 'questions/:question_id' => 'assessment_answers#create', as: 'question_answer'
     get 'assessment_answers/:id' => 'assessment_answers#edit', as: 'edit_answer'
     put 'assessment_answers/:id' => 'assessment_answers#update', as: 'answer'
   end

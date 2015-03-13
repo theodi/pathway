@@ -6,6 +6,18 @@
 <h2>Assessing: <%= @activity.title %></h2>
 
 <h4><%= @question.text %></h4>
-<% for answer in @question.answers %>
-  <p><%= answer.text %></p>
+
+<%= form_for @assessment_answer, url: assessment_question_answer_path(@assessment, @question) do |f| %>
+  
+  <% for answer in @question.answers %>
+    <p><%= f.radio_button :answer_id, answer.id %> <%= f.label :answer_id, answer.text, for: "assessment_answer_answer_id_#{answer.id}" %></p>
+  <% end %>
+
+  <hr/>
+
+  <%= f.label :notes, "Please enter any additional information or supporting evidence" %><br/>
+  <%= f.text_area :notes %>
+
+  <p><%= f.submit "Save and continue" %></p>
+
 <% end %>
