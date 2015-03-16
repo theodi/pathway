@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Activity do
 
   describe "#next_question_for(assessment)" do
-    let (:assessment) { FactoryGirl.create(:assessment) }
+    let (:assessment) { FactoryGirl.create(:unfinished_assessment) }
     let (:activity) do
       activity = FactoryGirl.create(:activity)
       activity.questions.create(FactoryGirl.attributes_for(:question))
