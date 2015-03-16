@@ -11,7 +11,14 @@
       <% for activity in dimension.activities %>
         <div class = "row">
           <div class="col-md-6"><%= activity.title %></div>
-          <div class="col-md-6"><%= link_to 'Start', '#' %></div>
+          <div class="col-md-6">
+            <% next_question = activity.next_question_for(@assessment) %>
+            <% if next_question %>
+              <%= link_to 'Start', assessment_question_path(@assessment, next_question) %>
+            <% else %>
+              'Completed'
+            <% end %>
+          </div>
         </div>
       <% end %>
 

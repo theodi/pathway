@@ -14,6 +14,10 @@ When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
   fill_in field, :with=>value
 end
 
+When(/^I choose "([^"]*)"$/) do |value|
+  choose(value)
+end
+
 Then(/^I should see a link called "(.*?)" to "(.*?)"$/) do |link, url|
   page.should have_link(link, :href => url)
 end
