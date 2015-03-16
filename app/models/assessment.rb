@@ -15,4 +15,5 @@ class Assessment < ActiveRecord::Base
       "Completed"
     end 
   end
+
 end
