@@ -8,7 +8,7 @@ FactoryGirl.define do
   end
 
   factory :negative_answer, class: Answer do
-    code "q1.1"
+    code "q1.2"
     question_id 1
     text "No, we have not yet published any open data"
     notes ""
