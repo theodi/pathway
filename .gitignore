@@ -26,3 +26,5 @@ coverage
 .buildpath
 .project
 
+#OS stuff
+app/assets/images/Thumbs.db
