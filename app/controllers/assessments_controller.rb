@@ -9,6 +9,7 @@ class AssessmentsController < ApplicationController
       authorize! :create, Assessment
       @assessment = current_user.assessments.create(title: "New assessment")
       @dimensions = Dimension.all
+      @progress = ProgressCalculator.new(@assessment)
       render 'show'
     else
       redirect_to assessment_path(current_user.current_assessment)
@@ -35,6 +36,7 @@ class AssessmentsController < ApplicationController
     @assessment = Assessment.find(params[:id])
     authorize! :read, @assessment
     @dimensions = Dimension.all
+    @progress = ProgressCalculator.new(@assessment)
   end
 
   def destroy

@@ -1,3 +1,8 @@
+Given(/^the test survey has been loaded$/) do
+  config = File.join( __dir__, "..", "..", "spec", "lib", "test-survey.xls" )    
+  QuestionnaireImporter.load(1, config)    
+end
+
 Given(/^I have started an assessment$/) do
   @assessment = FactoryGirl.create(:unfinished_assessment, user_id: @current_user.id)
   dimension = FactoryGirl.create(:dimension)

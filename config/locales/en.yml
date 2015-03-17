@@ -26,3 +26,7 @@ en:
   logout: "Logout"
   account: "Account"
   admin: "Admin"
+  
+  not_started: "Begin"
+  in_progress: "In Progress"
+  completed: "Completed"
