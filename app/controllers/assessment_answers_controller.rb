@@ -18,6 +18,7 @@ class AssessmentAnswersController < ApplicationController
     authorize! :update, @assessment
 
     @assessment_answer = @assessment.assessment_answers.build(assessment_answer_params)
+
     if @assessment_answer.save
       next_question = @activity.next_question_for(@assessment)
       redirection = next_question.blank? ? assessment_path(@assessment) : assessment_question_path(@assessment, next_question)
@@ -36,7 +37,7 @@ class AssessmentAnswersController < ApplicationController
   private
 
   def assessment_answer_params
-    params.merge!(assessment_answer: { question_id: params[:question_id] }) if params[:question_id]
+    params[:assessment_answer].merge!( { question_id: params[:question_id] } ) if params[:question_id]
     params.require(:assessment_answer).permit(:question_id, :answer_id, :notes)
   end
 

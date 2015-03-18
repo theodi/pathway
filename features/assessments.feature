@@ -24,6 +24,7 @@ Feature: Assessments
     Then I should see "2" assessments
 
   Scenario: Viewing an assessment
+    Given the test survey has been loaded
     Given I am logged in as a user
     Given the following assessments:
       | title   | notes              | start_date          | completion_date     |
@@ -35,6 +36,7 @@ Feature: Assessments
     Then I should see "Activity"
 
   Scenario: Beginning an assessment
+    Given the test survey has been loaded  
     Given I am logged in as a user
     Given the following assessments:
       | title   | notes              | start_date          | completion_date     |
@@ -45,6 +47,7 @@ Feature: Assessments
     Then I should see "New assessment"
 
   Scenario: Editing an assessment
+    Given the test survey has been loaded
     Given I am logged in as a user
     Given the following assessments:
       | title          | notes              | start_date          | completion_date     |

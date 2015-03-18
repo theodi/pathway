@@ -7,3 +7,4 @@ Feature: Answering questions
     And I choose "Yes"
     And I press "Save"
     Then I should see "Have you released an open data schedule?"
+    

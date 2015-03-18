@@ -19,7 +19,7 @@
   
     <div class="row">
       <div class="col-md-8">
-        This assessment is x% complete 
+        This assessment is <%= @progress.percentage_progress %>% complete 
       </div>
       <div class="col-md-4">
         <% link_text = @assessment.start_date.blank? ? "Start assessment >" : "Continue assessment >" %>
@@ -27,6 +27,6 @@
       </div>
     </div>
 
-    <%= render 'overview', assessment: @assessment %>
+    <%= render 'overview', assessment: @assessment, progress: @progress %>
   </div>
 </div>

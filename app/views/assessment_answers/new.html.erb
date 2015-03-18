@@ -10,7 +10,10 @@
 <%= form_for @assessment_answer, url: assessment_question_answer_path(@assessment, @question) do |f| %>
   
   <% for answer in @question.answers %>
-    <p><%= f.radio_button :answer_id, answer.id %> <%= f.label :answer_id, answer.text, for: "assessment_answer_answer_id_#{answer.id}" %></p>
+    <p>
+      <%= f.radio_button :answer_id, answer.id %> 
+      <%= f.label :answer_id, answer.text, value: answer.id %>
+    </p>
   <% end %>
 
   <hr/>

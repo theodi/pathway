@@ -12,11 +12,15 @@
         <div class = "row">
           <div class="col-md-6"><%= activity.title %></div>
           <div class="col-md-6">
+            <% status = progress.progress_for_activity(activity) %>
             <% next_question = activity.next_question_for(@assessment) %>
-            <% if next_question %>
-              <%= link_to 'Start', assessment_question_path(@assessment, next_question) %>
-            <% else %>
-              'Completed'
+            <% case status %>
+            <% when :not_started %>
+              <%= link_to t(status), assessment_question_path(@assessment, next_question) %>
+            <% when :in_progress %>
+              <%= link_to t(status), assessment_question_path(@assessment, next_question) %>
+            <% when :completed %>            
+              <%= link_to t(status), assessment_question_path(@assessment, activity.questions.first) %>
             <% end %>
           </div>
         </div>

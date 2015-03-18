@@ -24,5 +24,7 @@ module ODMAT
     config.active_record.raise_in_transactional_callbacks = true
     
     config.middleware.use Rack::GoogleAnalytics, :tracker => ENV["GOOGLE_ANALYTICS_TRACKER"]
+      
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end
