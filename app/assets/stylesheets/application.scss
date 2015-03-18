@@ -6,55 +6,42 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+//some ODI base styles and colour definitions
+@import "colours";
+@import "basic";
 
-body > .container {
-  padding-top: 40px;
-  background-color: white;
+
+.odi-orange {
+  .page-title, .site-title .status {
+    background-color: $odiOrange;
+  }
+  .caret {
+    border-top-color: $odiOrange;
+    border-bottom-color: $odiOrange;
+  }
 }
 
-#main-nav {
-  background-color: #000;
-  color: #adaeaf;
+h1.site-title {
+  font-size: 32px;
+  margin: 10px 0;
+  position: relative;
+  a {
+    color: #fff;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .label {
+    position: absolute;
+    font-size: 12px;
+    top: -12px;
+    right: -60px;
+    padding: 5px;
+  }
 }
 
-#footer {
-  background-color: #000;
-  font-size: 0.88em;
-  color: #adaeaf;
-  padding-top: 40px;
-  padding-bottom: 52px;
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+  color: #fff;
+  background-color: $odiOrange;
 }
 
-#footer a {
-  color: #adaeaf;
-  text-decoration: none;
-}
-
-#footer ul {
-  list-style: none outside none;
-  margin: -4px 0 0 0;
-}
-
-#footer .footer-content h1 {
-  background: url(/assets/logo-footer.png) no-repeat top left;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  margin: 0 0 30px 0;
-  width: 204px;
-  height: 49px;
-}
-
-#footer .footer-content h1 a {
-  display: block;
-}
-
-#footer p {
-  margin: 0px;
-  font-size: 16px;
-}
-
-#footer .footer-nav {
-  margin: 0px;
-  font-size: 16px;
-}

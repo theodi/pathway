@@ -1,4 +1,4 @@
-<h2>New User</h2>
+<% content_for :title do %>New Account<% end %>
 
 <%= form_for @user, :url => user_index_path do |f| %>
   <%= render :partial => 'form', :locals => { :f => f } %>
