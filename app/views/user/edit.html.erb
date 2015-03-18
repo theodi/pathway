@@ -1,4 +1,4 @@
-<h2>Edit User</h2>
+<% content_for :title do %>Edit Account<% end %>
 
 <%= form_for @user, :url => user_path do |f| %>
   <%= render :partial => 'form', :locals => { :f => f } %>
