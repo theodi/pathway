@@ -1,0 +1,37 @@
+var observe_deletes = function(){
+  $('.delete_association').click(function(event) {
+    $(this).prevAll('input[type=hidden][id$=_destroy]').val('1');
+    $(this).closest('div.nested_object').hide();
+    return event.preventDefault();
+  });
+  $('.delete_attribute').click(function(event) {
+    $(this).closest('div.nested_object').find('input').val('');
+    $(this).closest('div.nested_object').hide();
+    return event.preventDefault();
+  });
+};
+
+var observe_adds = function(){
+  $('.add_fields').click(function(event){
+    var regexp, time;
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    $(this).before($(this).data('fields').replace(regexp, time));
+    observe_deletes();
+    return event.preventDefault();
+  });
+  $('.add_array_fields').click(function(event) {
+    var inputs, time;
+    time = new Date().getTime();
+    $(this).before($(this).data('fields'));
+    inputs = $(this).parent().find('input');
+    inputs[inputs.length - 1].setAttribute('id', time);
+    observe_deletes();
+    return event.preventDefault();
+  });
+};
+
+var observe_fields_for_links = function(){
+  observe_adds();
+  observe_deletes();
+};

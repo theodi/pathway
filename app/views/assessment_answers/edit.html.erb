@@ -1,0 +1,19 @@
+<h1><%= @assessment.title %></h1>
+<h3>My assessments > <%= @assessment.title %> > <%= @dimension.title %> > <%= @activity.title %> </h3>
+
+<hr/>
+
+<h2>Assessing: <%= @activity.title %></h2>
+
+<h4><%= @question.text %></h4>
+
+<%= form_for @assessment_answer, url: assessment_edit_answer_path(@assessment, @assessment_answer) do |f| %>
+  <%= render 'form', f: f %>
+  <p><%= f.submit "Save and continue" %></p>
+<% end %>
+
+<% content_for :javascript_footer do %>
+  $(document).ready(function(){
+    observe_fields_for_links();
+  });
+<% end %>
