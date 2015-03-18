@@ -23,7 +23,7 @@ Feature: Assessments
     And I delete an assessment
     Then I should see "2" assessments
 
-  Scenario: Viewing an assessment
+  Scenario: Viewing a partially complete assessment
     Given the test survey has been loaded
     Given I am logged in as a user
     Given the following assessments:
@@ -34,7 +34,34 @@ Feature: Assessments
     When I go to "/assessments/1"
     Then I should see "Dimension"
     Then I should see "Activity"
+    Then I should see "Continue assessment"
+    Then I should see "0%"
 
+  Scenario: Viewing a completed assessment
+    Given the test survey has been loaded
+    Given I am logged in as a user
+    Given the following assessments:
+      | title   | notes              | start_date          | completion_date     |
+      | 2014 Q4 | End of last year   | 2015-02-10 11:07:10 |                     |
+    And the current assessment is ready for completion 
+    When I go to "/assessments/1"
+    Then I should see "Dimension"
+    Then I should see "Activity"
+    Then I should see "100%"    
+    Then I should see "Complete assessment"
+
+  Scenario: Completing an assessment
+    Given the test survey has been loaded
+    Given I am logged in as a user
+    Given the following assessments:
+      | title   | notes              | start_date          | completion_date     |
+      | 2014 Q4 | End of last year   | 2015-02-10 11:07:10 |                     |
+    And the current assessment is ready for completion 
+    When I go to "/assessments/1"
+    And I complete the assessment
+    Then I should see "2014 Q4"
+    Then I should see "Completed"
+    
   Scenario: Beginning an assessment
     Given the test survey has been loaded  
     Given I am logged in as a user

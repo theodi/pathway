@@ -7,7 +7,7 @@ class AssessmentsController < ApplicationController
   def begin
     if current_user.current_assessment.blank?
       authorize! :create, Assessment
-      @assessment = current_user.assessments.create(title: "New assessment")
+      @assessment = current_user.assessments.create(title: "New assessment", start_date: Time.now)
       @dimensions = Dimension.all
       @progress = ProgressCalculator.new(@assessment)
       render 'show'
@@ -25,7 +25,6 @@ class AssessmentsController < ApplicationController
     @assessment = current_user.assessments.find(params[:id])
     authorize! :update, @assessment
     if @assessment.update_attributes(assessment_params)
-      @assessment.update_attribute(:start_date, Time.now)
       redirect_to assessment_path(@assessment)
     else
       render 'edit'
@@ -44,6 +43,20 @@ class AssessmentsController < ApplicationController
     authorize! :destroy, @assessment
     @assessment.destroy
     redirect_to assessments_path
+  end
+
+  def complete
+    @assessment = current_user.assessments.find(params[:id])
+    authorize! :update, @assessment
+    @assessment.complete
+    redirect_to report_path(@assessment)
+  end
+  
+  def report
+    @assessment = Assessment.find(params[:id])
+    authorize! :read, @assessment
+
+    render 'report'
   end
 
   private

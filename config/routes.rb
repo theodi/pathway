@@ -5,13 +5,18 @@ Rails.application.routes.draw do
   
   get 'organisations' => 'organisations#index', as: 'organisations'
   get 'assessments/begin' => 'assessments#begin', as: 'begin_assessment'
-  
+    
+  get 'assessments/:id/report' => 'assessments#report', as: 'report'
+  post 'assessments/:id/report' => 'assessments#complete', as: 'complete_assessment'
+      
   resources :assessments do
     get 'questions/:question_id' => 'assessment_answers#new', as: 'question'
     post 'questions/:question_id' => 'assessment_answers#create', as: 'question_answer'
     get 'assessment_answers/:id' => 'assessment_answers#edit', as: 'edit_answer'
     put 'assessment_answers/:id' => 'assessment_answers#update', as: 'answer'
   end
+  
+  
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -10,7 +10,7 @@ class AssessmentScorer
     
     #find the assesssment_answers for all questions that are associated with this activity
     answers = AssessmentAnswer.joins(:answer, :assessment, question: :activity) \
-                    .where(assessment: 1, questions: {activity_id: 1}) \
+                    .where(assessment: @assessment, questions: {activity_id: activity.id}) \
                     .order("answers.code DESC").limit(1)
     
     answers.first.answer.score

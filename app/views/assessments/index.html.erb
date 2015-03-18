@@ -32,7 +32,7 @@
     <%= content_tag :p, assessment.notes %>
     <%= content_tag :p, "Started: #{pretty_date(assessment.start_date)}" %> 
     <%= content_tag :p, "Completed: #{pretty_date(assessment.completion_date)}" %>
-    <%= link_to 'View assessment', assessment_path(assessment) %>
+    <%= link_to 'View report', report_path(assessment) %>
     <%= link_to 'Delete', assessment_path(assessment), method: :delete, data: { confirm: "Are you sure?" } %>
   </div>
 <% end %>

@@ -17,6 +17,10 @@ class Assessment < ActiveRecord::Base
     end 
   end
 
+  def can_complete?
+    return ProgressCalculator.new(self).can_mark_completed?
+  end
+  
   def complete
     return false unless ProgressCalculator.new(self).can_mark_completed?
     self.completion_date = DateTime.now
