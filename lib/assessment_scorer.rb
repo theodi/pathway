@@ -35,7 +35,7 @@ class AssessmentScorer
 
   def score_dimensions
     scores = {}
-    Questionnaire.order("version desc").first.dimensions.each do |dimension|
+    Questionnaire.current.dimensions.each do |dimension|
       scores[ dimension.name]  = score_dimension(dimension)
     end
     scores

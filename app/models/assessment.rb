@@ -1,6 +1,7 @@
 class Assessment < ActiveRecord::Base
   belongs_to :user
   has_many :assessment_answers, dependent: :destroy
+  has_many :scores, dependent: :destroy
 
   def self.completed
     where.not(completion_date: nil)
@@ -8,12 +9,24 @@ class Assessment < ActiveRecord::Base
 
   def status
     if start_date.blank?
-      "Not started"
+      :not_started
     elsif completion_date.blank?
-      "Incomplete"
+      :incomplete
     else
-      "Completed"
+      :complete
     end 
   end
 
+  def complete
+    return false unless ProgressCalculator.new(self).can_mark_completed?
+    self.completion_date = DateTime.now
+    
+    scorer = AssessmentScorer.new(self)
+    Questionnaire.current.activities.each do |activity|
+      self.scores.build(activity: activity, score: scorer.score_activity(activity)) if activity.questions.length > 0
+    end
+    
+    save
+  end
+    
 end

@@ -19,7 +19,7 @@
               <%= link_to t(status), assessment_question_path(@assessment, next_question) %>
             <% when :in_progress %>
               <%= link_to t(status), assessment_question_path(@assessment, next_question) %>
-            <% when :completed %>            
+            <% when :complete %>            
               <%= link_to t(status), assessment_question_path(@assessment, activity.questions.first) %>
             <% end %>
           </div>
