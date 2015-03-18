@@ -23,8 +23,16 @@
         This assessment is <%= @progress.percentage_progress %>% complete 
       </div>
       <div class="col-md-4">
-        <% link_text = @assessment.start_date.blank? ? "Start assessment >" : "Continue assessment >" %>
-        <%= link_to link_text, edit_assessment_path(@assessment) %>
+        <% if @assessment.status == :complete %>
+          <%= link_to "Completed", report_path(@assessment) %>
+        <% else %>
+          <% if @assessment.can_complete? %>
+            <%= link_to "Complete assessment", complete_assessment_path(@assessment), method: :post, class: "complete" %>
+          <% else %>
+            <% link_text = @assessment.status == :not_started ? "Start assessment >" : "Continue assessment >" %>
+            <%= link_to link_text, edit_assessment_path(@assessment) %>
+          <% end %>
+        <% end %>
       </div>
     </div>
 
