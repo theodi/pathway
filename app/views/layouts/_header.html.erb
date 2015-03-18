@@ -1,0 +1,38 @@
+<header class="site-header">
+  <div class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+
+        <!-- Mobile nav toggle -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <h1 class="site-title">
+          <a href="/"><%= title %></a>
+          <span class="label label-success status"><%= status.upcase %></span>
+        </h1>
+
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav main-nav navbar-right">
+          <% if current_user %>
+              <% if current_user.admin? %>
+                <li class="dropdown"><%= link_to t(:admin), "/admin" %></li>
+              <% end %>
+              <li class="dropdown"><%= link_to 'My Assessments', assessments_path %></li>
+              <li class="dropdown"><%= link_to t(:account), edit_user_registration_path %></li>
+              <li class="dropdown last"><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
+            <% else %>
+              <li class="dropdown"><%= link_to t(:sign_up), new_user_registration_path  %></li>
+              <li class="dropdown last"><%= link_to t(:login), new_user_session_path  %></li>
+          <% end %>
+        </ul>
+      
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,98 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><%= t :site_title %></title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= favicon_link_tag 'favicon.ico' %>
+
+    <title><%= t :site_title %> | <%= yield :title %></title>
+
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
   </head>
-  <body>
+
+  <body class="odi-orange">
     
-    <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/"><%= t :site_title %></a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <% if current_user %>
-              <li><p class="navbar-text">Signed in as <%= current_user.email %></p></li>
-              <% if current_user.admin? %>
-                <li><%= link_to t(:admin), "/admin", :class => 'navbar-link' %></li>
-              <% end %>
-              <li><%= link_to 'My Assessments', assessments_path %></li>
-              <li><%= link_to t(:account), edit_user_registration_path, :class => 'navbar-link' %></li>
-              <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
-            <% else %>
-              <li><%= link_to t(:sign_up), new_user_registration_path, :class => 'navbar-link'  %></li>
-              <li><%= link_to t(:login), new_user_session_path, :class => 'navbar-link'  %></li>
-            <% end %>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-    <div class="container">
-
-      <% if notice %>
-        <div class="row"><p class="alert alert-success"><%= notice %></p></div>
-      <% end %>
-      <% if alert %>
-        <div class="row"><p class="alert alert-danger"><%= alert %></p></div>
+    <%= render partial: 'layouts/header', :locals => { :title => t(:site_title), :status => "alpha" } %>
+    
+    <div id='wrapper'>
+      <% if content_for?(:header) %>
+        <%= yield :header %>
+      <% elsif content_for?(:title) %>
+        <header class="page-title">
+            <div class="container">
+                <h1><%= yield :title %></h1>
+            </div>
+        </header>
       <% end %>
 
-      <%= yield %>
-      
-    </div>
-
-    <footer id="footer">
       <div class="container">
-        <div class="col-md-8 footer-content">
-          <h1><a href="http://www.theodi.org">Open Data Institute</a></h1>
-          <p>
-            <a href="http://www.theodi.org/contact">Open Data Institute, 65 Clifton Street, London EC2A 4JE</a>
-          </p>
-          <p>
-          <a href="mailto:info@theodi.org">info@theodi.org</a>
-          ·
-          Company
-          <a href="http://opencorporates.com/companies/gb/08030289">08030289</a>
-          ·
-          <span>VAT</span><span>
-          143 7796 80
-          </span></p>
-          <p class="license">
-          <a href="http://creativecommons.org/licenses/by-sa/2.0/uk/deed.en_GB" rel="license">
-          <img alt="Creative Commons Licence" height="15" src="/assets/logo_cc_80x15.png" width="80">
-          </a>
-          </p>
+          <% if notice %>
+            <div class="row"><p class="alert alert-success"><%= notice %></p></div>
+          <% end %>
+          <% if alert %>
+            <div class="row"><p class="alert alert-danger"><%= alert %></p></div>
+          <% end %>
+
+          <div class="row">
+            <%= yield %>
           </div>
-          <div class="col-md-4 footer-nav">
-          <nav>
-          <ul class="pull-right">
-          <li>
-          <a href="/terms">Terms of use</a>
-          </li>
-          <li>
-          <a href="/about">About</a>
-          </li>
-          <li>
-          <a href="/contact">Get in touch</a>
-          </li>
-          </ul>
-          </nav>
-        </div>
-      </div>    
-    </footer>
+      </div>
+
+    </div>
+    
+    <%= render partial: 'layouts/footer' %>
 
     <%= javascript_tag do %>
       <%= yield :javascript_footer %>
