@@ -1,6 +1,6 @@
+<% content_for :title do %><%= t(:login) %><% end %>
 <div class="row">
   <div class="col-md-4">
-    <h2><%= t(:login) %></h2>
     
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">

@@ -1,5 +1,5 @@
-<h1><%= current_user.organisation ? current_user.organisation.title : "" %> <%= @assessment.title %></h1>
- 
+<% content_for :title do %><%= current_user.organisation ? current_user.organisation.title : "" %> <%= @assessment.title %><% end %>
+
 <div class="row">
   <div class="col-md-8">
     <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>

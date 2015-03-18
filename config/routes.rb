@@ -15,8 +15,10 @@ Rails.application.routes.draw do
     get 'assessment_answers/:id' => 'assessment_answers#edit', as: 'edit_answer'
     put 'assessment_answers/:id' => 'assessment_answers#update', as: 'answer'
   end
-  
-  
+    
+  get '/terms-of-use' => 'high_voltage/pages#show', id: 'terms_of_use'
+  get '/privacy-policy' => 'high_voltage/pages#show', id: 'privacy_policy'
+  get '/cookie-policy' => 'high_voltage/pages#show', id: 'cookie_policy'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
