@@ -8,19 +8,12 @@
 <h4><%= @question.text %></h4>
 
 <%= form_for @assessment_answer, url: assessment_question_answer_path(@assessment, @question) do |f| %>
-  
-  <% for answer in @question.answers %>
-    <p>
-      <%= f.radio_button :answer_id, answer.id %> 
-      <%= f.label :answer_id, answer.text, value: answer.id %>
-    </p>
-  <% end %>
-
-  <hr/>
-
-  <%= f.label :notes, "Please enter any additional information or supporting evidence" %><br/>
-  <%= f.text_area :notes %>
-
+  <%= render 'form', f: f %>
   <p><%= f.submit "Save and continue" %></p>
+<% end %>
 
+<% content_for :javascript_footer do %>
+  $(document).ready(function(){
+    observe_fields_for_links();
+  });
 <% end %>
