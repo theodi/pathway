@@ -35,7 +35,13 @@ Then(/^I should not see "(.*?)"$/) do |text|
 end
 
 When(/^I click on "(.*?)"$/) do |link|
-  click_link link
+  if link[0].eql?('#') or link[0].eql?('.')
+    Rails.logger.info "\n\n#{Capybara.javascript_driver} \n"
+    
+    page.execute_script "$('#{link}').trigger('click');"
+  else
+    click_link link
+  end
 end
 
 When(/^I press "(.*?)"$/) do |button|
