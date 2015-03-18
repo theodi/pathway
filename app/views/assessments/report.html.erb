@@ -1,0 +1,5 @@
+<h1><%= current_user.organisation ? current_user.organisation.title : "" %> <%= @assessment.title %></h1>
+
+<%= content_tag :p, "Started: #{pretty_date(@assessment.start_date)}" %> 
+<%= content_tag :p, "Completed: #{pretty_date(@assessment.completion_date)}" %>
+

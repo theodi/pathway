@@ -8,11 +8,11 @@ class ProgressCalculator
   
   #is the assessment complete?
   def completed?
-    @assessment.status == "Completed"
+    @assessment.status == :complete
   end
     
   def activity_completed?(activity)
-    return progress_for_activity(activity) == :completed
+    return progress_for_activity(activity) == :complete
   end
   
   #progress for a single activity
@@ -27,11 +27,11 @@ class ProgressCalculator
     return :not_started if assessment_answers.empty?
 
     #if there are same number as questions, then completed
-    return :completed if assessment_answers.length == activity.questions.length
+    return :complete if assessment_answers.length == activity.questions.length
     
     #if there are any negative answers, then completed
     assessment_answers.each do |aa|
-      return :completed if !aa.answer.positive?
+      return :complete if !aa.answer.positive?
     end
     
     #otherwise in progress
@@ -41,7 +41,7 @@ class ProgressCalculator
   #summary of progress for all activities
   def progress_for_all_activities
     progress = {}
-    Questionnaire.order("version desc").first.activities.each do |activity|
+    Questionnaire.current.activities.each do |activity|
       progress[ activity.name ] = progress_for_activity(activity)
     end
     progress
@@ -50,13 +50,13 @@ class ProgressCalculator
   #percentage completion across the entire maturity assessment
   def percentage_progress
     progress = progress_for_all_activities.reject{ |k,v| v == :skipped }
-    completed = progress.values.count {|state| state == :completed }
+    completed = progress.values.count {|state| state == :complete }
     return (completed.to_f / progress.values.length.to_f * 100).to_i   
   end  
   
   #can we mark the assessment as completed?
   def can_mark_completed?
-    progress_for_all_activities.reject{ |k,v| v == :skipped || v == :completed }.size == 0
+    progress_for_all_activities.reject{ |k,v| v == :skipped || v == :complete }.size == 0
   end
   
 end

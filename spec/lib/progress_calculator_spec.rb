@@ -39,7 +39,7 @@ describe ProgressCalculator do
     it "is completed if all necessary questions answered" do
       #negative answer to first question
       AssessmentAnswer.create( assessment: assessment, question: Question.first, answer: Answer.find_by_code("Q1.2") )
-      expect( calculator.progress_for_activity( activity ) ).to eql(:completed)      
+      expect( calculator.progress_for_activity( activity ) ).to eql(:complete)      
     end
       
     it "is completed if all answered" do
@@ -48,7 +48,7 @@ describe ProgressCalculator do
         AssessmentAnswer.create( assessment: assessment, question: q, answer: q.answers.where(positive: true).first )
       end
       
-      expect( calculator.progress_for_activity( activity ) ).to eql(:completed)      
+      expect( calculator.progress_for_activity( activity ) ).to eql(:complete)      
 
     end
 

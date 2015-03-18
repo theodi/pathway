@@ -5,6 +5,14 @@ Given(/^the following assessments:$/) do |table|
   end
 end
 
+Given(/^the current assessment is ready for completion$/) do
+  AssessmentAnswer.create( assessment: @current_user.current_assessment, question: Question.first, answer: Answer.find_by_code("Q1.2") )
+end
+
+When(/^I complete the assessment$/) do
+  all('.complete').first.click
+end
+
 When(/^I delete an assessment$/) do
   all('.assessment')[0].first(:link, "Delete").click
 end
