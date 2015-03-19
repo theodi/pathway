@@ -9,6 +9,16 @@ Feature: Answering questions
     And I press "Save and continue"
     Then I should see "Do you have a standard dataset release process?"
 
+  Scenario: Answering a question and exiting
+    Given I am logged in as a user
+    Given the test survey has been loaded
+    Given I have started an assessment
+    When I go to the first question
+    And I choose "Yes"
+    And I press "Save and exit"
+    Then I should see "Dimension"
+    And I should see "Activity"
+
   Scenario: Not selecting an answer
     Given I am logged in as a user
     Given the test survey has been loaded

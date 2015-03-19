@@ -21,8 +21,12 @@ class AssessmentAnswersController < ApplicationController
     @assessment_answer = @assessment.assessment_answers.build(assessment_answer_params)
     
     if @assessment_answer.save
-      next_question = @activity.next_question_for(@assessment)
-      redirection = next_question.blank? ? assessment_path(@assessment) : assessment_question_path(@assessment, next_question)
+      if params[:commit].eql?("Save and exit")
+        redirection = assessment_path(@assessment)
+      else
+        next_question = @activity.next_question_for(@assessment)
+        redirection = next_question.blank? ? assessment_path(@assessment) : assessment_question_path(@assessment, next_question)
+      end
       redirect_to redirection
     else
       render 'new'
@@ -42,8 +46,12 @@ class AssessmentAnswersController < ApplicationController
     @activity = @question.activity
     @dimension = @activity.dimension
     if @assessment_answer.update_attributes(assessment_answer_params)
-      next_question = @activity.next_question_for(@assessment)
-      redirection = next_question.blank? ? assessment_path(@assessment) : assessment_question_path(@assessment, next_question)
+      if params[:commit].eql?("Save and exit")
+        redirection = assessment_path(@assessment)
+      else
+        next_question = @activity.next_question_for(@assessment)
+        redirection = next_question.blank? ? assessment_path(@assessment) : assessment_question_path(@assessment, next_question)
+      end
       redirect_to redirection
     else
       render 'edit'
