@@ -10,4 +10,22 @@ class AssessmentAnswer < ActiveRecord::Base
   validates :answer_id, presence: true
   validates :assessment_id, presence: true
   validates :question_id, uniqueness: { scope: :assessment_id, message: " has already beeen answered for this quesion." }
+
+  def prev
+    previous_question = question.prev
+    if previous_question
+      assessment.assessment_answers.where(question_id: previous_question).first
+    else
+      nil
+    end
+  end
+
+  def next
+    next_question = question.next
+    if next_question
+      assessment.assessment_answers.where(question_id: next_question).first
+    else
+      nil
+    end
+  end
 end

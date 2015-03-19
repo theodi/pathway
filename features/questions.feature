@@ -9,6 +9,16 @@ Feature: Answering questions
     And I press "Save and continue"
     Then I should see "Do you have a standard dataset release process?"
 
+  Scenario: Navigating back to revise a question
+    Given I am logged in as a user
+    Given the test survey has been loaded
+    Given I have started an assessment
+    When I go to the first question
+    And I choose "Yes"
+    And I press "Save and continue"
+    And I click on "Back"
+    Then I should see "Have you published any open data?"
+
   Scenario: Answering a question and exiting
     Given I am logged in as a user
     Given the test survey has been loaded
