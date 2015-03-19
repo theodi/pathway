@@ -14,6 +14,10 @@ When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
   fill_in field, :with=>value
 end
 
+When(/^I go back$/) do
+  visit page.driver.request.env['HTTP_REFERER']
+end
+
 When(/^I choose "([^"]*)"$/) do |value|
   choose(value)
 end
@@ -36,8 +40,6 @@ end
 
 When(/^I click on "(.*?)"$/) do |link|
   if link[0].eql?('#') or link[0].eql?('.')
-    Rails.logger.info "\n\n#{Capybara.javascript_driver} \n"
-    
     page.execute_script "$('#{link}').trigger('click');"
   else
     click_link link
