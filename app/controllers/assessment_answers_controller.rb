@@ -7,6 +7,7 @@ class AssessmentAnswersController < ApplicationController
     @activity = @question.activity
     @dimension = @activity.dimension
     @assessment_answer = @assessment.assessment_answers.build(question: @question)
+    @assessment_answer.links.build
   end
 
   def create

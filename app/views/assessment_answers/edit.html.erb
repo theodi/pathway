@@ -1,15 +1,21 @@
-<h1><%= @assessment.title %></h1>
-<h3>My assessments > <%= @assessment.title %> > <%= @dimension.title %> > <%= @activity.title %> </h3>
-
+<% content_for :title do %>New assessment<% end %>
+<h4>My assessments > <%= @assessment.title %> > <%= @dimension.title %> > <%= @activity.title %> </h4>
 <hr/>
 
-<h2>Assessing: <%= @activity.title %></h2>
-
-<h4><%= @question.text %></h4>
-
 <%= form_for @assessment_answer, url: assessment_edit_answer_path(@assessment, @assessment_answer) do |f| %>
+
+  <h3>
+    Assessing: <%= @activity.title %>
+    <%= f.submit "Save and exit", class: "btn" %>
+  </h3>
+
+  <h4><%= @question.text %></h4>
+
   <%= render 'form', f: f %>
-  <p><%= f.submit "Save and continue" %></p>
+  
+  <hr/>
+
+  <p><%= f.submit "Save and continue", class: "btn" %></p>
 <% end %>
 
 <% content_for :javascript_footer do %>

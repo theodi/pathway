@@ -12,9 +12,10 @@
 <%= f.label :notes, "Please enter any additional information or supporting evidence" %><br/>
 <%= f.text_area :notes %>
 
-<h4>Links</h4>
+<p>Or link to any supporting external resources</p>
+
 <%= f.fields_for :links do |lf| %>
   <%= render "links/link_fields", f: lf %>
 <% end %>
-<%= link_to_add_fields "Add link", f, :links %>
 
+<%= link_to_add_fields "Add another link", f, :links %>

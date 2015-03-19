@@ -4,7 +4,7 @@ class AssessmentAnswer < ActiveRecord::Base
   belongs_to :answer
   has_many :links, dependent: :destroy
 
-  accepts_nested_attributes_for :links, allow_destroy: true
+  accepts_nested_attributes_for :links, :reject_if => lambda { |a| a["link"].blank? }, allow_destroy: true
 
   validates :question_id, presence: true
   validates :answer_id, presence: true
