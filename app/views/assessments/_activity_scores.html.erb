@@ -16,7 +16,8 @@
             </td>
           <% end %>
           <td><%= activity.title %></td>
-          <td><%= assessment.scores.where(activity_id: activity.id).first.score %></td>
+          <% scores = assessment.scores.where(activity_id: activity.id) %>
+          <td><%= scores.first.score if scores.length > 0 %></td>
         </tr>      
       <% end %>
     <% end %>
