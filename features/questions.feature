@@ -19,6 +19,13 @@ Feature: Answering questions
     And I click on "Back"
     Then I should see "Have you published any open data?"
 
+  Scenario: Not allowing a user to navigate back where there was no previous question
+    Given I am logged in as a user
+    Given the test survey has been loaded
+    Given I have started an assessment
+    When I go to the first question
+    Then I should not see "Back"
+
   Scenario: Answering a question and exiting
     Given I am logged in as a user
     Given the test survey has been loaded
