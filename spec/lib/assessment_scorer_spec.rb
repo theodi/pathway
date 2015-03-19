@@ -28,7 +28,7 @@ describe AssessmentScorer do
     
     it "should score to later negative answer" do
       AssessmentAnswer.create( assessment: assessment, question: Question.first, answer: Answer.find_by_code("Q1.1") )
-      AssessmentAnswer.create( assessment: assessment, question: Question.first, answer: Answer.find_by_code("Q2.2") )
+      AssessmentAnswer.create( assessment: assessment, question: Question.second, answer: Answer.find_by_code("Q2.2") )
       expect( scorer.score_activity( activity) ).to eql(2)
     end
     
