@@ -13,8 +13,12 @@ class AssessmentAnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @activity = @question.activity
     @dimension = @activity.dimension
-    @assessment_answer = @assessment.assessment_answers.build(assessment_answer_params)
+    
+    existing_answer = @assessment.assessment_answers.where(question_id: @question.id).first
+    existing_answer.destroy unless existing_answer.blank?
 
+    @assessment_answer = @assessment.assessment_answers.build(assessment_answer_params)
+    
     if @assessment_answer.save
       next_question = @activity.next_question_for(@assessment)
       redirection = next_question.blank? ? assessment_path(@assessment) : assessment_question_path(@assessment, next_question)
