@@ -1,0 +1,25 @@
+<table class="table table-striped table-condensed" id="activity-scores">
+  <thead>
+    <tr>
+      <th>Dimension</th>
+      <th>Activity</th>
+      <th>Score vs Goal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for dimension in @dimensions %>
+      <% dimension.activities.each_with_index do |activity, index| %>
+        <tr>
+          <% if index == 0 %>
+            <td rowspan="<%= dimension.activities.length %>">
+              <%= dimension.title %>
+            </td>
+          <% end %>
+          <td><%= activity.title %></td>
+          <% scores = assessment.scores.where(activity_id: activity.id) %>
+          <td><%= scores.first.score if scores.length > 0 %></td>
+        </tr>      
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

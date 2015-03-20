@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-8">
+    <p><%= assessment.notes %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <strong>Assessor</strong><br>
+    <%= current_user.email %>
+  </div>
+</div>
+  
+<div class="row">
+  <div class="col-md-8">
+    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+    <%= content_tag :span, "Started on: #{pretty_date(@assessment.start_date)}" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+    <%= content_tag :span, "Completed on: #{pretty_date(@assessment.completion_date)}" %>
+  </div>
+</div>

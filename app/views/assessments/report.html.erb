@@ -1,5 +1,44 @@
 <% content_for :title do %><%= current_user.organisation ? current_user.organisation.title : "" %> <%= @assessment.title %><% end %>
 
-<%= content_tag :p, "Started: #{pretty_date(@assessment.start_date)}" %> 
-<%= content_tag :p, "Completed: #{pretty_date(@assessment.completion_date)}" %>
+<div class="row">
+  <div class="col-md-8">
+    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+    <%= content_tag :span, "Completed: #{pretty_date(@assessment.completion_date)}" %>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-md-12">
+    <div role="tabpanel">
+    
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#summary" aria-controls="summary" role="tab" data-toggle="tab">Summary</a></li>
+        <li role="presentation"><a href="#activities" aria-controls="activities" role="tab" data-toggle="tab">Activities</a></li>
+        <li role="presentation"><a href="#detail" aria-controls="detail" role="tab" data-toggle="tab">Detail</a></li>
+        <li role="presentation"><a href="#improvements" aria-controls="improvements" role="tab" data-toggle="tab">Improvements</a></li>
+        <li role="presentation"><a href="#information" aria-controls="information" role="tab" data-toggle="tab">Information</a></li>
+      </ul>
+    
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="summary">
+          <%= render 'summary_scores', assessment: @assessment %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="activities">
+            <%= render 'activity_scores', assessment: @assessment %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="detail">
+          Detail
+        </div>
+        <div role="tabpanel" class="tab-pane" id="improvements">
+          Improvements
+        </div>
+        <div role="tabpanel" class="tab-pane" id="information">
+          <%= render 'report_info', assessment: @assessment %>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+</div>

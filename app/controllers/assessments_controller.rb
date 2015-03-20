@@ -54,6 +54,7 @@ class AssessmentsController < ApplicationController
   
   def report
     @assessment = Assessment.find(params[:id])
+    @dimensions = Questionnaire.current.dimensions
     authorize! :read, @assessment
 
     render 'report'
