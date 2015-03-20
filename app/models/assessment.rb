@@ -32,5 +32,14 @@ class Assessment < ActiveRecord::Base
     
     save
   end
+
+  def next_activity
+    progress = ProgressCalculator.new(self)
+    Questionnaire.current.activities.each do |activity|
+      Rails.logger.info("\n #{activity.title} - #{progress.progress_for_activity(activity)}")
+      return activity if [:not_started, :in_progress].include? progress.progress_for_activity(activity)
+    end
+    nil
+  end
     
 end

@@ -8,6 +8,7 @@ describe Assessment do
       config = File.join( __dir__, "..", "lib", "test-survey.xls" )    
       QuestionnaireImporter.load(1, config)    
     end
+
     let(:assessment) { FactoryGirl.create :unfinished_assessment }
     let!(:assessment_answer) { AssessmentAnswer.create( assessment: assessment, question: Question.first, answer: Answer.find_by_code("Q1.2") ) }
           
@@ -37,6 +38,20 @@ describe Assessment do
       expect( assessment.scores.length ).to eql(1)
       expect( Score.first.score ).to eql(1)
     end
-    
-  end
+
+    describe "#next_activity" do
+      it "should return the next unstarted activity" do
+        activity = Activity.first
+        AssessmentAnswer.destroy_all
+        expect( assessment.next_activity ).to eql(activity)
+      end
+
+      it "should return the next started but unfinished activity" do
+        activity = Activity.first
+        assessment_answer.update_attribute(:answer_id, Answer.find_by_code("Q1.1").id)
+        expect( assessment.next_activity ).to eql(activity)
+      end
+    end
+  end 
+
 end
