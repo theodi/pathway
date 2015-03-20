@@ -6,7 +6,7 @@
 
   <h3>
     Assessing: <%= @activity.title %>
-    <%= f.submit "Save and exit", class: "btn" %>
+    <%= link_to "Save and exit", assessment_path(@assessment), class: "btn" %>
   </h3>
 
   <h4><%= @question.text %></h4>
