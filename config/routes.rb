@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     get 'questions/:question_id' => 'assessment_answers#new', as: 'question'
     post 'questions/:question_id' => 'assessment_answers#create', as: 'question_answer'
     get 'assessment_answers/:id' => 'assessment_answers#edit', as: 'edit_answer'
-    put 'assessment_answers/:id' => 'assessment_answers#update', as: 'answer'
+    patch 'assessment_answers/:id' => 'assessment_answers#update', as: 'answer'
   end
     
   get '/terms-of-use' => 'high_voltage/pages#show', id: 'terms_of_use'

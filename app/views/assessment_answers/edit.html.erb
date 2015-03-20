@@ -1,5 +1,4 @@
-<% content_for :title do %>New assessment<% end %>
-
+<h1><%= @assessment.title %></h1>
 <h3>My assessments > <%= @assessment.title %> > <%= @dimension.title %> > <%= @activity.title %> </h3>
 
 <hr/>
@@ -8,7 +7,7 @@
 
 <h4><%= @question.text %></h4>
 
-<%= form_for @assessment_answer, url: assessment_question_answer_path(@assessment, @question) do |f| %>
+<%= form_for @assessment_answer, url: assessment_edit_answer_path(@assessment, @assessment_answer) do |f| %>
   <%= render 'form', f: f %>
   <p><%= f.submit "Save and continue" %></p>
 <% end %>

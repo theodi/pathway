@@ -14,6 +14,10 @@ When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
   fill_in field, :with=>value
 end
 
+When(/^I go back$/) do
+  visit page.driver.request.env['HTTP_REFERER']
+end
+
 When(/^I choose "([^"]*)"$/) do |value|
   choose(value)
 end
@@ -35,7 +39,11 @@ Then(/^I should not see "(.*?)"$/) do |text|
 end
 
 When(/^I click on "(.*?)"$/) do |link|
-  click_link link
+  if link[0].eql?('#') or link[0].eql?('.')
+    page.execute_script "$('#{link}').trigger('click');"
+  else
+    click_link link
+  end
 end
 
 When(/^I press "(.*?)"$/) do |button|

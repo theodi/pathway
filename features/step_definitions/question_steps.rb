@@ -1,20 +1,25 @@
 Given(/^the test survey has been loaded$/) do
   config = File.join( __dir__, "..", "..", "spec", "lib", "test-survey.xls" )    
-  QuestionnaireImporter.load(1, config)    
+  QuestionnaireImporter.load(1, config)
+  Rails.logger.info "Loaded test survey with: #{Question.count} questions and #{Answer.count} answers.\n"
 end
 
 Given(/^I have started an assessment$/) do
   @assessment = FactoryGirl.create(:unfinished_assessment, user_id: @current_user.id)
-  dimension = FactoryGirl.create(:dimension)
-  @activity = dimension.activities.create(FactoryGirl.attributes_for(:activity))
-  @activity.questions.create(FactoryGirl.attributes_for(:question))
-  @activity.questions.create(FactoryGirl.attributes_for(:question, code: "q2", text: "Have you released an open data schedule?"))
-  @activity.questions.create(FactoryGirl.attributes_for(:question, code: "q3", text: "Do you have an open data officer?"))
-  
-  FactoryGirl.create(:answer)
-  FactoryGirl.create(:negative_answer)
 end
 
 When(/^I go to the first question$/) do
-  visit assessment_question_path(@assessment, @activity.questions.first)
+  first_question = Question.where(code: "Q1").first
+  visit assessment_question_path(@assessment, first_question)
+end
+
+When(/^I go back to the first question$/) do
+  visit assessment_edit_answer_path(@assessment, @assessment.assessment_answers.first)
+end
+
+Given(/^I have answered the first question including a link$/) do
+  positive = Answer.where(code: "Q1.1").first
+  first_question = Question.where(code: "Q1").first
+  assessment_answer = @assessment.assessment_answers.create(answer: positive, question: first_question)
+  assessment_answer.links.create(FactoryGirl.attributes_for(:link))
 end
