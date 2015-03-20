@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :assessments, dependent: :destroy
 
   validates :organisation_id, uniqueness: true, unless: "organisation_id.nil?"
+  validates :name, presence: true
 
   def current_assessment
     assessments.where(:completion_date => nil).first
