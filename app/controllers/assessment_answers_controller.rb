@@ -2,6 +2,16 @@ class AssessmentAnswersController < ApplicationController
 
   before_filter :load_and_authorize_assessment
 
+  def continue
+    activity = @assessment.next_activity
+    if activity
+      question = activity.next_question_for(@assessment)
+      redirect_to assessment_question_path(@assessment, question)
+    else
+      redirect_to assessment_path(@assessment)
+    end
+  end
+
   def new
     @question = Question.find(params[:question_id])
     @activity = @question.activity

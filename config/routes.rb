@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     get 'assessment_answers/:id' => 'assessment_answers#edit', as: 'edit_answer'
     patch 'assessment_answers/:id' => 'assessment_answers#update', as: 'answer'
   end
+
+  get 'assessments/:assessment_id/continue' => 'assessment_answers#continue', as: 'continue_assessment'
     
   get '/terms-of-use' => 'high_voltage/pages#show', id: 'terms_of_use'
   get '/privacy-policy' => 'high_voltage/pages#show', id: 'privacy_policy'
