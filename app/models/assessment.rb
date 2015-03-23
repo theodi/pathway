@@ -41,5 +41,9 @@ class Assessment < ActiveRecord::Base
     end
     nil
   end
+  
+  def answer_for_question(question)
+    return AssessmentAnswer.where(assessment_id: self.id, question_id: question.id).first
+  end
     
 end
