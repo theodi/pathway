@@ -4,12 +4,8 @@
   <%= render 'first_assessment' %>
 
 <% elsif @current_assessment.blank? %> 
-
-  <h2>No assessments in progress</h2>
-  <p>Click below to start an assessment. If you would like to see the questions in advance to give you opportunity to prepare your responses you can download the assessment questions as a PDF.</p>
-  <%= link_to 'Start an assessment', begin_assessment_path %>
-  <%= link_to 'Download assessment qusetions', '#' %>
-
+  <%= render 'first_assessment' %>
+  
 <% else %>
 
   <div class = "assessment current">
