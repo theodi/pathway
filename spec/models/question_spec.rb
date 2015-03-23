@@ -1,6 +1,23 @@
 require 'spec_helper'
 
 describe Question do
+
+  describe "#prev" do
+    it "should return the previous question" do
+      q1 = FactoryGirl.create(:question, code: "q1")
+      q2 = FactoryGirl.create(:question, code: "q2")
+      expect(q2.prev).to eq(q1)
+    end
+  end
+
+  describe "#next" do 
+    it "should return the next question" do
+      q1 = FactoryGirl.create(:question, code: "q1")
+      q2 = FactoryGirl.create(:question, code: "q2")
+      expect(q1.next).to eq(q2)
+    end
+  end
+
   describe "creation" do
 
     context "valid attributes" do

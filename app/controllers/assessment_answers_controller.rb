@@ -17,23 +17,28 @@ class AssessmentAnswersController < ApplicationController
     @activity = @question.activity
     @dimension = @activity.dimension
     @assessment_answer = @assessment.assessment_answers.build(question: @question)
+    @assessment_answer.links.build
+    @previous_answer = @assessment_answer.prev
   end
 
   def create
     @question = Question.find(params[:question_id])
     @activity = @question.activity
-    @dimension = @activity.dimension
-    
     existing_answer = @assessment.assessment_answers.where(question_id: @question.id).first
     existing_answer.destroy unless existing_answer.blank?
-
     @assessment_answer = @assessment.assessment_answers.build(assessment_answer_params)
     
     if @assessment_answer.save
-      next_question = @activity.next_question_for(@assessment)
-      redirection = next_question.blank? ? assessment_path(@assessment) : assessment_question_path(@assessment, next_question)
+      if params[:commit].eql?("Save and exit")
+        redirection = assessment_path(@assessment)
+      else
+        next_question = @activity.next_question_for(@assessment)
+        redirection = next_question.blank? ? assessment_path(@assessment) : assessment_question_path(@assessment, next_question)
+      end
       redirect_to redirection
     else
+      @dimension = @activity.dimension
+      @previous_answer = @assessment_answer.prev
       render 'new'
     end
   end
@@ -43,18 +48,25 @@ class AssessmentAnswersController < ApplicationController
     @question = @assessment_answer.question
     @activity = @question.activity
     @dimension = @activity.dimension
+    @previous_answer = @assessment_answer.prev
   end
 
   def update
     @assessment_answer = @assessment.assessment_answers.find(params[:id])
     @question = @assessment_answer.question
     @activity = @question.activity
-    @dimension = @activity.dimension
+    
     if @assessment_answer.update_attributes(assessment_answer_params)
-      next_question = @activity.next_question_for(@assessment)
-      redirection = next_question.blank? ? assessment_path(@assessment) : assessment_question_path(@assessment, next_question)
+      if params[:commit].eql?("Save and exit")
+        redirection = assessment_path(@assessment)
+      else
+        next_question = @activity.next_question_for(@assessment)
+        redirection = next_question.blank? ? assessment_path(@assessment) : assessment_question_path(@assessment, next_question)
+      end
       redirect_to redirection
     else
+      @dimension = @activity.dimension
+      @previous_answer = @assessment_answer.prev
       render 'edit'
     end
   end
