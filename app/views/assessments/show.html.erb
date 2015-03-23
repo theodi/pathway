@@ -29,8 +29,11 @@
           <% if @assessment.can_complete? %>
             <%= link_to "Complete assessment", complete_assessment_path(@assessment), method: :post, class: "complete" %>
           <% else %>
-            <% link_text = @assessment.status == :not_started ? "Start assessment >" : "Continue assessment >" %>
-            <%= link_to link_text, edit_assessment_path(@assessment) %>
+            <% if @assessment.status == :not_started %> 
+              <%= link_to "Start assessment >", edit_assessment_path(@assessment) %>
+            <% else %> 
+              <%= link_to "Continue assessment >", continue_assessment_path(@assessment) %>
+            <% end %> 
           <% end %>
         <% end %>
       </div>
