@@ -1,0 +1,52 @@
+<div class="row assessment <%= current ? 'current' : 'completed' %>">
+    <div class="col-md-2">
+      <% if current %>
+        <h2><%= ProgressCalculator.new(assessment).percentage_progress %>%</h2>
+        <strong>complete</strong>
+      <% else %>
+        <h2><i class="fa fa-check-circle fa-lg"></i></h2>
+      <% end %>
+    </div>
+    
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-8">
+          <%= content_tag :h2, assessment.title %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <i class="fa fa-calendar fa-lg"></i>
+          <%= content_tag :span, "Started: #{pretty_date(assessment.start_date)}" %>
+          <% if current %>
+            <%= content_tag :p, "Last updated: #{pretty_date(assessment.updated_at)}" %>
+          <% else %>
+            <%= content_tag :p, "Completed: #{pretty_date(assessment.completion_date)}" %>
+          <% end %>
+        </div>
+      </div>    
+    </div>
+    
+    <div class="col-md-2">
+      <div class="row">
+        <div class="col-md-2">
+          <% if current %>
+            <%= link_to assessment_path(assessment), class: "btn btn-success btn-lg" do %>
+              Continue assessment <span class="glyphicon glyphicon-chevron-right"></span>
+            <% end %>
+          <% else %>
+            <%= link_to report_path(assessment), class: "btn btn-info btn-lg" do %>
+              View assessment <span class="glyphicon glyphicon-chevron-right"></span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <%= link_to 'Delete this assessment', assessment_path(assessment), method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+      </div>      
+      
+    </div>
+    
+</div>
