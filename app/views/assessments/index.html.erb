@@ -1,30 +1,26 @@
 <% content_for :title do %>My assessments<% end %>
 
-<% if @current_assessment.blank? and @assessments.blank? %>  
-  <%= render 'first_assessment' %>
+<div class = "row">
+  <div class="col-md-12">
 
-<% elsif @current_assessment.blank? %> 
-  <%= render 'first_assessment' %>
-  
-<% else %>
-
-  <div class = "assessment current">
-    <%= content_tag :h4, @current_assessment.title %>
-    <%= content_tag :p, @current_assessment.notes %>
-    <%= content_tag :p, "Started: #{pretty_date(@current_assessment.start_date)}" %>
-    <%= link_to 'Continue assessment', assessment_path(@current_assessment) %>
-    <%= link_to 'Delete', assessment_path(@current_assessment), method: :delete, data: { confirm: "Are you sure?" } %>
+    <% if @current_assessment.blank? and @assessments.blank? %>  
+      <%= render 'first_assessment' %>
+    
+    <% elsif @current_assessment.blank? %> 
+    
+      <!-- last assessment was completed -->
+      <%= link_to begin_assessment_path, class: "btn btn-primary btn-lg" do %>
+      Start a new assessment <span class="glyphicon glyphicon-chevron-right"></span>
+      <% end %>
+      
+    <% else %>
+    
+      <%= render 'assessment_summary', assessment: @current_assessment, current: true %>
+        
+    <% end %>
+    
+    <% for assessment in @assessments %>
+      <%= render 'assessment_summary', assessment: assessment, current: false %>
+    <% end %>
   </div>
-
-<% end %>
-
-<% for assessment in @assessments %>
-  <div class = "assessment">
-    <%= content_tag :h4, assessment.title %>
-    <%= content_tag :p, assessment.notes %>
-    <%= content_tag :p, "Started: #{pretty_date(assessment.start_date)}" %> 
-    <%= content_tag :p, "Completed: #{pretty_date(assessment.completion_date)}" %>
-    <%= link_to 'View report', report_path(assessment) %>
-    <%= link_to 'Delete', assessment_path(assessment), method: :delete, data: { confirm: "Are you sure?" } %>
-  </div>
-<% end %>
+</div>  
