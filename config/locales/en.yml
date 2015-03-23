@@ -20,7 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  site_title: "Open Data Maturity Assessment Tool"
+  site_title: "Open Data Pathway"
   sign_up: "Register"
   login: "Login"
   logout: "Logout"
