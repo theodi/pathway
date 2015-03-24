@@ -22,8 +22,9 @@
 en:
   site_title: "Open Data Pathway"
   sign_up: "Register"
-  login: "Login"
-  logout: "Logout"
+  sign_up_now: "Register now?"
+  sign_in: "Sign in"
+  sign_out: "Sign out"
   account: "Account"
   admin: "Admin"
   

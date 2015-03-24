@@ -25,10 +25,10 @@
               <% end %>
               <li class="dropdown"><%= link_to 'My Assessments', assessments_path %></li>
               <li class="dropdown"><%= link_to t(:account), edit_user_registration_path %></li>
-              <li class="dropdown last"><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
+              <li class="dropdown last"><%= link_to t(:sign_out), destroy_user_session_path, :method => :delete %></li>
             <% else %>
               <li class="dropdown"><%= link_to t(:sign_up), new_user_registration_path  %></li>
-              <li class="dropdown last"><%= link_to t(:login), new_user_session_path  %></li>
+              <li class="dropdown last"><%= link_to t(:sign_in), new_user_session_path  %></li>
           <% end %>
         </ul>
       
