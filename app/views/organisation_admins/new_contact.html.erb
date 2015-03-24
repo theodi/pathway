@@ -1,0 +1,13 @@
+<h1>Contact organisation admin</h1>
+<h3>Somebody is already registered as an admin for that organisation</h3>
+<p>You can contact them by filling in the following form</p>
+
+<%= form_tag contact_organisation_admin_path(@organisation.id), method: :post do %>
+  <p><%= label_tag :email, "Your email" %><br/>
+  <%= email_field_tag :email, @email %>
+  </p>
+  <p><%= label_tag :message, "Your message to the user" %></p>
+  <p>
+  <%= text_area_tag :message %></p>
+  <%= submit_tag "Submit" %>
+<% end %>
