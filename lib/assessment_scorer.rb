@@ -41,5 +41,17 @@ class AssessmentScorer
     scores
   end  
   
+  def score_dimensions_from_saved_results
+    scores = {}
+    Questionnaire.current.dimensions.each do |dimension|
+      scores[ dimension.name ] = { score: 0, max: 0 }
+      dimension.activities.each do |activity|
+        scores[ dimension.name ][:max] += 5 if activity.questions.length > 0
+        saved_score = Score.where( assessment: @assessment, activity: activity).first
+        scores[ dimension.name ][:score] += saved_score.score if saved_score
+      end
+    end      
+    scores
+  end
   
 end

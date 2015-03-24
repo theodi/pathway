@@ -1,0 +1,24 @@
+<!-- activitiesTab -->
+<section class="results activities clearfix">
+
+  <header class="resultsHeader">
+    <p class="themeColLabel">Theme <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+    <p class="activityColLabel">Activity <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+    <p class="answersColLabel">Score <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+  </header>
+
+  <% for dimension in @dimensions %>
+  <div class="theme clearfix">
+     <h2> <%= dimension.title %> </h2>
+     <ul id="<%= dimension.name %>-activities" class="activities ">
+      <% dimension.activities.each_with_index do |activity, index| %>
+        <li class="<%= 'active' if index == 0 %>"><%= activity.title %> 
+        <% scores = assessment.scores.where(activity_id: activity.id) %>
+        <span id="<%= activity.name %>-score" class="score"><%= scores.first.score if scores.length > 0 %></span></li>
+      <% end %>
+     </ul>     
+  </div>     
+  <% end %>
+
+</section>
+<!-- activitiesTab -->
