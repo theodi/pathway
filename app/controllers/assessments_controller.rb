@@ -55,6 +55,7 @@ class AssessmentsController < ApplicationController
   def report
     @assessment = Assessment.find(params[:id])
     @dimensions = Questionnaire.current.dimensions
+    @scorer = AssessmentScorer.new(@assessment)
     authorize! :read, @assessment
 
     render 'report'

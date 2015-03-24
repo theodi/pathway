@@ -91,5 +91,19 @@ describe AssessmentScorer do
     end
   end
 
+  context '.score_dimensions_from_saved_results' do
+    let(:assessment) { FactoryGirl.create :assessment }
+    let(:scorer) { AssessmentScorer.new(assessment) }
+    let(:activity) { Activity.first } #Data release process from test-survey.xls
+    let(:dimension) { Dimension.first } #Data management process from test-survey.xls
+    
+    it "should score all dimensions" do
+      AssessmentAnswer.create( assessment: assessment, question: Question.first, answer: Answer.find_by_code("Q1.2") )
+      assessment.complete
+      
+      scores = scorer.score_dimensions_from_saved_results
+      expect( scores["data-management-processes"] ).to eql( { score: 1, max: 5 })
+    end
+  end
   
 end
