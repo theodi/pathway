@@ -3,9 +3,11 @@
 <p>You can contact them by filling in the following form</p>
 
 <%= form_tag contact_organisation_admin_path(@organisation.id), method: :post do %>
-  <%= label_tag :email, "Your email" %>
-  <%= email_field_tag :email, value: @email %>
-  <%= label_tag :message, "Your message to the user" %>
-  <%= text_area_tag :message %>
+  <p><%= label_tag :email, "Your email" %><br/>
+  <%= email_field_tag :email, @email %>
+  </p>
+  <p><%= label_tag :message, "Your message to the user" %></p>
+  <p>
+  <%= text_area_tag :message %></p>
   <%= submit_tag "Submit" %>
 <% end %>
