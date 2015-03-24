@@ -15,19 +15,19 @@
         <!-- Tab panes -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="summaryTab">
-            <%= render 'summary_scores', assessment: @assessment %>
+            <%= render 'summary_tab', assessment: @assessment %>
           </div>
           <div role="tabpanel" class="tab-pane" id="activitiesTab">
-              <%= render 'activity_scores', assessment: @assessment %>
+              <%= render 'activity_tab', assessment: @assessment %>
           </div>
           <div role="tabpanel" class="tab-pane" id="detailTab">
-            <%= render 'detail', assessment: @assessment %>
+            <%= render 'detail_tab', assessment: @assessment %>
           </div>
           <div role="tabpanel" class="tab-pane" id="improvementsTab">
             Improvements
           </div>
           <div role="tabpanel" class="tab-pane" id="informationTab">
-            <%= render 'report_info', assessment: @assessment %>
+            <%= render 'information_tab', assessment: @assessment %>
           </div>
         </div>
         

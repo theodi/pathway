@@ -1,0 +1,10 @@
+<!-- informationTab -->
+<section class="results information clearfix col-lg-8">
+  <div class="infoDetails">
+    <p><strong>Assessor:</strong> <%= current_user.name.present? ? current_user.name : current_user.email %></p>
+    <p> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Completed on <%= pretty_date(assessment.completion_date) %> </p>
+    <p> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Started on <%= pretty_date(@assessment.start_date) %> </p>
+    <p><%= assessment.notes %></p>
+  </div>
+</section>
+<!-- informationTab -->
