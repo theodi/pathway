@@ -17,7 +17,10 @@ Rails.application.routes.draw do
   end
 
   get 'assessments/:assessment_id/continue' => 'assessment_answers#continue', as: 'continue_assessment'
-    
+
+  get 'organisation_admins/:organisation_id/contact' => 'organisation_admins#contact', as: 'contact_organisation_admin'
+  post 'organisation_admins/:organisation_id/contact' => 'organisation_admins#contact'
+
   get '/terms-of-use' => 'high_voltage/pages#show', id: 'terms_of_use'
   get '/privacy-policy' => 'high_voltage/pages#show', id: 'privacy_policy'
   get '/cookie-policy' => 'high_voltage/pages#show', id: 'cookie_policy'
