@@ -23,6 +23,7 @@ en:
   site_title: "Open Data Pathway"
   
   #Authentication & Registration
+  sign_up_page: "Registration"
   sign_up: "Register"
   sign_up_now: "Register now?"
   sign_in: "Sign in"
