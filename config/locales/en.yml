@@ -31,7 +31,7 @@ en:
   sign_out: "Sign out"
   account: "Account"
   admin: "Admin"
-  
+  remember_me: "Keep me signed in"
   #Assessments    
   my_assessments: "My Assessments"
   
