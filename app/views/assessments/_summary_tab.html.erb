@@ -9,7 +9,7 @@
   <% for dimension in @dimensions %>
     <div class="theme clearfix">
      <h2><%= dimension.title %></h2>
-     <span class="score">0/2</span>
+     <span id="<%= dimension.name %>-score" class="score">0/2</span>
     </div>
   <% end %>
       

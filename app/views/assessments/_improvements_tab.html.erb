@@ -28,7 +28,7 @@
             <% activity.questions.each do |question| %>
               <% assessment_answer = assessment.answer_for_question(question) %>
               <% if assessment_answer %>
-                <div class="question">
+                <div id="<%= question.code %>-improvements" class="question">
                   <h3><%= question.text %></h3>                
                   <p class="answer <%= assessment_answer.answer.positive? ? 'yes' : 'no' %>">
                     <%= assessment_answer.answer.text %>
@@ -45,8 +45,6 @@
                  </div>
               <% end %>
             <% end %>
-            
-
           
           </div>
         <% end %>

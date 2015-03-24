@@ -10,11 +10,11 @@
   <% for dimension in @dimensions %>
   <div class="theme clearfix">
      <h2> <%= dimension.title %> </h2>
-     <ul class="activities ">
+     <ul id="<%= dimension.name %>-activities" class="activities ">
       <% dimension.activities.each_with_index do |activity, index| %>
         <li class="<%= 'active' if index == 0 %>"><%= activity.title %> 
         <% scores = assessment.scores.where(activity_id: activity.id) %>
-        <span class="score"><%= scores.first.score if scores.length > 0 %></span></li>
+        <span id="<%= activity.name %>-score" class="score"><%= scores.first.score if scores.length > 0 %></span></li>
       <% end %>
      </ul>     
   </div>     
