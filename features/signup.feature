@@ -10,3 +10,16 @@ Feature: Signing up
     And I fill in Associated organisation with "British Waterways"
     And I press "Register"
     Then I should see "Welcome! You have signed up successfully."
+
+  Scenario: Sign up where organisation has been taken
+    Given the test survey has been loaded
+    Given a user is already associated with "British Waterways"
+    When I go to the register page
+    And I fill in "Email" with "test@email.com"
+    And I fill in "Name" with "Peter Manion"
+    And I fill in "Password" with "password"
+    And I fill in "Password confirmation" with "password"
+    And I fill in Associated organisation with "British Waterways"
+    And I press "Register"
+    Then I should see "Somebody is already registered for that organisation"
+    And I should see "You can contact them by filling in the following form"
