@@ -1,16 +1,18 @@
-<table class="table table-striped table-condensed" id="summary-scores">
-  <thead>
-    <tr>
-      <th>Dimension</th>
-      <th>Score vs Goal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% for dimension in @dimensions %>
-      <tr>
-        <td><%= dimension.title %></td>
-        <td>0</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<!-- summaryTab -->
+<section class="results summary clearfix">
+
+  <header class="resultsHeader">
+    <p class="themeColLabel">Theme <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+    <p class="answersColLabel">Score <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+  </header>
+
+  <% for dimension in @dimensions %>
+    <div class="theme clearfix">
+     <h2><%= dimension.title %></h2>
+     <span class="score">0/2</span>
+    </div>
+  <% end %>
+      
+</section>
+<!-- summaryTab -->
+
