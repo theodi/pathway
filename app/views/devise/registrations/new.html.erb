@@ -32,6 +32,15 @@
     <%= f.hidden_field :associated_organisation, class: 'select2 ajax', data: { source: organisations_path(format: :json) }, style: "width:40%;" %>
   </div>
 
+  <div class="field">
+    <%= f.label :terms_of_service do %>
+    I accept the <a href="/terms-of-use" target="_register">Terms of use</a> and <a href="/privacy-policy" target="_register">Privacy policy</a>
+    <% end %>
+    <br />
+    <%= f.check_box :terms_of_service %>
+  </div>
+
+
   <div class="actions">
     <%= f.submit t(:sign_up) %>
   </div>
