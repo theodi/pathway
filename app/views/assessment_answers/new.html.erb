@@ -1,25 +1,34 @@
-<% content_for :title do %>New assessment<% end %>
-<h4>My assessments > <%= @assessment.title %> > <%= @dimension.title %> > <%= @activity.title %> </h4>
-<hr/>
+<% content_for :title do %><%= @assessment.title %><% end %>
+<div id="theAssessment">
 
-<%= form_for @assessment_answer, url: assessment_question_answer_path(@assessment, @question) do |f| %>
-
-  <h3>
-    Assessing: <%= @activity.title %>
-    <%= link_to "Save and exit", assessment_path(@assessment), class: "btn" %>
-  </h3>
+  <%= form_for @assessment_answer, url: assessment_question_answer_path(@assessment, @question) do |f| %>
   
-  <h4><%= @question.text %></h4>
+    <header id="assessmentHeader" class="clearfix">
+      <h2><em>Assessing:</em> <%= @activity.title %></h2>
+      <div class="actions">
+        <%= link_to "Save and exit", assessment_path(@assessment), class: "btn btn-default" %>
+        <%= f.submit "Next question &raquo;".html_safe, class: "btn btn-success", id: "submit-top" %>
+      </div>
+    </header>
+  
+    <div class="assessmentContent">
+  
+      <%= render 'form', f: f %>
+       
+      <footer class="row">
+    
+          <div class="actionsFull">
+            <%= link_to '&laquo; Back'.html_safe, assessment_edit_answer_path(@assessment, @previous_answer), class: "btn btn-default back" if @previous_answer %>
+            <%= f.submit "Next question &raquo;".html_safe, class: "btn btn-success next", id: "submit-bottom" %>
+          </div>
+    
+      </footer>
+      
+    </div> <!-- assessmentContent -->
+  
+  <% end %> <!-- form -->
 
-  <%= render 'form', f: f %>
-
-  <hr/>
-
-  <p>
-    <%= link_to 'Back', assessment_edit_answer_path(@assessment, @previous_answer), class: "btn" if @previous_answer %>
-    <%= f.submit "Next question >", class: "btn" %>
-  </p>
-<% end %>
+</div>
 
 <% content_for :javascript_footer do %>
   $(document).ready(function(){
