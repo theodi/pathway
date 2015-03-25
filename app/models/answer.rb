@@ -1,6 +1,7 @@
 class Answer < ActiveRecord::Base
   belongs_to :question
   belongs_to :questionnaire
+  has_many :improvements, dependent: :destroy
   
   validates :text, presence: true    
   validates :code, presence: true      
