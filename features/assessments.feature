@@ -23,7 +23,7 @@ Feature: Assessments
       | 2014 Q2 | Q2 last year       | 2014-06-01 11:07:10 | 2014-06-24 11:07:10 |
     When I go to "/assessments"
     And I delete an assessment
-    Then I should see "2" assessments
+    Then I should see "3" assessments
 
   Scenario: Viewing a partially complete assessment
     Given the test survey has been loaded
@@ -84,7 +84,7 @@ Feature: Assessments
       | 2014 Q3 | Q3 last year       | 2014-12-01 11:07:10 | 2014-12-10 11:07:10 |
       | 2014 Q2 | Q2 last year       | 2014-06-01 11:07:10 | 2014-06-24 11:07:10 |
     When I go to "/assessments"
-    And I click on "Start an assessment"
+    And I click on "Start assessment"
     Then I should see "New assessment"
 
   Scenario: Editing an assessment

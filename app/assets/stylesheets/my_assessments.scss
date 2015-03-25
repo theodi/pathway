@@ -1,0 +1,63 @@
+//MY ASSESSMENTS
+
+ul#myAssessments {
+ list-style: none;
+ margin: 0;
+ padding: 0;
+
+ li.assessment {
+  border: 1px solid black;
+  margin-bottom: 1em;
+  padding: 0;
+  display: table;
+  background: $pathwayLightGrey;
+  font-size: 14px;
+  
+  &.current {background: white;
+
+   .details { color: black !important;}
+  }
+
+  div.col {
+
+   padding: 1em;
+   border-right: 1px solid black;
+   display: table-cell;
+   float: none;
+   vertical-align: middle;
+
+   &.complete {
+    text-align: center;
+    .percentComplete {
+     text-align: center;
+     span {
+       font-size: 30px;
+       line-height: 30px;
+       font-weight: 600;
+       display: block;
+       }
+    }
+    span.glyphicon {
+      font-size: 60px;
+      vertical-align: middle;
+      color: $odiColour5;
+    }
+   }
+
+   &.details {
+     color: $odiGreyDark;
+     h2 {margin: 0 0 0.25em 0; font-size: 21px;}
+     span.completed, span.updated {margin-left: 1em;}
+   }
+
+   &.actions {
+    text-align: center;
+    a.delete {color: $odiRed; margin-top: 0.5em; display: block;}
+   }
+
+   &:last-child {border-right: none;}
+  }
+
+ }
+
+}
