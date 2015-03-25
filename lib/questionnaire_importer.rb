@@ -5,6 +5,7 @@ class QuestionnaireImporter
     book = Spreadsheet.open config
     populate_activities(questionnaire, book.worksheet('activities') )
     populate_answers(questionnaire, book.worksheet('questions') )
+    populate_improvements(questionnaire, book.worksheet('improvements') )    
   end
 
   def self.update(version, config)

@@ -38,6 +38,16 @@ Feature: Viewing assessment reports
     And the element with id "#Q1-answer" should have the content "No, we have not yet published any open data"
     And there should be "4" items listed in "#data-management-processes-detail"
 
+  Scenario: I should see the report improvements
+    Given the test survey has been loaded
+    Given I am logged in as a user
+    Given the following assessments:
+      | title   | notes              | start_date          | completion_date     |
+      | 2014 Q4 | End of last year   | 2015-02-10 11:07:10 |                     |
+    And the current assessment is completed 
+    When I go to "/assessments/1/report"
+    Then the element with id "#I1" should have the content "Publish at least one open dataset with an open data certificate"     
+    
   Scenario: I should see the report information
     Given the test survey has been loaded
     Given I am logged in as a user
