@@ -14,6 +14,6 @@ Feature: Setting targets for future assessments
     When I go to "/assessments"
     And I click on "Set goals for next assessments"
     Then I should see "Target Score"
-    When I fill in "activity-1-target" with "4"
-    And I press "Save goals"
+    When I fill in "targets_1" with "4"
+    And I press "submit-bottom"
     Then I should see "Successfully saved goals"
