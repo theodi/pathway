@@ -1,21 +1,49 @@
-<%= render "shared/errors", object: f.object %>
+<div class="row">
+  <div class="col-md-8">
 
-<% for answer in @question.answers %>
-  <p>
-    <%= f.radio_button :answer_id, answer.id %> 
-    <%= f.label :answer_id, answer.text, value: answer.id %>
-  </p>
-<% end %>
+    <!-- question & answers -->
+    <div id="question" class="form-group">
+      <h3><%= @question.text %></h3>
 
-<hr/>
+      <%= render "shared/errors", object: f.object %>
+      
+      <% for answer in @question.answers %>
+        <div class="checkbox">
+          <%= f.label :answer_id, value: answer.id do %>
+            <%= f.radio_button :answer_id, answer.id %> <%= answer.text %>
+          <% end %>
+        </div>
+      <% end %>
 
-<%= f.label :notes, "Please enter any additional information or supporting evidence" %><br/>
-<%= f.text_area :notes %>
+    </div>
+    <!-- end question & answers -->
+  
+    <!-- additional info -->
+    <div id="additionalInfo" class="form-group clearfix">
+      <label>Please enter any additional information or supporting evidence</label>
+      <%= f.text_area :notes, class: "form-control" %>
 
-<p>Or link to any supporting external resources</p>
+      <div class="supportingLinks">
+        <label>Or link to any supporting external resources</label>
+        <%= f.fields_for :links do |lf| %>
+          <%= render "links/link_fields", f: lf %>
+        <% end %>
+      </div>
 
-<%= f.fields_for :links do |lf| %>
-  <%= render "links/link_fields", f: lf %>
-<% end %>
+      <%= link_to_add_fields "Add another link", f, :links %>
 
-<%= link_to_add_fields "Add another link", f, :links %>
+    </div>
+    <!-- end additional info -->
+    
+  </div> <!-- end column -->
+
+  <!-- help -->
+  <div id="helpColumn" class="col-md-4">
+    <div class="helpWrapper">
+      <h4>Question Help</h4>
+      <p><%= @question.notes %></p>
+    </div>
+  </div>
+  <!-- end help column -->
+
+</div> <!-- end row -->
