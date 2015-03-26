@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   get 'assessments/:id/report' => 'assessments#report', as: 'report'
   post 'assessments/:id/report' => 'assessments#complete', as: 'complete_assessment'
   
-  get 'set_targets/:assessment_id' => 'targets#edit', as: 'edit_assessment_targets'
-  patch 'set_target/:assessment_id' => 'targets#update', as: 'assessment_targets'
+  get 'assessments/:assessment_id/targets' => 'targets#edit', as: 'edit_assessment_targets'
+  patch 'assessments/:assessment_id/targets' => 'targets#update', as: 'assessment_targets'
 
   resources :assessments do
     get 'questions/:question_id' => 'assessment_answers#new', as: 'question'
