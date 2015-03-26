@@ -1,0 +1,241 @@
+//RESULTS
+
+#reportNav {
+ padding: 0;
+ margin: 0;
+ border-bottom: 1px solid;
+ li {
+   display: inline-block;
+   a {
+    padding: 1em;
+    display: block;
+   }
+ }
+ font-size: 14px;
+}
+
+.results {
+  list-style: none;
+  padding: 15px 0 30px 0;
+
+  header {
+   .themeColLabel {width: 25%; display: inline-block;}
+   .activityColLabel {width: 30%; display: inline-block;}
+   .answersColLabel {width: 20%; display: inline-block;}
+   p { font-size: 14px; }
+  }
+
+
+  * {  list-style: none;}
+  li.theme {
+    margin-bottom: 30px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  span.score {
+   background: black;
+   color: white;
+   float: right;
+   padding: 0.25em;
+   border-radius: 4px;
+  }
+
+// RESULTS > ACTIVITIES
+
+  &.activities, &.summary {
+
+   header {
+    .activityColLabel {padding-left: 15px;}
+   }
+
+   .theme {
+    border-top: 1px solid #ddd;
+    background: $pathwayLightGrey;
+    &:first-child {padding-top: 15px;}
+     h2 {
+      padding: 15px 0 0 15px;
+      margin: 0 0 15px 0;
+      float: left;
+      width: 25%;
+     }
+
+     ul.activities {
+      width: 35%;
+      float: left;
+      padding-left: 0;
+      margin-bottom: -1px;
+      margin-top: 2px;
+
+      li {
+       font-size: 18px;
+       position: relative;
+       display: block;
+       padding: 10px 15px;
+       margin-top: 1px;
+       margin-left: 4px;
+       margin-bottom: 4px;
+      }
+    }
+   }
+  }
+ &.summary span.score {
+  float: left;
+  margin-top: 7px;
+  font-size: 18px;
+ }
+
+// RESULTS > SUMMARY
+
+  &.summary {
+   h2 { margin-top: 15 px; }
+   }
+
+// RESULTS > DETAILS
+
+  &.details {
+   .tabs-group {
+    width: 55%;
+    float: left;
+    background: $pathwayLightGrey;
+   }
+
+   h2 {
+    padding: 15px 0 0 15px;
+    margin: 0;
+    float: left;
+    width: 46%;
+   }
+
+   ul.activities {
+    width: 54%;
+    float: left;
+    padding-left: 0;
+    margin-top: 2px;
+
+    li {
+     position: relative;
+     font-size: 18px;
+    }
+
+    h4 {
+     width: 100%;
+     padding-top: 10px;
+     border-top: 1px solid;
+     span {
+      width: 25%;
+      display: block;
+     }
+    }
+
+   }
+
+  .questionsWrapper {
+   width: 45%;
+   float: left;
+   border-top: 1px solid #ddd;
+   .tab-pane {
+    padding: 20px;
+    .question {
+     padding: 15px;
+     border: 1px solid #ddd;
+     margin-bottom: 15px;
+      h3 { margin-top: 0; }
+      p.answer {
+        font-weight: 600;
+        font-size: 1.15em;
+        &.yes { color: $odiColour5;}
+        &.middle { color: $odiBlue;}
+        &.no { color: $odiRed;}
+      }
+       p:last-child {margin-bottom: 0;}
+      .additionalInfo {
+       h4 {font-size: 1.25em}
+       span.glyphicon-link {margin-right: 0.25em;}
+       border-top: 1px solid #ddd;
+       font-size: 0.85em;
+       p { font-size: 0.85em; }
+      }
+      .improvements {
+       font-size: 0.85em;
+       p { font-size: 0.85em; }
+       .improvements-list li { list-style-type: decimal }
+      }
+    }
+   }
+  }
+ }
+ .infoDetails {
+  padding-left: 15px;
+  .glyphicon-link {margin-right: 0.25em;}
+ }
+}
+
+
+/* custom inclusion of right, left and below tabs */
+
+.parentTabs {
+ .nav-tabs {
+  li a {color: $odiGreyDark;}
+  li.active >a, .nav-tabs>li.active>a:focus {
+   border-color: black;
+   border-bottom-color: white;
+  }
+
+  li.active {
+   a:hover, a:active {
+    background: white;
+    color: black;
+    border-bottom-color: white;
+   }
+  }
+
+  li>a:hover {
+   border-bottom-color: black;
+   background: $pathwayLightGrey;
+   color: $odiBlue;
+  }
+ }
+}
+
+
+.tabs-left {
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  &:first-child { padding-top: 15px; }
+  .nav-tabs {
+    float: left;
+    border-bottom: 0;
+    li {
+     float: none;
+     a {
+       min-width: 74px;
+       margin-right: 0;
+       margin-bottom: 3px;
+       margin-right: -1px;
+       border-right: none;
+       -webkit-border-radius: 0px;
+          -moz-border-radius: 0px;
+               border-radius: 0px;
+       &:hover, &:focus {
+         border: 1px solid #ddd;
+         border-color: #eeeeee #ffffff #eeeeee #eeeeee;
+         background: white;
+       }
+      }
+     }
+    .active {
+      a, a:hover, a:focus {
+      border-color: #ddd transparent #ddd #ddd !important;
+      *border-right-color: #ffffff;
+      font-weight: bold;
+     }
+    }
+   }
+  .tab-content {
+    .tab-pane { display: none; }
+    .active { display: block; }
+  }
+}

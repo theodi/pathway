@@ -1,0 +1,19 @@
+<!-- summaryTab -->
+<section class="results summary clearfix">
+
+  <header class="resultsHeader">
+    <p class="themeColLabel">Theme <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+    <p class="answersColLabel">Score <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+  </header>
+
+  <% scores = scorer.score_dimensions_from_saved_results %>
+  <% for dimension in @dimensions %>
+    <div class="theme clearfix">
+     <h2><%= dimension.title %></h2>
+     <span id="<%= dimension.name %>-score" class="score"><%= scores[dimension.name][:score] %> / <%= scores[dimension.name][:max] %></span>
+    </div>
+  <% end %>
+      
+</section>
+<!-- summaryTab -->
+

@@ -5,6 +5,7 @@ class QuestionnaireImporter
     book = Spreadsheet.open config
     populate_activities(questionnaire, book.worksheet('activities') )
     populate_answers(questionnaire, book.worksheet('questions') )
+    populate_improvements(questionnaire, book.worksheet('improvements') )    
   end
 
   def self.update(version, config)
@@ -12,6 +13,7 @@ class QuestionnaireImporter
     book = Spreadsheet.open config
     populate_activities(questionnaire, book.worksheet('activities') )
     populate_answers(questionnaire, book.worksheet('questions') )
+    populate_improvements(questionnaire, book.worksheet('improvements') )
   end
     
   def self.create_questionnaire(version, notes="")
@@ -50,6 +52,17 @@ class QuestionnaireImporter
         score: row[9].blank? ? nil : row[9].to_i
       })
       answer.save!
+    end
+  end
+  
+  def self.populate_improvements(questionnaire, worksheet)
+    worksheet.each 1 do |row|
+      answer = Answer.find_by_code( row[1] )
+      improvement = Improvement.find_or_create_by( answer: answer, code: row[0] )
+      improvement.update_attributes({
+        notes: row[2]
+      })
+      improvement.save
     end
   end
     

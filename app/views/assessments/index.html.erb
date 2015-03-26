@@ -1,26 +1,18 @@
 <% content_for :title do %>My assessments<% end %>
 
-<div class = "row">
-  <div class="col-md-12">
-
-    <% if @current_assessment.blank? and @assessments.blank? %>  
-      <%= render 'first_assessment' %>
-    
-    <% elsif @current_assessment.blank? %> 
-    
-      <!-- last assessment was completed -->
-      <%= link_to begin_assessment_path, class: "btn btn-primary btn-lg" do %>
-      Start an assessment <span class="glyphicon glyphicon-chevron-right"></span>
-      <% end %>
-      
+<% if @current_assessment.blank? and @assessments.blank? %>  
+  <%= render 'first_assessment' %>
+<% else %>
+  <ul id="myAssessments">    
+    <% if @current_assessment.blank? %>
+      <%= render 'assessment_summary', assessment: nil, current: true %>
     <% else %>
-    
       <%= render 'assessment_summary', assessment: @current_assessment, current: true %>
-        
     <% end %>
-    
+        
     <% for assessment in @assessments %>
       <%= render 'assessment_summary', assessment: assessment, current: false %>
     <% end %>
-  </div>
-</div>  
+  </ul>     
+
+<% end %>

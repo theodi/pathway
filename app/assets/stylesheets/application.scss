@@ -10,6 +10,12 @@
 @import "colours";
 @import "basic";
 
+// Custom colours
+$pathwayLightGrey: #f5f5f5;
+
+@import "report";
+@import "my_assessments.scss";
+@import "question.scss";
 
 .odi-orange {
   .page-title, .site-title .status {
@@ -44,4 +50,3 @@ h1.site-title {
   color: #fff;
   background-color: $odiOrange;
 }
-

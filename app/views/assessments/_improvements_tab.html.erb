@@ -1,0 +1,58 @@
+<section class="results details clearfix">
+
+  <header class="resultsHeader">
+    <p class="themeColLabel">Theme <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+    <p class="activityColLabel">Activity <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+    <p class="answersColLabel">Answers <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+  </header>
+  
+  <!-- tabs left -->
+  <div class="tabs-group">
+      <% @dimensions.each_with_index do |dimension, dim_index| %>
+        <div class="tabbable tabs-left clearfix">
+          <h2><%= dimension.title %></h2>
+            <ul class="activities nav nav-tabs">
+              <% dimension.activities.each_with_index do |activity, index| %>
+                <li class="<%= 'active' if dim_index == 0 && index == 0 %>"><a href="#<%= activity.name %>" data-toggle="tab"> <%= activity.title %> </a></li>
+              <% end %>
+            </ul>
+        </div>
+      <% end %>
+  </div>
+ 
+    <div class="questionsWrapper tab-content">
+      <% @dimensions.each_with_index do |dimension, dim_index| %>
+        <% dimension.activities.each_with_index do |activity, index| %>
+          <div class="tab-pane <%= 'active' if dim_index == 0 && index == 0 %>" id="<%= activity.name %>">
+          
+            <% activity.questions.each do |question| %>
+              <% assessment_answer = assessment.answer_for_question(question) %>
+              <% if assessment_answer %>
+                <div id="<%= question.code %>-improvements" class="question">
+                  <h3><%= question.text %></h3>                
+                  <p class="answer <%= assessment_answer.answer.positive? ? 'yes' : 'no' %>">
+                    <%= assessment_answer.answer.text %>
+                  </p>
+
+                  <div class="improvements">
+                  <% if assessment_answer.answer.positive? %>
+                    <p>No improvements necessary</p>
+                  <% else %>
+                    <ol class="improvements-list">
+                    <% assessment_answer.answer.improvements.each do |improvement| %>
+                      <li id="<%= improvement.code %>"><%= improvement.notes %></li>
+                    <% end %>
+                    </ol>
+                  <% end %>
+                  
+                  </div>
+                 </div>
+              <% end %>
+            <% end %>
+          
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <!-- /tabs -->
+</section>

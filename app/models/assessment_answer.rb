@@ -36,4 +36,9 @@ class AssessmentAnswer < ActiveRecord::Base
     AssessmentAnswer.joins(:assessment, question: :activity).where(assessment: assessment, questions: {activity_id: activity_id}).where('question_id < ?', question_id)
   end
 
+  def additional_info?
+    return true if ( links.any? || notes.present? ) 
+    return false
+  end
+  
 end

@@ -1,0 +1,66 @@
+<section class="results details clearfix">
+
+  <header class="resultsHeader">
+    <p class="themeColLabel">Theme <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+    <p class="activityColLabel">Activity <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+    <p class="answersColLabel">Answers <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+  </header>
+  
+  <!-- tabs left -->
+  <div class="tabs-group">
+      <% @dimensions.each_with_index do |dimension, dim_index| %>
+        <div class="tabbable tabs-left clearfix">
+          <h2><%= dimension.title %></h2>
+            <ul id="<%= dimension.name %>-detail" class="activities nav nav-tabs">
+              <% dimension.activities.each_with_index do |activity, index| %>
+                <li class="<%= 'active' if dim_index == 0 && index == 0 %>"><a href="#<%= activity.name %>" data-toggle="tab"> <%= activity.title %> </a></li>
+              <% end %>
+            </ul>
+        </div>
+      <% end %>
+  </div>
+ 
+    <div class="questionsWrapper tab-content">
+      <% @dimensions.each_with_index do |dimension, dim_index| %>
+        <% dimension.activities.each_with_index do |activity, index| %>
+          <div class="tab-pane <%= 'active' if dim_index == 0 && index == 0 %>" id="<%= activity.name %>">
+          
+            <% activity.questions.each do |question| %>
+              <% assessment_answer = assessment.answer_for_question(question) %>
+              <% if assessment_answer %>
+                <div id="<%= question.code %>-detail" class="question">
+                  <h3 id="<%= question.code %>-text"><%= question.text %></h3>                
+                  <p id="<%= question.code %>-answer" class="answer <%= assessment_answer.answer.positive? ? 'yes' : 'no' %>">
+                    <%= assessment_answer.answer.text %>
+                  </p>
+                 <!--
+                    <p>You are in the 67% of organisations who have published at least one dataset under an open licence.</p>
+                  </div>
+                 -->
+                  <% if assessment_answer.additional_info? %>
+                    <div class="additionalInfo">
+                      <h4>Additional info</h4>
+                      <% assessment_answer.links.each do |link| %>
+                        <p>
+                          <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                          <a href="<%= link.link %>"><%= link.text %></a>
+                        </p>
+                      <% end %>
+
+                      <% if assessment_answer.notes.present? %>
+                        <p>
+                          <%= assessment_answer.notes %>
+                        </p>
+                      <% end %>
+                    </div>
+                  <% end %>                  
+                </div>
+              <% end %>
+            <% end %>
+          
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <!-- /tabs -->
+</section>

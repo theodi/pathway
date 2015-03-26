@@ -15,7 +15,7 @@ module ApplicationHelper
       render(partial_location, {f: builder}.merge(opts))
     end
 
-    link_to(name, '#', class: 'add_fields btn btn-primary', data: { id: id, fields: fields.gsub('\n', '') })
+    link_to(name, '#', class: 'add_fields moreLinks', data: { id: id, fields: fields.gsub('\n', '') })
   end
 
 end
