@@ -8,7 +8,7 @@ class AssessmentsController < ApplicationController
     if current_user.current_assessment.blank?
       authorize! :create, Assessment
       @assessment = current_user.assessments.create(title: "New assessment", start_date: Time.now)
-      @dimensions = Dimension.all
+      @dimensions = Questionnaire.current.dimensions
       @progress = ProgressCalculator.new(@assessment)
       render 'show'
     else
@@ -34,7 +34,7 @@ class AssessmentsController < ApplicationController
   def show
     @assessment = Assessment.find(params[:id])
     authorize! :read, @assessment
-    @dimensions = Dimension.all
+    @dimensions = Questionnaire.current.dimensions
     @progress = ProgressCalculator.new(@assessment)
   end
 
