@@ -2,6 +2,7 @@ class AssessmentsController < ApplicationController
   def index
     @current_assessment = current_user.current_assessment
     @assessments = current_user.assessments.completed.order(:completion_date)
+    @last_assessment = @assessments.first
   end
 
   def begin

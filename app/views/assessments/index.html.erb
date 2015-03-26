@@ -3,7 +3,9 @@
 <% if @current_assessment.blank? and @assessments.blank? %>  
   <%= render 'first_assessment' %>
 <% else %>
-  <ul id="myAssessments">    
+  <%= link_to "Set goals for the next assessment", edit_assessment_targets_path(@last_assessment), class: "btn next" %>
+
+  <ul id="myAssessments">
     <% if @current_assessment.blank? %>
       <%= render 'assessment_summary', assessment: nil, current: true %>
     <% else %>
