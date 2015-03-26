@@ -89,5 +89,5 @@ Feature: Answering questions
     And I choose "Yes"
     And I fill in "Text" with "Blah"
     And I fill in "Link" with "Blah"
-    And I press "Next question >"
+    And I press "submit-bottom"
     Then I should see "link url is an invalid format"
