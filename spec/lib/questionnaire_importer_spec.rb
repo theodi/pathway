@@ -89,4 +89,30 @@ describe QuestionnaireImporter do
       expect( Answer.last.questionnaire.version).to eql(1)
     end
   end
+  
+  describe '.populate_improvements' do
+    before(:all) do
+      book = Spreadsheet.open @config
+      @questionnaire = Questionnaire.create(version: 1)
+      QuestionnaireImporter.populate_activities(@questionnaire, book.worksheet('activities') )
+      QuestionnaireImporter.populate_answers(@questionnaire, book.worksheet('questions') )
+      QuestionnaireImporter.populate_improvements(@questionnaire, book.worksheet('improvements') )
+    end
+    
+    after(:all) do
+      Questionnaire.destroy_all
+      Dimension.destroy_all
+      Activity.destroy_all
+      Question.destroy_all
+      Answer.destroy_all
+    end
+        
+    it "should populate improvements" do
+      expect( Improvement.count ).to eql(5)
+      expect( Improvement.last.code ).to eql("I5")
+      expect( Improvement.last.notes ).to eql("Identify some key metrics that can be used to monitor your release process")
+      expect( Improvement.last.answer.code ).to eql("Q5.2")
+    end
+    
+  end
 end

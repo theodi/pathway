@@ -38,7 +38,11 @@
                   <% if assessment_answer.answer.positive? %>
                     <p>No improvements necessary</p>
                   <% else %>
-                    <p>TODO</p>
+                    <ol class="improvements-list">
+                    <% assessment_answer.answer.improvements.each do |improvement| %>
+                      <li id="<%= improvement.code %>"><%= improvement.notes %></li>
+                    <% end %>
+                    </ol>
                   <% end %>
                   
                   </div>
