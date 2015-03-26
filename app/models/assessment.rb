@@ -47,11 +47,18 @@ class Assessment < ActiveRecord::Base
   end
 
   def update_targets(score_targets)
-    Score.transaction do
-      score_targets.each do |score_id, target|
-        score = self.scores.find(score_id)
-        score.update_attributes!(target: target)
+    begin
+      scores = []
+      Score.transaction do
+        score_targets.each do |score_id, target|
+          score = self.scores.find(score_id)
+          score.update_attributes!(target: target)
+          scores << score
+        end
       end
-    end
+      scores
+    rescue ActiveRecord::RecordInvalid => invalid
+      nil
+    end    
   end
 end
