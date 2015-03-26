@@ -43,12 +43,26 @@ describe Assessment do
       it "should change all the scores for an assessment" do
         score_targets = {}
         assessment.complete
-        Rails.logger.info("\n #{assessment.scores.count} scores to change \n")
         assessment.scores.each { |s| score_targets.merge!(s.id.to_s => rand(1..5)) }
         assessment.update_targets(score_targets)
         scores_changed = true
         score_targets.each {|score_id, target| scores_changed = false if Score.find(score_id).target != target }
         expect(scores_changed).to eq(true)
+      end
+
+      it "should not change all the scores when there is an invalid target value" do
+        score_targets = {}
+        assessment.complete
+        assessment.scores.each { |s| score_targets.merge!(s.id.to_s => 0) }
+        assessment.update_targets(score_targets)
+        scores_changed = false
+        score_targets.each do |score_id, target| 
+          if Score.find(score_id).target == target 
+            Rails.logger.info "\n target equals #{score_id} - #{target}"
+            scores_changed = true 
+          end
+        end
+        expect(scores_changed).to eq(false)
       end
     end
 
