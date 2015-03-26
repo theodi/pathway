@@ -5,10 +5,13 @@ Rails.application.routes.draw do
   
   get 'organisations' => 'organisations#index', as: 'organisations'
   get 'assessments/begin' => 'assessments#begin', as: 'begin_assessment'
-    
+  
   get 'assessments/:id/report' => 'assessments#report', as: 'report'
   post 'assessments/:id/report' => 'assessments#complete', as: 'complete_assessment'
-      
+  
+  get 'set_target/:score_id' => 'targets#edit', as: 'edit_target'
+  patch 'set_target/:score_id' => 'targets#update'
+
   resources :assessments do
     get 'questions/:question_id' => 'assessment_answers#new', as: 'question'
     post 'questions/:question_id' => 'assessment_answers#create', as: 'question_answer'
