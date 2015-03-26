@@ -21,12 +21,28 @@
 
 en:
   site_title: "Open Data Pathway"
+  
+  #Authentication & Registration
+  sign_up_page: "Registration"
   sign_up: "Register"
-  login: "Login"
-  logout: "Logout"
+  sign_up_now: "Register now?"
+  sign_in: "Sign in"
+  sign_in_now: "Sign in here"
+  sign_out: "Sign out"
   account: "Account"
   admin: "Admin"
+  remember_me: "Keep me signed in"
+  #Assessments    
+  my_assessments: "My Assessments"
   
   not_started: "Begin"
   in_progress: "In Progress"
   complete: "Complete"
+  
+  
+  helpers:
+    label:
+      user:
+        email: "Email"
+        name: "Full Name"
+        associated_organisation: "Organisation"

@@ -14,6 +14,11 @@ When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
   fill_in field, :with=>value
 end
 
+When(/^I check "(.*?)"$/) do |field|
+  check field
+end
+
+
 When(/^I go back$/) do
   visit page.driver.request.env['HTTP_REFERER']
 end

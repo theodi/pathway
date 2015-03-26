@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
-  
+  before_filter :configure_permitted_parameters
+
   def new
     super
   end
@@ -33,4 +34,11 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def configure_permitted_parameters
+      devise_parameter_sanitizer.for(:sign_up) do |u|
+        u.permit(:name,
+          :email, :password, :password_confirmation, :associated_organisation, :terms_of_service)
+      end 
+  end
+    
 end

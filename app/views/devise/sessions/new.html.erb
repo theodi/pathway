@@ -1,31 +1,38 @@
-<% content_for :title do %><%= t(:login) %><% end %>
+<% content_for :title do %><%= t(:sign_in) %><% end %>
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-8">
     
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="field">
+      <div class="form-group">
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true %>
       </div>
     
-      <div class="field">
+      <div class="form-group">
         <%= f.label :password %><br />
         <%= f.password_field :password, autocomplete: "off" %>
       </div>
     
       <% if devise_mapping.rememberable? -%>
-        <div class="field">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
+        <div class="checkbox">
+          <%= f.label :remember_me do %>
+            <%= f.check_box :remember_me %>
+            <%= t(:remember_me) %>
+          <% end %>
         </div>
       <% end -%>
     
-      <div class="actions">
-        <%= f.submit "Log in" %>
+      <div class="row">
+        <div class="col-md-4">
+          <%= f.submit t(:sign_in), class: "btn btn-primary" %>
+        </div>
+        <div class="col-md-4">
+          <%= render "devise/shared/links" %>
+        </div>
       </div>
     <% end %>
     
-    <%= render "devise/shared/links" %>
+
 
   </div>
     
