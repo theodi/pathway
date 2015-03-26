@@ -1,0 +1,42 @@
+<section class = "targets">
+
+  <header class="row">
+    <div class = "col-md-4">
+      Theme <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    </div>
+    <div class = "col-md-8">
+      <div class = "row">
+      <div class = "col-md-6">
+        Activity <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+      </div>
+      <div class = "col-md-3">
+        Current Score <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+      </div>
+      <div class = "col-md-3">
+        Target Score <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+      </div>
+      </div>
+    </div>
+  </header>
+
+  <% for dimension in @dimensions %>
+  <div class="row dimension">
+    <div class="col-md-4 padded-cell"><h3><%= dimension.title %></h3></div>
+    <div class="col-md-8">
+      <% dimension.activities.each_with_index do |activity, index| %>
+        <div class = "row">
+          <div class="col-md-6 padded-cell"><%= activity.title %></div>
+          <div class="col-md-3 padded-cell">
+            <% scores = @assessment.scores.where(activity_id: activity.id) %>
+            <span id="<%= activity.name %>-score" class="score"><%= scores.first.score if scores.length > 0 %></span>
+          </div>
+          <div class = "col-md-3 padded-cell">
+            X
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+</section>
