@@ -10,8 +10,11 @@
       <h3>You are about to start a new assessment</h3>
       <p>You can click on the start assessment button to start from the beginning or you can click on one of the 'start' buttons to begin the assessment at a particular activity.</p>
     <% else %>
-      <h3><%= @assessment.title %></h3>
+      <h3><%= @assessment.title %> <%= link_to 'Edit', edit_assessment_path(@assessment), class: "small" %></h3>
       <p>Started <%= pretty_date(@assessment.start_date) %></p>
+      <hr/>
+      <h4>Background information</h4>
+      <p><%= @assessment.notes %> <%= link_to 'Edit', edit_assessment_path(@assessment), class: "small" %></p>
     <% end %>
 
   </div>
