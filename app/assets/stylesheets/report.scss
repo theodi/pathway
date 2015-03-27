@@ -35,13 +35,16 @@
     font-size: 18px;
   }
 
-  span.score {
+  span.score, span.target {
    background: black;
    color: white;
    float: right;
    padding: 0.25em;
    border-radius: 4px;
+   margin-right: 35%;
   }
+
+  span.target { margin-right:0%; }
 
 // RESULTS > ACTIVITIES
 
@@ -63,7 +66,7 @@
      }
 
      ul.activities {
-      width: 35%;
+      width: 56%;
       float: left;
       padding-left: 0;
       margin-bottom: -1px;

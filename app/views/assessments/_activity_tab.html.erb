@@ -5,6 +5,7 @@
     <p class="themeColLabel">Theme <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
     <p class="activityColLabel">Activity <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
     <p class="answersColLabel">Score <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+    <p class="answersColLabel">Next goal </span></p>
   </header>
 
   <% for dimension in @dimensions %>
@@ -14,7 +15,10 @@
       <% dimension.activities.each_with_index do |activity, index| %>
         <li class="<%= 'active' if index == 0 %>"><%= activity.title %> 
         <% scores = assessment.scores.where(activity_id: activity.id) %>
-        <span id="<%= activity.name %>-score" class="score"><%= scores.first.score if scores.length > 0 %></span></li>
+        
+        <span id="<%= activity.name %>-target" class="target"><%= scores.first.target if scores.length > 0 %></span>
+        <span id="<%= activity.name %>-score" class="score"><%= scores.first.score if scores.length > 0 %></span>
+        </li>
       <% end %>
      </ul>     
   </div>     
