@@ -19,8 +19,9 @@
               <%= link_to t(status), assessment_question_path(@assessment, next_question) %>
             <% when :in_progress %>
               <%= link_to t(status), assessment_question_path(@assessment, next_question) %>
-            <% when :complete %>            
-              <%= link_to t(status), assessment_question_path(@assessment, activity.questions.first) %>
+            <% when :complete %>
+              <% answer = @assessment.assessment_answers.where(question_id: activity.questions.pluck(:id).first).first %>
+              <%= link_to t(status), assessment_edit_answer_path(@assessment, answer) %>
             <% end %>
           </div>
         </div>
