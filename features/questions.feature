@@ -53,7 +53,7 @@ Feature: Answering questions
     And I click on "Add another link"
     Then I should see "Text" 
     And I should see "Link"
-
+  
   Scenario: Using the back button to revise an answer
     Given I am logged in as a user
     Given the test survey has been loaded
@@ -80,3 +80,14 @@ Feature: Answering questions
     And I press "submit-bottom"
     And I go back to the first question
     Then I should not see "http://www.example.com"
+
+  Scenario: Adding an invalid link to a question
+    Given I am logged in as a user
+    Given the test survey has been loaded
+    Given I have started an assessment
+    When I go to the first question
+    And I choose "Yes"
+    And I fill in "Text" with "Blah"
+    And I fill in "Link" with "Blah"
+    And I press "submit-bottom"
+    Then I should see "link url is an invalid format"
