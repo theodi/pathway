@@ -8,6 +8,14 @@ Given(/^I have started an assessment$/) do
   @assessment = FactoryGirl.create(:unfinished_assessment, user_id: @current_user.id)
 end
 
+Given(/^I have completed an assessment$/) do
+  @assessment = FactoryGirl.create(:assessment, user_id: @current_user.id)
+  q = Question.where(code: "Q1").first
+  a = Answer.where(code: "Q1.2").first
+  @assessment.assessment_answers.create(question: q, answer: a)
+  @assessment.complete
+end
+
 When(/^I go to the first question$/) do
   first_question = Question.where(code: "Q1").first
   visit assessment_question_path(@assessment, first_question)
