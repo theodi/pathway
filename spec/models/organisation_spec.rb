@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe Organisation do
+
+  describe "#set_name" do
+    it "should set a name slug on create" do 
+      o = Organisation.new
+      o.title = "Department of Stuff"
+      o.save
+      expect(o.name).to eq("department-of-stuff")
+    end
+  end
+
   describe "creation" do
 
     context "valid attributes" do
