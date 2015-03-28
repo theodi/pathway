@@ -5,7 +5,7 @@
 
   <div class="form-group">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, "data-validation": "email", "data-validation-error-msg": t(:enter_email)  %>
   </div>
 
   <div class="actions">
