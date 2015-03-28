@@ -1,14 +1,15 @@
 class AssessmentsController < ApplicationController
   def index
     @current_assessment = current_user.current_assessment
-    @assessments = current_user.assessments.completed.order(:completion_date)
+    @assessments = current_user.assessments.completed.order(completion_date: :desc)
+    @last_assessment = @assessments.first
   end
 
   def begin
     if current_user.current_assessment.blank?
       authorize! :create, Assessment
       @assessment = current_user.assessments.create(title: "New assessment", start_date: Time.now)
-      @dimensions = Dimension.all
+      @dimensions = Questionnaire.current.dimensions
       @progress = ProgressCalculator.new(@assessment)
       render 'show'
     else
@@ -34,7 +35,7 @@ class AssessmentsController < ApplicationController
   def show
     @assessment = Assessment.find(params[:id])
     authorize! :read, @assessment
-    @dimensions = Dimension.all
+    @dimensions = Questionnaire.current.dimensions
     @progress = ProgressCalculator.new(@assessment)
   end
 

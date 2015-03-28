@@ -1,0 +1,40 @@
+// Place all the styles related to the targets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.targets {
+  
+  header { 
+    font-size:14px;
+    margin-bottom:1em;
+  }
+
+  h3 { 
+    font-size:18px; 
+    margin: 0px; 
+  }
+
+  .dimension {
+    border-top: 1px solid #DDD;
+    background: none repeat scroll 0% 0% #F5F5F5;
+  }
+
+  .padded-cell { 
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+  }
+
+  span.score {
+    background: none repeat scroll 0% 0% #000;
+    color: #FFF;
+    padding: 0.25em;
+    border-radius: 4px;
+    margin-left: 20%;
+    display: block;
+    width: 2em;
+    text-align: center;
+  }
+
+  .right {float:right; }
+}

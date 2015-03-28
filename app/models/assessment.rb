@@ -45,5 +45,20 @@ class Assessment < ActiveRecord::Base
   def answer_for_question(question)
     return AssessmentAnswer.where(assessment_id: self.id, question_id: question.id).first
   end
-    
+
+  def update_targets(score_targets)
+    begin
+      scores = []
+      Score.transaction do
+        score_targets.each do |score_id, target|
+          score = self.scores.find(score_id)
+          score.update_attributes!(target: target)
+          scores << score
+        end
+      end
+      scores
+    rescue ActiveRecord::RecordInvalid => invalid
+      nil
+    end    
+  end
 end
