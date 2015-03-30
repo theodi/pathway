@@ -39,6 +39,12 @@ en:
   in_progress: "In Progress"
   complete: "Complete"
   
+  enter_email: "Please enter a valid email address"
+  accept_terms: "Please check this box if you want to proceed"
+  name_validation: "Please enter your name"
+  
+  password_confirmation: "The password doesn't match"
+  password_validation: "Your password must be at least 8 characters"
   
   helpers:
     label:
