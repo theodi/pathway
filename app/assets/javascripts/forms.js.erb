@@ -35,3 +35,13 @@ var observe_fields_for_links = function(){
   observe_adds();
   observe_deletes();
 };
+
+var observe_toggles = function(){
+  $('.toggle-target').each(function(){  
+    $(this).click(function(){
+      var target = $(this).data('target');
+      console.log($(this));
+      $(target).toggle();
+    });
+  });
+};
