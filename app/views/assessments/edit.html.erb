@@ -3,6 +3,7 @@
 
 <hr/>
 <%= form_for @assessment do |f| %>
+  <%= render "shared/errors", object: f.object %>
   <p><%= f.label :title, "What would you like to call the assessment?" %></p>
   <%= f.text_field :title %>
 

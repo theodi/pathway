@@ -1,4 +1,4 @@
-<% content_for :title do %>New assessment<% end %>
+<% content_for :title do %><%= @assessment.title %><% end %>
 <h4>My assessments > <%= @assessment.title %></h4>
 
 <hr/>
@@ -10,8 +10,45 @@
       <h3>You are about to start a new assessment</h3>
       <p>You can click on the start assessment button to start from the beginning or you can click on one of the 'start' buttons to begin the assessment at a particular activity.</p>
     <% else %>
-      <h3><%= @assessment.title %></h3>
+      <div id = "title-display">
+        <h3><%= @assessment.title %> 
+          <%= link_to 'Edit', '#', id: "title-toggle", class: "small toggle-target", data: { target: "#title-form,#title-display" } %></h3>
+      </div>
+
+      <div id = "title-form" style="display:none;">
+        <%= form_for @assessment do |f| %>
+          <h3><%= f.text_field :title, class: "form-control" %></h3>
+          <%= f.submit "Save", class: "btn" %>
+          <%= link_to 'Cancel', '#', class: "toggle-target btn btn-default", data: { target: "#title-form,#title-display" } %>
+        <% end %>
+      </div>
+
       <p>Started <%= pretty_date(@assessment.start_date) %></p>
+
+      <hr/>
+
+      <div id = "notes-display">
+        <h4>Background information</h4>
+        <p><%= @assessment.notes %>
+          <%= link_to 'Edit', '#title-form', class: "small toggle-target", id: "notes-toggle", 
+              data: { target: "#notes-form,#notes-display" } %>
+        </p>
+        </h4>
+      </div>
+
+      <div id = "notes-form" style="display:none;">
+        <h4>Background information</h4>
+        
+          <%= form_for @assessment do |f| %>
+          <p>
+            <%= f.text_field :notes, class: "form-control", placeholder: "Assessment notes" %>
+          </p>
+            <%= f.submit "Save", class: "btn" %>
+            <%= link_to 'Cancel', '#title-form', class: "toggle-target btn btn-default", data: { target: "#notes-form,#notes-display" } %>
+          <% end %>
+        
+        </h4>
+      </div>
     <% end %>
 
   </div>
@@ -41,3 +78,7 @@
     <%= render 'overview', assessment: @assessment, progress: @progress %>
   </div>
 </div>
+
+<% content_for :javascript_footer do %>
+  observe_toggles();
+<% end %>

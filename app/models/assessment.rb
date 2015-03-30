@@ -2,6 +2,7 @@ class Assessment < ActiveRecord::Base
   belongs_to :user
   has_many :assessment_answers, dependent: :destroy
   has_many :scores, dependent: :destroy
+  validates :title, presence: true
 
   def self.completed
     where.not(completion_date: nil)
