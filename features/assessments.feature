@@ -102,25 +102,27 @@ Feature: Assessments
 
   @javascript
   Scenario: Revising an assessment's title
-  Given I am logged in as a user
-  Given the following assessments:
-    | title          | notes              | start_date          | completion_date     |
-    | 2014 Q4        | End of last year   | 2015-02-10 11:07:10 |                     |
-  When I go to "/assessments/1"
-  And I click on "title-toggle"
-  And I fill in "assessment_title" with "2014 Quarter 4"
-  And I press "Save"
-  Then I should see "My Assessments > 2014 Quarter 4"
+    Given the test survey has been loaded 
+    Given I am logged in as a user
+    Given the following assessments:
+      | title          | notes              | start_date          | completion_date     |
+      | 2014 Q4        | End of last year   | 2015-02-10 11:07:10 |                     |
+    When I go to "/assessments/1"
+    And I click on "title-toggle"
+    And I fill in "assessment_title" with "2014 Quarter 4"
+    And I press "Save"
+    Then I should see "My Assessments > 2014 Quarter 4"
 
   @javascript
   Scenario: Revising an assessment's notes 
-  Given I am logged in as a user
-  Given the following assessments:
-    | title          | notes              | start_date          | completion_date     |
-    | 2014 Q4        | End of last year   | 2015-02-10 11:07:10 |                     |
-  When I go to "/assessments/1"
-  And I click on "notes-toggle"
-  And I fill in "assessment_notes" with "A lot more info"
-  And I press "Save"
-  Then I should see "A lot more info"
+    Given the test survey has been loaded 
+    Given I am logged in as a user
+    Given the following assessments:
+      | title          | notes              | start_date          | completion_date     |
+      | 2014 Q4        | End of last year   | 2015-02-10 11:07:10 |                     |
+    When I go to "/assessments/1"
+    And I click on "notes-toggle"
+    And I fill in "assessment_notes" with "A lot more info"
+    And I press "Save"
+    Then I should see "A lot more info"
 
