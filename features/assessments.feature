@@ -99,3 +99,16 @@ Feature: Assessments
     And I fill in "assessment_notes" with "nothing special"
     And I press "Save"
     Then I should see "Q1 Assessment"
+
+  @javascript
+  Scenario: Revising an assessment's notes and title
+  Given I am logged in as a user
+  Given the following assessments:
+    | title          | notes              | start_date          | completion_date     |
+    | 2014 Q4        | End of last year   | 2015-02-10 11:07:10 |                     |
+  When I go to "/assessments/1"
+  And I click on "edit-title"
+  And I fill in "Title" with "2014 Quarter 4"
+  And I press "Save"
+  Then I should see "My Assessments > 2014 Quarter 4"
+
