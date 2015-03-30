@@ -38,3 +38,8 @@ Feature: Signing up
     When I fill in "Your message to the user" with "Hello, can I get access too? Regards, Alex"
     And I press "Submit"
     Then I should see "A message was sent to the admin of British Waterways"
+
+  Scenario: View assessments after sign-in
+    Given I am logged in as a user
+    Then I should see "Signed in successfully"
+    Then I should see "My assessments"
