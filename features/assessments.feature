@@ -111,7 +111,7 @@ Feature: Assessments
     And I click on "title-toggle"
     And I fill in "assessment_title" with "2014 Quarter 4"
     And I press "Save"
-    Then I should see "My Assessments > 2014 Quarter 4"
+    Then I should see "My assessments &gt; 2014 Quarter 4"
 
   @javascript
   Scenario: Revising an assessment's notes 
