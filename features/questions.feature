@@ -91,3 +91,12 @@ Feature: Answering questions
     And I fill in "Link" with "Blah"
     And I press "submit-bottom"
     Then I should see "link url is an invalid format"
+
+  Scenario: Revising a question for a complete activity
+    Given I am logged in as a user
+    Given the test survey has been loaded
+    Given I have started an assessment
+    Given I have completed the first activity
+    When I go back to the first question
+    And I press "submit-bottom"
+    Then I should see "Do you have a standard dataset release process?"
