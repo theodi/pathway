@@ -1,52 +1,60 @@
 <% content_for :title do %>Goals for next assessment<% end %>
 
-<section class = "targets">
-<%= form_tag assessment_targets_path(@assessment), method: :patch do %>
+<section id="setGoals" class="results activities clearfix">
 
-  <%= submit_tag "Save goals", class: "btn  next right", id: "submit-top" %>
-  <br/>
-  <br/>
-  <header class="row">
-    <div class = "col-md-4">
-      Theme <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-    </div>
-    <div class = "col-md-8">
-      <div class = "row">
-      <div class = "col-md-6">
-        Activity <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-      </div>
-      <div class = "col-md-3">
-        Current Score <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-      </div>
-      <div class = "col-md-3">
-        Target Score <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-      </div>
-      </div>
-    </div>
+  <%= form_tag assessment_targets_path(@assessment), method: :patch do %>
+
+  <header class="resultsHeader">
+    <p class="themeColLabel">Theme <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+    <span class="labelGroup">
+      <p class="activityColLabel">Activity <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+         <p class="answersColLabel">Score <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+         <p class="goalColLabel">Goal <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+    </span>
   </header>
-
+  <!-- tabs left -->
   <% for dimension in @dimensions %>
-  <div class="row dimension">
-    <div class="col-md-4 padded-cell"><h3><%= dimension.title %></h3></div>
-    <div class="col-md-8">
-      <% dimension.activities.each_with_index do |activity, index| %>
-        <% next if @scores[activity.id].blank? %> 
-        <div class = "row">
-          <div class="col-md-6 padded-cell"><%= activity.title %></div>
-          <div class="col-md-3 padded-cell">
-            <span id="<%= activity.name %>-score" class="score"><%= @scores[activity.id].score %></span>
-          </div>
-          <div class = "col-md-3 padded-cell">
-            <%= number_field_tag "targets[#{@scores[activity.id].id}]", @scores[activity.id].target, min: 1, max: 5 %>
-          </div>
-        </div>
-      <% end %>
+    <div class="theme clearfix">
+      <h2><%= dimension.title %></h2>
+
+      <ul class="activities">
+        <% dimension.activities.each_with_index do |activity, index| %>
+          <% next if @scores[activity.id].blank? %> 
+          <li class="clearfix"><h3><%= activity.title %></h3>
+            <div class="wrapScoreGoal clearfix">
+              <div class="score"><strong class="hidden">Score</strong> <span id="<%= activity.name %>-score" class="yourScore"><%= @scores[activity.id].score %></span></div>
+                 <div class="goal">
+                  <strong class="hidden">Goal</strong>
+                  <span class="glyphicon glyphicon-minus-sign less" aria-hidden="true"  title="Decrease goal"></span>
+                  <%= text_field_tag "targets[#{@scores[activity.id].id}]", @scores[activity.id].target, class: "form-control yourGoal" %>
+                  <span class="glyphicon glyphicon-plus-sign more" aria-hidden="true" title="Increase goal"></span>
+                 </div>
+            </div>
+          </li>    
+        <% end %>    
+      </ul>
     </div>
-  </div>
   <% end %>
 
-  <br/>
-  <%= submit_tag "Save goals", class: "btn next right", id: "submit-bottom" %>
-  
-<% end %>
+    <%= submit_tag "Save goals", class: "btn btn-primary next pull-right", id: "submit-bottom" %>
+  <% end %>
 </section>
+
+<% content_for :javascript_footer do %>
+     $(function() {
+       $( "span.more" ).click(function() {
+         if ( $(this).parent().children('input.yourGoal').val() < 5 ) {
+         $(this).parent().children('input.yourGoal').val(function(i, oldval) {
+        return ++oldval;
+       })
+         }
+       });
+       $( "span.less" ).click(function() {
+         if ( $(this).parent().children('input.yourGoal').val() > 1 ) {
+         $(this).parent().children('input.yourGoal').val(function(i, oldval) {
+        return --oldval;
+       });
+       }
+     })
+     })
+<% end %>

@@ -13,7 +13,7 @@ Feature: Setting targets for future assessments
     Given I have completed an assessment
     When I go to "/assessments"
     And I click on "Set goals for the next assessment"
-    Then I should see "Target Score"
+    Then I should see "Goal"
     When I fill in "targets_1" with "4"
     And I press "submit-bottom"
     Then I should see "Successfully saved goals"
