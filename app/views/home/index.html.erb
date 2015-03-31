@@ -1,13 +1,68 @@
-<% content_for :title do %><% end %>
+      <section id="homeContent">
 
-<h1 style="font-size: 300%">Assess your open data maturity</h1>
+        <div class="row top">
+          <div id="cta" class="col-sm-12">
+          <h1>Map your pathway to open data success</h1>
 
-<div class="row">
-  <div class="col-md-8"><a href="" class="btn btn-primary btn-lg"><h2>Take the assessment</h2></a></div>
-</div>
+          <div id="takeAssessmnet">
+            <% if current_user %>
+              <a href="<%= assessments_path %>" class="btn green"><h2>Start now</h2></a>
+            <% else %>
+              <a href="<%= new_user_registration_path %>" class="btn green"><h2>Start now</h2></a>
+            <% end %>
+            <a href="/about" class="btn"><h2>Find out more</h2></a>
+          </div>
 
-<div class="row">&nbsp;</div>
+          </div>
 
-<div class="row top-buffer">
-  <div class="col-md-8"><a href="" class="btn btn-success"><h3>Browse the stats</h3></a></div>
-</div>
+        </div>
+
+        <div id="howItWorks" class="row">
+
+         <div class="step one col-sm-4">
+          <h4>1. Assess</h4>
+          <p>Answer a set of questions that will determine your current open data maturity level.</p>
+         </div>
+
+         <div class="step two col-sm-4">
+          <h4>2. Set goals</h4>
+          <p>Set the targets you wish to reach and the tool will provide a set of practical recommendations to help you achieve them.</p>
+         </div>
+
+         <div class="step col-sm-4">
+          <h4>3. Track progress </h4>
+          <p class="highlight">Coming in Beta!</p>
+          <p>Monitor your progress and compare your maturity levels against other organisations.</p>
+         </div>
+
+        </div>
+
+        <div id="bottom" class="row">
+
+          <div id="benefits" class="col-sm-6">
+           <div class="wrapper">
+           <h3>Benefits</h3>
+           <ul>
+            <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Discover your organisation’s strengths and weaknesses</li>
+            <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Identify areas of improvement to optimise progression</li>
+            <li><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Receive practical recommendations to help achieve your goals</li>
+           </ul>
+           </div>
+          </div>
+
+
+         <div id="whatsnext" class="col-sm-6">
+           <div class="wrapper">
+           <h3>What’s next?</h3>
+            <p>The site is currently in alpha. We encourage public participation to test the tool and gain valuable <a href="">user feedback</a>.</p>
+            <p>The Beta version will launch at end of April 2015. Our plan is to:
+            <ul>
+             <li>Reflect user feedback from the alpha site where possible</li>
+             <li>Launch a new benchmarking feature that allows you to compare your maturity level within your organisation and against others.</li>
+            </ul>
+          </div>
+          </div>
+
+        </div>
+
+      </section>

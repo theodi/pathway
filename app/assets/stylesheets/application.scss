@@ -13,10 +13,12 @@
 // Custom colours
 $pathwayLightGrey: #f5f5f5;
 
+@import "buttons";
 @import "report";
-@import "my_assessments.scss";
-@import "question.scss";
-@import "targets.scss";
+@import "my_assessments";
+@import "question";
+@import "targets";
+@import "home";
 
 .odi-orange {
   .page-title, .site-title .status {
