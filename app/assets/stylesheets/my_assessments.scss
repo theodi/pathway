@@ -85,24 +85,32 @@ ul#myAssessments {
 
 div.assessment-overview { 
   font-size: 16px;
+  
   h5 { font-weight:bold;  font-size: 16px; margin-top: 11px; }
+  
   a.btn {
-      background: black;
-      color: white;
-      padding: 0.25em;
-      border-radius: 4px;
-      text-align:center;
-      width:70%;
-      float:right;
-    }
+    background: black;
+    color: white;
+    padding: 0.25em;
+    border-radius: 4px;
+    text-align:center;
+    width:70%;
+    float:right;
+  }
+  a.btn:hover { background-color: $odiOrange; color: white; }
 
   div.activity {
     padding: 5px 0px; border-bottom: 1px solid white; margin-top:3px;
     a.btn { font-size:0.8em; width:52%; }
+    a.btn-complete { color: green;
+      background: none repeat scroll 0% 0% transparent;
+      font-size: 17px;
+      padding: 0px; }
+    a.btn:hover { background-color: $odiOrange; color: white; }
   }
 
   div.activity:last-child { border-bottom: none }
-  
+
 }
 
 div.highlight-dimension:nth-child(even) { 
