@@ -18,4 +18,12 @@ module ApplicationHelper
     link_to(name, '#', class: 'add_fields moreLinks', data: { id: id, fields: fields.gsub('\n', '') })
   end
 
+  def breadcrumb(str=nil)
+    breadcrumb = link_to "My assessments", assessments_path
+    breadcrumb << " > #{link_to(@assessment.title, assessment_path(@assessment))}".html_safe if @assessment
+    breadcrumb << " > #{@activity.title}" if @activity
+    breadcrumb << " > #{str}" unless str.blank?
+    content_tag :h4, breadcrumb, class: "breadcrumb"
+  end
+
 end

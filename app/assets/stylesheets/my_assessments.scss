@@ -1,5 +1,22 @@
 //MY ASSESSMENTS
 
+.small { font-size: 0.6em; }
+
+#notes-form input[type="text"], 
+#title-form input[type="text"] {
+  font-size: inherit;
+  width:100%;
+  display: inline-block;  
+  margin:0;
+}
+
+#notes-form input, #notes-form a.btn,
+#title-form input, #title-form a.btn {
+  width:30%;
+  font-size:0.8em;
+}
+
+
 ul#myAssessments {
  list-style: none;
  margin: 0;

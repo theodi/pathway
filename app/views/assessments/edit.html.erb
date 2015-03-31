@@ -1,8 +1,11 @@
-<% content_for :title do %>Edit assessment<% end %>
-<h2>My assessments > <%= @assessment.title %></h1>
+<% content_for :title do %>
+  Edit assessment
+  <%= breadcrumb("Edit assessment") %>
+<% end %>
 
 <hr/>
 <%= form_for @assessment do |f| %>
+  <%= render "shared/errors", object: f.object %>
   <p><%= f.label :title, "What would you like to call the assessment?" %></p>
   <%= f.text_field :title %>
 

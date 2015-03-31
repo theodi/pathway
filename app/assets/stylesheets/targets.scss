@@ -1,43 +1,52 @@
-// Place all the styles related to the targets controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+//SET GOALS
 
-.targets {
-  
-  header { 
-    font-size:14px;
-    margin-bottom:1em;
-    p {
-        font-size:14px;    
-    }
+#setGoals {
+
+ header {
+  .labelGroup {width: 70%; display: inline-block;
+   .activityColLabel {width: 60%;}
+   .answersColLabel {width: 15%; margin-left: -15px;}
+   .goalColLabel {width: 15%; display: inline-block; margin-left: -15px;}
   }
+ }
 
-  h3 { 
-    font-size:18px; 
-    margin: 0px; 
+ h3 { font-size: 18px; display: inline-block; float: left; width: 60%; margin-top: 0; font-weight: 400;}
+
+ ul.activities {
+  width: 70%;
+  li {
+   .wrapScoreGoal {
+    width: 25%;
+    float: left;
+    position: relative;
+    top: -0.25em;
+    .score, .goal {display: inline-block;}
+    .goal {
+
+     .less, .more {
+        cursor: pointer;
+        position: relative;
+
+        color: $odiBlue;
+        &:hover {color: $odiOrange;}
+        }
+     input {
+      width: 2.5em;
+      text-align: center;
+      display: inline-block;
+      }
+     }
+     .score {
+      width: 50%;
+      .yourScore {
+       background: black;
+       color: white;
+       padding: 0.25em 0.5em;
+       border-radius: 4px;
+      }
+     }
+   }
+   &:first-child { padding-top: 15px; margin-top: 0;}
   }
-
-  .dimension {
-    border-top: 1px solid #DDD;
-    background: none repeat scroll 0% 0% #F5F5F5;
-  }
-
-  .padded-cell { 
-    padding-top: 8px;
-    padding-bottom: 8px;
-
-  }
-
-  span.score {
-    background: none repeat scroll 0% 0% #000;
-    color: #FFF;
-    padding: 0.25em;
-    border-radius: 4px;
-    margin-left: 20%;
-    display: block;
-    width: 2em;
-    text-align: center;
-  }
-
-  .right {float:right; }
+ }
 }

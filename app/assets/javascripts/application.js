@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require_tree .
 //= require select2
+//= require jquery.form-validator
 
 var attachTypeAhead = function(){
   $('.select2').each(function(i, e){
@@ -44,3 +45,7 @@ var attachTypeAhead = function(){
     select.select2(options)
   });
 };
+
+$(document).ready(function() {
+  $.validate({modules: 'security', form: "#new_user, #edit_user"});
+});

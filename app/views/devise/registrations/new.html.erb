@@ -12,31 +12,20 @@
       
       <div class="form-group">
         <%= f.label :name %><br />
-        <%= f.text_field :name %>
+        <%= f.text_field :name, "data-validation": "required", "data-validation-error-msg": t(:name_validation) %>
       </div>
       
       <div class="form-group">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true %>
+        <%= f.email_field :email, "data-validation": "email", "data-validation-error-msg": t(:enter_email) %>
       </div>
     
-      <div class="form-group">
-        <%= f.label :password %>
-        <% if @validatable %>
-        <em>(<%= @minimum_password_length %> characters)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "off" %>
-      </div>
-    
-      <div class="form-group">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
-      </div>
-    
+      <%= render "devise/shared/password", f: f %>
+              
       <div class="checkbox">
         <%= f.label :terms_of_service do %>
-          <%= f.check_box :terms_of_service %> 
-          I accept the <a href="/terms-of-use" target="_register">Terms of use</a>       
+          <%= f.check_box :terms_of_service, "data-validation": "required", "data-validation-error-msg": t(:accept_terms) %> 
+          I accept the <a href="/terms-of-use" target="_register">Terms of use</a>        
         <% end %>
         
       </div>
