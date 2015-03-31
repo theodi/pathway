@@ -13,7 +13,7 @@
           <h2><%= dimension.title %></h2>
             <ul class="activities nav nav-tabs">
               <% dimension.activities.each_with_index do |activity, index| %>
-                <li class="<%= 'active' if dim_index == 0 && index == 0 %>"><a href="#<%= activity.name %>" data-toggle="tab"> <%= activity.title %> </a></li>
+                <li class="<%= 'active' if dim_index == 0 && index == 0 %>"><a href="#<%= activity.name %>-improvements" data-toggle="tab"> <%= activity.title %> </a></li>
               <% end %>
             </ul>
         </div>
@@ -23,7 +23,7 @@
     <div class="questionsWrapper tab-content">
       <% @dimensions.each_with_index do |dimension, dim_index| %>
         <% dimension.activities.each_with_index do |activity, index| %>
-          <div class="tab-pane <%= 'active' if dim_index == 0 && index == 0 %>" id="<%= activity.name %>">
+          <div class="tab-pane <%= 'active' if dim_index == 0 && index == 0 %>" id="<%= activity.name %>-improvements">
           
             <% activity.questions.each do |question| %>
               <% assessment_answer = assessment.answer_for_question(question) %>
