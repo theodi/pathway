@@ -151,3 +151,21 @@ a.btn {
   background-image: linear-gradient(to bottom, #E65D00, #E65D00);
   background-color: #E65D00;
 }
+div.importantLinks {
+  background: none repeat scroll 0% 0% #F5F5F5;
+  padding: 15px;
+  border: 1px solid #DDD;
+}
+div.importantLinks p:first-child {
+  padding-top: 0px;
+}
+div.importantLinks p {
+  margin-bottom: 0px;
+  border-bottom: 1px solid #BBB;
+  padding: 0.5em 0px;
+  font-size:0.74em;
+}
+div.importantLinks p:last-child {
+  padding-bottom: 0px;
+  border-bottom: medium none;
+}

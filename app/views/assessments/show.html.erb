@@ -7,9 +7,12 @@
   <div class = "col-md-4 sidebar">
     
     <% if @assessment.start_date.blank? %>
+      
       <h3>You are about to start a new assessment</h3>
       <p>You can click on the start assessment button to start from the beginning or you can click on one of the 'start' buttons to begin the assessment at a particular activity.</p>
+
     <% else %>
+
       <div id = "title-display">
         <h3><%= @assessment.title %> 
           <%= link_to 'Edit', '#', id: "title-toggle", class: "small toggle-target", data: { target: "#title-form,#title-display" } %></h3>
@@ -22,6 +25,7 @@
           <%= link_to 'Cancel', '#', class: "toggle-target btn btn-default", data: { target: "#title-form,#title-display" } %>
         <% end %>
       </div>
+      
       <hr/>
 
       <p class = "small">&#x1f4c5;  <span class = "italic">Started <%= pretty_date(@assessment.start_date) %></span><br/>
@@ -37,10 +41,8 @@
         </p>
         </h4>
       </div>
-
       <div id = "notes-form" style="display:none;">
         <h4>Background information</h4>
-        
           <%= form_for @assessment do |f| %>
           <p>
             <%= f.text_field :notes, class: "form-control", placeholder: "Assessment notes" %>
@@ -48,10 +50,17 @@
             <%= f.submit "Save", class: "btn" %>
             <%= link_to 'Cancel', '#title-form', class: "toggle-target btn btn-default", data: { target: "#notes-form,#notes-display" } %>
           <% end %>
-        
         </h4>
       </div>
+
     <% end %>
+
+    <div class="importantLinks ">
+      <p><span class="glyphicon glyphicon-download" aria-hidden="true"></span> <a href="#">Download overview of the assessment questions</a></p>
+      <p><span class="glyphicon glyphicon-download" aria-hidden="true"></span> <a href="#">Download assessment grid</a>
+      </p><p><span class="glyphicon glyphicon-download" aria-hidden="true"></span> <a href="#">Download White Paper</a>
+      </p>
+    </div>
 
   </div>
   <div class = "col-md-8 assessment-overview">

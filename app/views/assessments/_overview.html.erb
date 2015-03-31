@@ -6,7 +6,9 @@
 <% for dimension in @dimensions %>
   <div class="row highlight-dimension">
     <div class="col-md-4"><h5><%= dimension.title %></h5>
-      <%= content_tag :span, "#{dimension.questions.count} questions", class: "small"%></div>
+      <p class = "small"><%= content_tag :span, "#{dimension.questions.count} questions", class: ""%></br>
+      <span class="glyphicon glyphicon-download" aria-hidden="true"></span> <a href="#">Download questions</a></p>
+    </div>
     <div class="col-md-8">
 
       <% for activity in dimension.activities %>
