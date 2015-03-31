@@ -9,8 +9,8 @@
     <header id="assessmentHeader" class="clearfix">
       <h2><em>Assessing:</em> <%= @activity.title %></h2>
       <div class="actions">
-        <%= link_to "Save and exit", assessment_path(@assessment), class: "btn btn-default" %>
-        <%= f.submit "Next question &raquo;".html_safe, class: "btn btn-success", id: "submit-top" %>
+        <%= link_to "Save and exit", assessment_path(@assessment), class: "btn" %>
+        <%= f.submit "Next question &raquo;".html_safe, class: "btn green", id: "submit-top" %>
       </div>
     </header>
   
@@ -22,7 +22,7 @@
     
           <div class="actionsFull">
             <%= link_to '&laquo; Back'.html_safe, assessment_edit_answer_path(@assessment, @previous_answer), class: "btn btn-default back" if @previous_answer %>
-            <%= f.submit "Next question &raquo;".html_safe, class: "btn btn-success next", id: "submit-bottom" %>
+            <%= f.submit "Next question &raquo;".html_safe, class: "btn green next", id: "submit-bottom" %>
           </div>
     
       </footer>

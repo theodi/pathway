@@ -31,16 +31,16 @@
 
   <div class="col-md-3 col actions">
     <% if assessment.blank? %>
-      <%= link_to begin_assessment_path, class: "btn btn-success" do %>
+      <%= link_to begin_assessment_path, class: "btn green" do %>
       Start assessment <span class="glyphicon glyphicon-chevron-right"></span>
       <% end %> 
     <% else %>
           <% if current %>
-            <%= link_to assessment_path(assessment), class: "btn btn-success", role: "button" do %>
+            <%= link_to assessment_path(assessment), class: "btn green", role: "button" do %>
               Continue assessment &raquo; 
             <% end %>
           <% else %>
-            <%= link_to report_path(assessment), class: "btn btn-info", role: "button" do %>
+            <%= link_to report_path(assessment), class: "btn btn-default", role: "button" do %>
               View assessment &raquo; 
             <% end %>
           <% end %>
