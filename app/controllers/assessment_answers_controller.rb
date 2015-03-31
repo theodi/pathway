@@ -60,8 +60,8 @@ class AssessmentAnswersController < ApplicationController
       if params[:commit].eql?("Save and exit")
         redirection = assessment_path(@assessment)
       else
-        next_question = @activity.next_question_for(@assessment)
-        redirection = next_question.blank? ? assessment_path(@assessment) : assessment_question_path(@assessment, next_question)
+        next_answer = @assessment_answer.next
+        redirection = next_answer.blank? ? assessment_path(@assessment) : assessment_edit_answer_path(@assessment, next_answer)
       end
       redirect_to redirection
     else

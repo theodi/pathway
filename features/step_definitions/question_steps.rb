@@ -31,3 +31,13 @@ Given(/^I have answered the first question including a link$/) do
   assessment_answer = @assessment.assessment_answers.create(answer: positive, question: first_question)
   assessment_answer.links.create(FactoryGirl.attributes_for(:link))
 end
+
+Given(/^I have completed the first activity$/) do
+  positive = Answer.where(code: "Q1.1").first
+  first_question = Question.where(code: "Q1").first
+  negative = Answer.where(code: "Q2.2").first
+  second_question = Question.where(code: "Q2").first  
+  @assessment.assessment_answers.create(answer: positive, question: first_question)
+  @assessment.assessment_answers.create(answer: negative, question: second_question, notes: "more info on q2")
+  Rails.logger.info("\n ------------------------ \n #{negative.to_json} \n #{second_question.to_json} \n")
+end
