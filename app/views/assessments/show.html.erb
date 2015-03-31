@@ -4,7 +4,7 @@
 <hr/>
 
 <div class = "row">
-  <div class = "col-md-4">
+  <div class = "col-md-4 sidebar">
     
     <% if @assessment.start_date.blank? %>
       <h3>You are about to start a new assessment</h3>
@@ -22,14 +22,16 @@
           <%= link_to 'Cancel', '#', class: "toggle-target btn btn-default", data: { target: "#title-form,#title-display" } %>
         <% end %>
       </div>
+      <hr/>
 
-      <p>Started <%= pretty_date(@assessment.start_date) %></p>
+      <p class = "small">&#x1f4c5;  <span class = "italic">Started <%= pretty_date(@assessment.start_date) %></span><br/>
+      &#x1f4c5;  <span class = "italic">Last modified <%= pretty_date(@assessment.updated_at) %></span></p>
 
       <hr/>
 
       <div id = "notes-display">
         <h4>Background information</h4>
-        <p><%= @assessment.notes %>
+        <p class = "italic"><%= @assessment.notes %>
           <%= link_to 'Edit', '#title-form', class: "small toggle-target", id: "notes-toggle", 
               data: { target: "#notes-form,#notes-display" } %>
         </p>
@@ -52,28 +54,31 @@
     <% end %>
 
   </div>
-  <div class = "col-md-8">
+  <div class = "col-md-8 assessment-overview">
   
     <div class="row">
       <div class="col-md-8">
-        This assessment is <%= @progress.percentage_progress %>% complete 
+        This assessment is <%= progress = @progress.percentage_progress %>% complete
+        <%= progress_bar(progress) %> 
       </div>
       <div class="col-md-4">
         <% if @assessment.status == :complete %>
-          <%= link_to "Completed", report_path(@assessment) %>
+          <%= link_to "Completed", report_path(@assessment), class: "btn" %>
         <% else %>
           <% if @assessment.can_complete? %>
-            <%= link_to "Complete assessment", complete_assessment_path(@assessment), method: :post, class: "complete" %>
+            <%= link_to "Complete assessment", complete_assessment_path(@assessment), method: :post, class: "complete btn" %>
           <% else %>
             <% if @assessment.status == :not_started %> 
-              <%= link_to "Start assessment >", edit_assessment_path(@assessment) %>
+              <%= link_to "Start assessment >", edit_assessment_path(@assessment), class: "btn" %>
             <% else %> 
-              <%= link_to "Continue assessment >", continue_assessment_path(@assessment) %>
+              <%= link_to "Continue assessment >", continue_assessment_path(@assessment), class: "btn" %>
             <% end %> 
           <% end %>
         <% end %>
       </div>
     </div>
+    
+    <hr/>
 
     <%= render 'overview', assessment: @assessment, progress: @progress %>
   </div>

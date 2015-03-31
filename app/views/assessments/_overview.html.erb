@@ -1,27 +1,27 @@
 <div class="row">
-  <div class="col-md-4"><h4>Dimension</h4></div>
-  <div class="col-md-8"><h4>Activity</h4></div>
+  <div class="col-md-4"><h5>Dimension</h5></div>
+  <div class="col-md-8"><h5>Activity</h5></div>
 </div>
 
 <% for dimension in @dimensions %>
-  <div class="row">
-    <div class="col-md-4"><h5><%= dimension.title %></h5></div>
+  <div class="row highlight-dimension">
+    <div class="col-md-4"><h5><%= dimension.title %></h5><%= "#{dimension.questions.count} questions"%></div>
     <div class="col-md-8">
 
       <% for activity in dimension.activities %>
-        <div class = "row">
-          <div class="col-md-6"><%= activity.title %></div>
-          <div class="col-md-6">
+        <div class = "row activity">
+          <div class="col-md-8"><%= activity.title %></div>
+          <div class="col-md-4">
             <% status = progress.progress_for_activity(activity) %>
             <% next_question = activity.next_question_for(@assessment) %>
             <% case status %>
             <% when :not_started %>
-              <%= link_to t(status), assessment_question_path(@assessment, next_question) %>
+              <%= link_to t(status), assessment_question_path(@assessment, next_question), class: "btn" %>
             <% when :in_progress %>
-              <%= link_to t(status), assessment_question_path(@assessment, next_question) %>
+              <%= link_to t(status), assessment_question_path(@assessment, next_question), class: "btn" %>
             <% when :complete %>
               <% answer = @assessment.assessment_answers.where(question_id: activity.questions.pluck(:id).first).first %>
-              <%= link_to t(status), assessment_edit_answer_path(@assessment, answer) %>
+              <%= link_to t(status), assessment_edit_answer_path(@assessment, answer), class: "btn" %>
             <% end %>
           </div>
         </div>

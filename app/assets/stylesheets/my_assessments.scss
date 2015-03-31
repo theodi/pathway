@@ -1,6 +1,6 @@
 //MY ASSESSMENTS
 
-.small { font-size: 0.6em; }
+.small { font-size: 0.7em; }
 
 #notes-form input[type="text"], 
 #title-form input[type="text"] {
@@ -77,4 +77,35 @@ ul#myAssessments {
 
  }
 
+}
+
+//ASSESSMENT PAGE
+#progress-bar { width: 240px; background-color:silver; }
+#progress-bar div { background-color: green; height:0.5em; }
+
+div.assessment-overview { 
+  font-size: 16px;
+  h5 { font-weight:bold;  font-size: 16px; margin-top: 11px; }
+  a.btn {
+      background: black;
+      color: white;
+      padding: 0.25em;
+      border-radius: 4px;
+      text-align:center;
+      width:70%;
+      float:right;
+    }
+
+  div.activity {
+    padding: 5px 0px; border-bottom: 1px solid white; margin-top:3px;
+    a.btn { font-size:0.8em; width:52%; }
+  }
+
+  div.activity:last-child { border-bottom: none }
+  
+}
+
+div.highlight-dimension:nth-child(even) { 
+  padding-top:5px; padding-bottom:5px;
+  background: none repeat scroll 0% 0% #F5F5F5;
 }
