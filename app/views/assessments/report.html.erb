@@ -1,4 +1,7 @@
-<% content_for :title do %><%= current_user.organisation ? current_user.organisation.title : "" %> <%= @assessment.title %><% end %>
+<% content_for :title do %>
+  <%= current_user.organisation ? current_user.organisation.title : "" %> <%= @assessment.title %>
+  <%= breadcrumb("Report") %>
+<% end %>
 
 <div id="mainContent" class="container">
     
