@@ -100,3 +100,4 @@ Feature: Answering questions
     When I go back to the first question
     And I press "submit-bottom"
     Then I should see "Do you have a standard dataset release process?"
+    And I should see "more info on q2"

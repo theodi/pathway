@@ -38,6 +38,6 @@ Given(/^I have completed the first activity$/) do
   negative = Answer.where(code: "Q2.2").first
   second_question = Question.where(code: "Q2").first  
   @assessment.assessment_answers.create(answer: positive, question: first_question)
-  @assessment.assessment_answers.create(answer: negative, question: second_question)
+  @assessment.assessment_answers.create(answer: negative, question: second_question, notes: "more info on q2")
   Rails.logger.info("\n ------------------------ \n #{negative.to_json} \n #{second_question.to_json} \n")
 end
