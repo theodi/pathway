@@ -1,4 +1,8 @@
-<% content_for :title do %><%= @assessment.title %><% end %>
+<% content_for :title do %>
+  <%= @assessment.title %>
+  <%= breadcrumb() %>
+<% end %>
+
 <div id="theAssessment">
 
   <%= form_for @assessment_answer, url: assessment_edit_answer_path(@assessment, @assessment_answer) do |f| %>
