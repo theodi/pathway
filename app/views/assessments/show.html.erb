@@ -69,9 +69,9 @@
             <%= link_to "Complete assessment", complete_assessment_path(@assessment), method: :post, class: "complete btn" %>
           <% else %>
             <% if @assessment.status == :not_started %> 
-              <%= link_to "Start assessment >", edit_assessment_path(@assessment), class: "btn" %>
+              <%= link_to "Start assessment >", edit_assessment_path(@assessment), class: "btn green" %>
             <% else %> 
-              <%= link_to "Continue assessment >", continue_assessment_path(@assessment), class: "btn" %>
+              <%= link_to "Continue assessment >", continue_assessment_path(@assessment), class: "btn green" %>
             <% end %> 
           <% end %>
         <% end %>

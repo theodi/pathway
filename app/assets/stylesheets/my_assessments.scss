@@ -80,40 +80,74 @@ ul#myAssessments {
 }
 
 //ASSESSMENT PAGE
-#progress-bar { width: 240px; background-color:silver; }
-#progress-bar div { background-color: green; height:0.5em; }
-
-div.assessment-overview { 
-  font-size: 16px;
-  
-  h5 { font-weight:bold;  font-size: 16px; margin-top: 11px; }
-  
-  a.btn {
-    background: black;
-    color: white;
-    padding: 0.25em;
-    border-radius: 4px;
-    text-align:center;
-    width:70%;
-    float:right;
-  }
-  a.btn:hover { background-color: $odiOrange; color: white; }
-
-  div.activity {
-    padding: 5px 0px; border-bottom: 1px solid white; margin-top:3px;
-    a.btn { font-size:0.8em; width:52%; }
-    a.btn-complete { color: green;
-      background: none repeat scroll 0% 0% transparent;
-      font-size: 17px;
-      padding: 0px; }
-    a.btn:hover { background-color: $odiOrange; color: white; }
-  }
-
-  div.activity:last-child { border-bottom: none }
-
+#progress-bar { 
+  width: 280px; background-color:silver; 
+  background: none repeat scroll 0% 0% #F5F5F5;
+  border: 1px solid #DDD;
+  border-radius: 10px;
+  overflow: hidden; 
+  margin-top:2px;
 }
+#progress-bar div { background: none repeat scroll 0% 0% #FF6700; height:0.7em; }
 
+div.highlight-dimension { border-top: 1px solid #DDD; }
 div.highlight-dimension:nth-child(even) { 
   padding-top:5px; padding-bottom:5px;
   background: none repeat scroll 0% 0% #F5F5F5;
+}
+
+div.assessment-overview { 
+  h5 { font-weight:normal; font-size:1em; margin-top: 11px; } 
+  a.btn { width:70%; float:right; }
+  div.activity { padding: 5px 0px; border-bottom: 1px solid white; margin-top:3px; }
+  div.activity.complete { color:#0DBC37; }
+  div.activity:last-child { border-bottom: none }
+}
+.btn.focus, .btn:focus, .btn:hover {
+  color: #333;
+  text-decoration: none;
+}
+a.btn.orange {
+  color: #FFF;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+  background-color: #FF6700;
+  background-image: linear-gradient(to bottom, #FF6700, #E65D00);
+  background-repeat: repeat-x;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+a.btn.green {
+  color: #FFF;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+  background-color: #0DBC37;
+  background-image: linear-gradient(to bottom, #0DBC37, #0AA22E);
+  background-repeat: repeat-x;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+.btn.green:hover {
+  background-image: linear-gradient(to bottom, #0AA22E, #0AA22E);
+  background-color: #0AA22E;
+}
+a.btn {
+  padding: 4px 12px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  color: #888;
+  text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.75);
+  background-color: #F5F5F5;
+  background-image: linear-gradient(to bottom, #FFF, #E6E6E6);
+  background-repeat: repeat-x;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #CCC #CCC #B3B3B3;
+  border-image: none;
+  border-radius: 4px;
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+.btn.orange:hover {
+  background-image: linear-gradient(to bottom, #E65D00, #E65D00);
+  background-color: #E65D00;
 }
