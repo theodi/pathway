@@ -51,3 +51,10 @@ h1.site-title {
   color: #fff;
   background-color: $odiOrange;
 }
+
+h4.breadcrumb { 
+  background: none;
+  padding-left:0px;
+
+  a { color:white; }
+}
