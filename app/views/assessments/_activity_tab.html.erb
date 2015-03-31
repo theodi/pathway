@@ -2,10 +2,10 @@
 <section class="results activities clearfix">
 
   <header class="resultsHeader">
-    <p class="themeColLabel">Theme <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
-    <p class="activityColLabel">Activity <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
-    <p class="answersColLabel">Score <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
-    <p class="answersColLabel">Next goal </span></p>
+    <%= render 'theme_label' %>
+    <%= render 'activity_label' %>
+    <%= render 'score_label' %>
+    <%= render 'next_goal_label' %>
   </header>
 
   <% for dimension in @dimensions %>

@@ -1,9 +1,12 @@
 <section class="results details clearfix">
 
   <header class="resultsHeader">
-    <p class="themeColLabel">Theme <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+    <%= render 'theme_label' %>
     <p class="activityColLabel">Activity <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
-    <p class="answersColLabel">Answers <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+    <p class="answersColLabel">Improvements 
+      <span class="glyphicon glyphicon-info-sign" aria-hidden="true" 
+        data-toggle="tooltip" data-placement="top" title="your answers and suggested improvements"></span>
+    </p>
   </header>
   
   <!-- tabs left -->
@@ -13,7 +16,7 @@
           <h2><%= dimension.title %></h2>
             <ul class="activities nav nav-tabs">
               <% dimension.activities.each_with_index do |activity, index| %>
-                <li class="<%= 'active' if dim_index == 0 && index == 0 %>"><a href="#<%= activity.name %>" data-toggle="tab"> <%= activity.title %> </a></li>
+                <li class="<%= 'active' if dim_index == 0 && index == 0 %>"><a href="#<%= activity.name %>-improvements" data-toggle="tab"> <%= activity.title %> </a></li>
               <% end %>
             </ul>
         </div>
@@ -23,7 +26,7 @@
     <div class="questionsWrapper tab-content">
       <% @dimensions.each_with_index do |dimension, dim_index| %>
         <% dimension.activities.each_with_index do |activity, index| %>
-          <div class="tab-pane <%= 'active' if dim_index == 0 && index == 0 %>" id="<%= activity.name %>">
+          <div class="tab-pane <%= 'active' if dim_index == 0 && index == 0 %>" id="<%= activity.name %>-improvements">
           
             <% activity.questions.each do |question| %>
               <% assessment_answer = assessment.answer_for_question(question) %>
@@ -35,7 +38,7 @@
                   </p>
 
                   <div class="improvements">
-                  <% if assessment_answer.answer.positive? %>
+                  <% if assessment_answer.answer.improvements.empty? %>
                     <p>No improvements necessary</p>
                   <% else %>
                     <ol class="improvements-list">

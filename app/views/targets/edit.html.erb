@@ -5,11 +5,11 @@
   <%= form_tag assessment_targets_path(@assessment), method: :patch do %>
 
   <header class="resultsHeader">
-    <p class="themeColLabel">Theme <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+    <%= render 'assessments/theme_label' %>
     <span class="labelGroup">
-      <p class="activityColLabel">Activity <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
-         <p class="answersColLabel">Score <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
-         <p class="goalColLabel">Goal <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></p>
+      <%= render 'assessments/activity_label' %>
+      <%= render 'assessments/score_label' %>
+      <%= render 'assessments/next_goal_label' %>
     </span>
   </header>
   <!-- tabs left -->
