@@ -1,5 +1,7 @@
-<% content_for :title do %><%= @assessment.title %><% end %>
-<h4>My assessments > <%= @assessment.title %></h4>
+<% content_for :title do %>
+  <%= @assessment.title %>
+  <%= breadcrumb() %>
+<% end %>
 
 <hr/>
 

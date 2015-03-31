@@ -1,5 +1,7 @@
-<% content_for :title do %>Edit assessment<% end %>
-<h2>My assessments > <%= @assessment.title %></h1>
+<% content_for :title do %>
+  Edit assessment
+  <%= breadcrumb("Edit assessment") %>
+<% end %>
 
 <hr/>
 <%= form_for @assessment do |f| %>
