@@ -35,7 +35,7 @@
                   </p>
 
                   <div class="improvements">
-                  <% if assessment_answer.answer.positive? %>
+                  <% if assessment_answer.answer.improvements.empty? %>
                     <p>No improvements necessary</p>
                   <% else %>
                     <ol class="improvements-list">
