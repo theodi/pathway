@@ -1,0 +1,80 @@
+#homeContent {
+
+  #cta {
+    margin: 1em 0;
+    text-align: center;
+    h1 {font-size: 55px; color: $odiGrey; margin-bottom: 30px; }
+    p {font-size: 24px;}
+    #takeAssessmnet {
+      background: $pathwayLightGrey;
+      border: $odiGrey;
+      border-radius: 5px;
+      padding: 25px;
+     a { padding: 0.5em 1.5em; min-width: 270px; margin: 0 10px;
+     h2 { margin: 0; font-size: 30px; font-weight: normal;}
+     }
+    }
+  }
+
+  #howItWorks {
+   text-align: center;
+   background: $odiOrange;
+   padding: 2em 0;
+   margin: 3em 0 ;
+   color: white;
+
+   .step {
+
+    &.two {border-right: 1px solid darken($odiOrange, 15%); border-left: darken($odiOrange, 15%) 1px solid;}
+    h4 {
+     margin: 20px 0 20px;
+     font-weight: normal; font-size: 30px;
+     span { display: block; font-size: 30px; font-weight: 200; color: white;}
+   }
+   .highlight {
+     font-weight: bold;
+     text-transform: uppercase;
+     background: white;
+     color: $odiOrange;
+     display: inline-block;
+     margin: -1em 0 0 0;
+     padding: 0.25em 0.5em;
+     position: absolute;
+     top: 0;
+     right: 0;
+     border-radius: 3px 0 0 3px;
+     color: $odiBlue;
+     border-right: 1px solid $odiOrange;
+     }
+  }
+ }
+
+
+#benefits, #whatsnext {
+ .wrapper {
+   background: $pathwayLightGrey;
+   border: $odiGrey;
+   display: inline-block;
+   border-radius: 5px;
+   padding: 25px;
+   display: block;
+ }
+}
+
+ #whatsnext {
+   h3 {color: $odiBlue; margin-top: 0; font-weight: normal; font-size: 30px;}
+   }
+
+ #benefits {
+   h3 {color: $odiBlue; margin-top: 0; font-weight: normal; font-size: 30px;}
+    ul {
+     list-style: none;
+     margin: 0;
+     padding: 0;
+     li {
+      margin-bottom: 5px;
+      span.glyphicon {color: $odiColour5;}
+     }
+   }
+ }
+}

@@ -15,7 +15,7 @@ module ApplicationHelper
       render(partial_location, {f: builder}.merge(opts))
     end
 
-    link_to(name, '#', class: 'add_fields moreLinks', data: { id: id, fields: fields.gsub('\n', '') })
+    link_to(name, '#', class: 'add_fields moreLinks btn orange', data: { id: id, fields: fields.gsub('\n', '') })
   end
 
   def breadcrumb(str=nil)
