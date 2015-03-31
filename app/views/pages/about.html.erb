@@ -7,7 +7,7 @@ and identify actions for improvement.
 </p>
 
 <p>
-The tool uses a questionnaire based on the open data maturity model. The model is based around five themes and and five progress levels. 
+The tool uses a questionnaire based on <a href="http://theodi.org/guides/open-data-maturity-model">the open data maturity model</a>. The model is based around five themes and and five progress levels. 
 Each theme represents a broad area of operations within an organisation. Each theme is then broken down into areas of activity.
 </p>
 
@@ -51,4 +51,12 @@ against each of these activities.
 This will help you in benchmarking yourself against other organisations. But the scores for your assessment, and all of your answers 
 and supporting notes will remain private. No information will be made publicly available without your consent.
 </p>
+
+<% if current_user %>
+  <a href="<%= assessments_path %>" class="btn green"><h2>Start now</h2></a>
+<% else %>
+  <a href="<%= new_user_registration_path %>" class="btn green"><h2>Start now</h2></a>
+<% end %>
 </div>
+
+
