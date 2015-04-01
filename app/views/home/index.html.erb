@@ -6,9 +6,9 @@
 
           <div id="takeAssessmnet">
             <% if current_user %>
-              <a href="<%= assessments_path %>" class="btn green"><h2>Start now</h2></a>
+              <a href="<%= assessments_path %>" class="btn green"><h2 class="white">Start now</h2></a>
             <% else %>
-              <a href="<%= new_user_registration_path %>" class="btn green"><h2>Start now</h2></a>
+              <a href="<%= new_user_registration_path %>" class="btn green"><h2 class="white">Start now</h2></a>
             <% end %>
             <a href="/about" class="btn"><h2>Find out more</h2></a>
           </div>

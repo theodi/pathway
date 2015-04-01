@@ -1,6 +1,9 @@
 #homeContent {
 
   #cta {
+
+    a.btn.green h2.white { color:white; }
+    
     margin: 1em 0;
     text-align: center;
     h1 {font-size: 55px; color: $odiGrey; margin-bottom: 30px; }
@@ -10,8 +13,8 @@
       border: $odiGrey;
       border-radius: 5px;
       padding: 25px;
-     a { padding: 0.5em 1.5em; min-width: 270px; margin: 0 10px;
-     h2 { margin: 0; font-size: 30px; font-weight: normal;}
+      a { padding: 0.5em 1.5em; min-width: 270px; margin: 0 10px;
+      h2 { margin: 0; font-size: 30px; font-weight: normal; }
      }
     }
   }
@@ -27,6 +30,7 @@
 
     &.two {border-right: 1px solid darken($odiOrange, 15%); border-left: darken($odiOrange, 15%) 1px solid;}
     h4 {
+     color:white;
      margin: 20px 0 20px;
      font-weight: normal; font-size: 30px;
      span { display: block; font-size: 30px; font-weight: 200; color: white;}
