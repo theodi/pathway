@@ -28,10 +28,9 @@
         <%= f.fields_for :links do |lf| %>
           <%= render "links/link_fields", f: lf %>
         <% end %>
+
+        <%= link_to_add_fields "Add another link", f, :links %>
       </div>
-
-      <%= link_to_add_fields "Add another link", f, :links %>
-
     </div>
     <!-- end additional info -->
     
