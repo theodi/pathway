@@ -14,11 +14,11 @@ class AssessmentAnswer < ActiveRecord::Base
   after_save :remove_invalidated_answers
 
   def prev
-    previous_answers.first
+    previous_answers.order(:id).last
   end
 
   def next
-    proceeding_answers.first
+    proceeding_answers.order(:id).first
   end
  
 
