@@ -1,7 +1,8 @@
 <div class = "nested_object">
 
   <%= field_set_tag "" do %>
-    
+    <%= f.hidden_field :_destroy %>
+
     <%= link_to 'Remove link', '#', class: "btn delete_association" %>
 
     <%= f.label :text, title: "The name of the link, e.g. Our Open Data Strategy" %>
@@ -9,8 +10,6 @@
 
     <%= f.label :link %>
     <%= f.text_field :link, placholder: "http://example.org", class: "form-control" %>
-
-    <%= f.hidden_field :_destroy %>
 
   <% end %>
 
