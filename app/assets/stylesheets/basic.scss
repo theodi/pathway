@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 body {
-    color: #4d4d4d;
+    color: #666;
     font-size: 18px;
 }
 
@@ -16,6 +16,7 @@ body {
 h1, h2, h3, h4 {
     text-rendering: optimizelegibility;
     clear: both;
+    color: #4d4d4d;
 }
 
 h1, h2 {
@@ -60,6 +61,8 @@ p {
     }
 
 }
+
+.italic { font-style:italic; }
 
 blockquote {
     border-left: none;
@@ -327,6 +330,7 @@ hr {
         white-space: nowrap;
         text-overflow: ellipsis;
         padding-bottom: 0.1em;
+        color:white;
 
         @media (max-width:767px) {
 

@@ -54,9 +54,17 @@ h1.site-title {
   background-color: $odiOrange;
 }
 
+div.navbar-static-top { margin-bottom: 0px; }
+
+hr {  border-color: #333; }
+
 h4.breadcrumb { 
   background: none;
   padding-left:0px;
+  color:white;
+  margin-bottom:0px;
+  margin-top:2px;
+  font-size:1em;
 
   a { color:white; }
 }

@@ -3,15 +3,16 @@
   <%= breadcrumb() %>
 <% end %>
 
-<hr/>
-
 <div class = "row">
-  <div class = "col-md-4">
+  <div class = "col-md-4 sidebar">
     
     <% if @assessment.start_date.blank? %>
+      
       <h3>You are about to start a new assessment</h3>
       <p>You can click on the start assessment button to start from the beginning or you can click on one of the 'start' buttons to begin the assessment at a particular activity.</p>
+
     <% else %>
+
       <div id = "title-display">
         <h3><%= @assessment.title %> 
           <%= link_to 'Edit', '#', id: "title-toggle", class: "small toggle-target", data: { target: "#title-form,#title-display" } %></h3>
@@ -24,23 +25,24 @@
           <%= link_to 'Cancel', '#', class: "toggle-target btn btn-default", data: { target: "#title-form,#title-display" } %>
         <% end %>
       </div>
+      
+      <hr/>
 
-      <p>Started <%= pretty_date(@assessment.start_date) %></p>
+      <p class = "small">&#x1f4c5;  <span class = "italic">Started <%= pretty_date(@assessment.start_date) %></span><br/>
+      &#x1f4c5;  <span class = "italic">Last modified <%= pretty_date(@assessment.updated_at) %></span></p>
 
       <hr/>
 
       <div id = "notes-display">
         <h4>Background information</h4>
-        <p><%= @assessment.notes %>
+        <p class = "italic"><%= @assessment.notes %>
           <%= link_to 'Edit', '#title-form', class: "small toggle-target", id: "notes-toggle", 
               data: { target: "#notes-form,#notes-display" } %>
         </p>
         </h4>
       </div>
-
       <div id = "notes-form" style="display:none;">
         <h4>Background information</h4>
-        
           <%= form_for @assessment do |f| %>
           <p>
             <%= f.text_field :notes, class: "form-control", placeholder: "Assessment notes" %>
@@ -48,34 +50,44 @@
             <%= f.submit "Save", class: "btn" %>
             <%= link_to 'Cancel', '#title-form', class: "toggle-target btn btn-default", data: { target: "#notes-form,#notes-display" } %>
           <% end %>
-        
         </h4>
       </div>
+
     <% end %>
 
+    <div class="importantLinks ">
+      <p><span class="glyphicon glyphicon-download" aria-hidden="true"></span> <a href="#">Download overview of the assessment questions</a></p>
+      <p><span class="glyphicon glyphicon-download" aria-hidden="true"></span> <a href="#">Download assessment grid</a>
+      </p><p><span class="glyphicon glyphicon-download" aria-hidden="true"></span> <a href="#">Download White Paper</a>
+      </p>
+    </div>
+
   </div>
-  <div class = "col-md-8">
+  <div class = "col-md-8 assessment-overview">
   
     <div class="row">
       <div class="col-md-8">
-        This assessment is <%= @progress.percentage_progress %>% complete 
+        This assessment is <%= progress = @progress.percentage_progress %>% complete
+        <%= progress_bar(progress) %> 
       </div>
       <div class="col-md-4">
         <% if @assessment.status == :complete %>
-          <%= link_to "Completed", report_path(@assessment) %>
+          <%= link_to "Completed", report_path(@assessment), class: "btn" %>
         <% else %>
           <% if @assessment.can_complete? %>
-            <%= link_to "Complete assessment", complete_assessment_path(@assessment), method: :post, class: "complete" %>
+            <%= link_to "Complete assessment", complete_assessment_path(@assessment), method: :post, class: "complete btn" %>
           <% else %>
             <% if @assessment.status == :not_started %> 
-              <%= link_to "Start assessment >", edit_assessment_path(@assessment) %>
+              <%= link_to "Start assessment >", edit_assessment_path(@assessment), class: "btn green" %>
             <% else %> 
-              <%= link_to "Continue assessment >", continue_assessment_path(@assessment) %>
+              <%= link_to "Continue assessment >", continue_assessment_path(@assessment), class: "btn green" %>
             <% end %> 
           <% end %>
         <% end %>
       </div>
     </div>
+    
+    <hr/>
 
     <%= render 'overview', assessment: @assessment, progress: @progress %>
   </div>
