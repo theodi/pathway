@@ -56,9 +56,10 @@
     <% end %>
 
     <div class="importantLinks ">
-      <p><span class="glyphicon glyphicon-download" aria-hidden="true"></span> <a href="#">Download overview of the assessment questions</a></p>
-      <p><span class="glyphicon glyphicon-download" aria-hidden="true"></span> <a href="#">Download assessment grid</a>
-      </p><p><span class="glyphicon glyphicon-download" aria-hidden="true"></span> <a href="#">Download White Paper</a>
+      <!-- <p><span class="glyphicon glyphicon-download" aria-hidden="true"></span> <a href="#">Download overview of the assessment questions</a></p> -->
+      <p><span class="glyphicon glyphicon-download" aria-hidden="true"></span> <%= link_to "Download assessment grid", asset_path("files/odmat_grid.pdf") %>
+      </p>
+      <p><span class="glyphicon glyphicon-download" aria-hidden="true"></span> <%= link_to "Download white paper", asset_path("files/odmat_guide.pdf") %>
       </p>
     </div>
 
