@@ -61,7 +61,12 @@ class AssessmentAnswersController < ApplicationController
         redirection = assessment_path(@assessment)
       else
         next_answer = @assessment_answer.next
-        redirection = next_answer.blank? ? assessment_path(@assessment) : assessment_edit_answer_path(@assessment, next_answer)
+        if next_answer.blank?
+          next_question = @activity.next_question_for(@assessment)
+          redirection = next_question.blank? ? assessment_path(@assessment) : assessment_question_path(@assessment, next_question)
+        else
+          redirection = assessment_edit_answer_path(@assessment, next_answer)
+        end
       end
       redirect_to redirection
     else
