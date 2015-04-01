@@ -20,7 +20,15 @@ module ApplicationHelper
 
   def breadcrumb(str=nil)
     breadcrumb = link_to "My assessments", assessments_path
-    breadcrumb << " > #{link_to(@assessment.title, assessment_path(@assessment))}".html_safe if @assessment
+
+    unless @assessment.blank?
+      if @assessment.status.eql? :complete
+        breadcrumb << " > #{link_to(@assessment.title, report_path(@assessment))}".html_safe 
+      else
+        breadcrumb << " > #{link_to(@assessment.title, assessment_path(@assessment))}".html_safe
+      end
+    end
+
     breadcrumb << " > #{@activity.title}" if @activity
     breadcrumb << " > #{str}" unless str.blank?
     content_tag :h4, breadcrumb, class: "breadcrumb"
