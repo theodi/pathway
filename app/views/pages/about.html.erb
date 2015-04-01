@@ -53,10 +53,17 @@ and supporting notes will remain private. No information will be made publicly a
 </p>
 
 <% if current_user %>
-  <a href="<%= assessments_path %>" class="btn green"><h2>Start now</h2></a>
+  <a href="<%= assessments_path %>" class="btn green"><h2 class="white">Start now</h2></a>
 <% else %>
-  <a href="<%= new_user_registration_path %>" class="btn green"><h2>Start now</h2></a>
+  <a href="<%= new_user_registration_path %>" class="btn green"><h2 class="white">Start now</h2></a>
 <% end %>
 </div>
+
+<p>
+<i>This application has been developed by the <a href="http://theodi.org">Open Data Institute</a> and the 
+<a href="https://www.gov.uk/government/organisations/department-for-environment-food-rural-affairs">Department for Environment, Food & Rural Affairs</a> as part of the <a href="http://theodi.org/guides/open-data-maturity-model">open data maturity model project</a>. 
+The project received funding from the <a href="https://www.gov.uk/government/publications/breakthrough-fund-and-release-of-data-fund">Release of Data Fund</a>. 
+With thanks to the Open Data User Group and Cabinet Office for their support.</i>
+</p>
 
 
