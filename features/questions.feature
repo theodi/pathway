@@ -33,7 +33,7 @@ Feature: Answering questions
     When I go to the first question
     And I choose "Yes"
     And I click on "Save and exit"
-    Then I should see "Dimension"
+    Then I should see "Theme"
     And I should see "Activity"
 
   Scenario: Not selecting an answer
@@ -66,7 +66,7 @@ Feature: Answering questions
     Then I should see "Have you published any open data?"
     When I choose "No"
     And I press "submit-bottom"
-    Then I should see "Dimension"
+    Then I should see "Theme"
     And I should see "Activity"
 
   @javascript

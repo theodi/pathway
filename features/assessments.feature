@@ -34,7 +34,7 @@ Feature: Assessments
       | 2014 Q3 | Q3 last year       | 2014-12-01 11:07:10 | 2014-12-10 11:07:10 |
       | 2014 Q2 | Q2 last year       | 2014-06-01 11:07:10 | 2014-06-24 11:07:10 |
     When I go to "/assessments/1"
-    Then I should see "Dimension"
+    Then I should see "Theme"
     Then I should see "Activity"
     Then I should see "Continue assessment"
     Then I should see "0%"
@@ -59,7 +59,7 @@ Feature: Assessments
       | 2014 Q4 | End of last year   | 2015-02-10 11:07:10 |                     |
     And the current assessment is ready for completion 
     When I go to "/assessments/1"
-    Then I should see "Dimension"
+    Then I should see "Theme"
     Then I should see "Activity"
     Then I should see "100%"    
     Then I should see "Complete assessment"

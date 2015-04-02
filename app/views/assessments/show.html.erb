@@ -15,7 +15,7 @@
 
       <div id = "title-display">
         <h3><%= @assessment.title %> 
-          <%= link_to 'Edit', '#', id: "title-toggle", class: "small toggle-target", data: { target: "#title-form,#title-display" } %></h3>
+          <%= link_to 'Edit', '#', id: "title-toggle", class: "small toggle-target btn", data: { target: "#title-form,#title-display" } %></h3>
       </div>
 
       <div id = "title-form" style="display:none;">
@@ -36,7 +36,7 @@
       <div id = "notes-display">
         <h4>Background information</h4>
         <p class = "italic"><%= @assessment.notes %>
-          <%= link_to 'Edit', '#title-form', class: "small toggle-target", id: "notes-toggle", 
+          <%= link_to 'Edit', '#title-form', class: "small toggle-target btn", id: "notes-toggle", 
               data: { target: "#notes-form,#notes-display" } %>
         </p>
         </h4>
