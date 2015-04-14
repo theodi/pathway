@@ -21,7 +21,7 @@ notifications:
     on_failure: always
 deploy:
   provider: heroku
-  app: odmat
+  app: odmat-staging
   run: 
     - "rake db:migrate"
     - restart
