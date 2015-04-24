@@ -1,10 +1,15 @@
 class Organisation < ActiveRecord::Base
 
+  has_many :users
+  has_many :organisation_scores, dependent: :destroy
+  
   validates :title, presence: true
   validates :title, uniqueness: true
 
   before_save :set_name
 
+
+    
   def to_s
     self.title
   end
@@ -17,4 +22,18 @@ class Organisation < ActiveRecord::Base
     self.name = self.title.parameterize if self.name.blank?
   end
 
+  def parent?
+    Organisation.where(parent: self.id).present?
+  end
+  
+  def dgu_organisation?
+    return dgu_id.present?
+  end
+  
+  def latest_completed_assessment
+    user = users.first
+    return nil unless user.present?
+    return user.assessments.where("completion_date is not null").order(completion_date: :desc).first
+  end  
+  
 end
