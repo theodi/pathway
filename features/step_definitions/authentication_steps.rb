@@ -39,20 +39,20 @@ Given(/^there is a registered user$/) do
 end
 
 Given(/^there is an organisation user$/) do
-  FactoryGirl.create(:organisation)
-  FactoryGirl.create(:organisation_user)
+  org = FactoryGirl.create(:organisation)
+  FactoryGirl.create(:organisation_user, organisation_id: org.id)
 end
 
 Given(/^there is a hierarchy of data.gov.uk organisations$/) do
   #1
   defra = FactoryGirl.create(:organisation)
   #2
-  ea = FactoryGirl.create(:organisation, title: "Environment Agency", parent: 1)
+  ea = FactoryGirl.create(:organisation, title: "Environment Agency", parent: defra.id)
   #3
-  fc = FactoryGirl.create(:organisation, title: "Forestry Commission", parent: 1)
+  fc = FactoryGirl.create(:organisation, title: "Forestry Commission", parent: defra.id)
   
-  FactoryGirl.create(:organisation_user, organisation_id: 2)
-  @fc_user = FactoryGirl.create(:organisation_user, email: "another@example.org", organisation_id: 3)  
+  FactoryGirl.create(:organisation_user, organisation_id: ea.id)
+  @fc_user = FactoryGirl.create(:organisation_user, email: "another@example.org", organisation_id: fc.id)  
 end
 
 Given(/^I am logged in as the forestry commission$/) do
