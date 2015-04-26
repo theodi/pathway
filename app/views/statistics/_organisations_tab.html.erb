@@ -14,7 +14,7 @@
     </div>
 
     <% if results[:completed] == 0 %>
-      <p>None of the <%= pluralize(results[:children], "organisation") %> have completed an assessment</p>
+      <p>None of the organisations have completed an assessment</p>
     <% else %>
   
       <p>Showing aggregate results for <%= pluralize( results[:completed], "assessment") %> from a total of <%= results[:children] %> organisations.</p>

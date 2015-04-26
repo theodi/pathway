@@ -3,7 +3,7 @@ Feature: Statistics page
   Scenario: There are no completed organisational assessments
     Given the test survey has been loaded  
     When I go to "/statistics"
-    Then I should see "None of the 0 organisations have completed an assessment"
+    Then I should see "None of the organisations have completed an assessment"
     
   Scenario: Viewing organisational assessments as an anonymous user
     Given the test survey has been loaded
