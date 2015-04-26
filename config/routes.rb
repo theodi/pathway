@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get '/cookie-policy' => 'high_voltage/pages#show', id: 'cookie_policy'
   get '/about' => 'high_voltage/pages#show', id: 'about'
     
+  get '/statistics' => 'statistics#index'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

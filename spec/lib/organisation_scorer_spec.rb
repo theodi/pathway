@@ -153,6 +153,22 @@ describe OrganisationScorer do
       expect( normalised[:activities]["governance"] ).to eql([1,4,2,0,0]) 
     end  
     
+    it "should normalise correctly" do
+      results = {
+        activities: {
+          "data-management-processes" => [1, 0, 0, 0, 0],
+          "standards" => [0, 0, 0, 0, 0]
+        },
+        children: 1000,
+        completed: 1  
+      }  
+      normalised = scorer.normalise_counts(results)
+      expect( normalised[:children] ).to eql(1000)
+      expect( normalised[:completed] ).to eql(1)
+      expect( normalised[:activities]["data-management-processes"] ).to eql([5,0,0,0,0]) 
+      expect( normalised[:activities]["standards"] ).to eql([0,0,0,0,0]) 
+    end      
+    
   end
   
 end

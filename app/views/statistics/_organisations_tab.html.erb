@@ -1,0 +1,67 @@
+<section class="heatmap clearfix">
+  <header class="heatmapHeader clearfix">
+    <div class="clearfix">
+      <h2>Ratings for <%= title %></h2>
+
+      <ul class="legend">
+        <li class="none"><span><a href="#"></a></span>None</li>
+        <li class="v-low"><span><a href="#"></a></span>Very low</li>
+        <li class="low"><span><a href="#"></a></span>Low</li>
+        <li class="medium"><span><a href="#"></a></span>Medium</li>
+        <li class="high"><span><a href="#"></a></span>High</li>
+        <li class="v-high"><span><a href="#"></a></span>Very High</li>
+      </ul>
+    </div>
+
+    <% if results[:completed] == 0 %>
+      <p>None of the <%= pluralize(results[:children], "organisation") %> have completed an assessment</p>
+    <% else %>
+  
+      <p>Showing aggregate results for <%= pluralize( results[:completed], "assessment") %> from a total of <%= results[:children] %> organisations.</p>
+  
+      <%= render 'assessments/activity_label' %>
+    
+      <div class="scoresLabels clearfix">
+        <p class="scoreColLabel">1 - Initial <span class="glyphicon glyphicon-info-sign" aria-hidden="true" 
+              data-toggle="tooltip" data-placement="top" title="maturity score"></span></p>
+        <p class="scoreColLabel">2 - Repeatable <span class="glyphicon glyphicon-info-sign" aria-hidden="true" 
+              data-toggle="tooltip" data-placement="top" title="maturity score"></span></p>
+        <p class="scoreColLabel">3 - Defined <span class="glyphicon glyphicon-info-sign" aria-hidden="true" 
+              data-toggle="tooltip" data-placement="top" title="maturity score"></span></p>
+        <p class="scoreColLabel">4 - Managed <span class="glyphicon glyphicon-info-sign" aria-hidden="true" 
+              data-toggle="tooltip" data-placement="top" title="maturity score"></span></p>
+        <p class="scoreColLabel">5 - Optimising <span class="glyphicon glyphicon-info-sign" aria-hidden="true"
+              data-toggle="tooltip" data-placement="top" title="maturity score"></span></p>
+      </div>
+    <% end %>
+  </header>
+
+  <% if results[:completed] > 0 %>
+    <% normalised_results = @scorer.normalise_counts(results) %>
+  
+    <% for dimension in @dimensions %>
+      <div class="theme clearfix">
+        <h2><strong><%= dimension.title %></strong></h2>
+      </div>
+
+      <% dimension.activities.each do |activity | %>
+        <div class="theme clearfix">
+          <h2><%= activity.title %></h2>
+           <ul class="heatmapResults clearfix">
+
+            <% activity_scores = results[:activities][activity.name] %>
+            <% normalised_scores = normalised_results[:activities][activity.name] %>
+            <% normalised_scores.each_with_index do |bin, index| %>            
+              <li class="score-<%= index + 1 %> <%= heatmap_colour(bin) %>">
+               <a href="#" title="<p><em><%= percentage(activity_scores[index], results) %>%</em>of organisations scored <%= index + 1 %> for <%= activity.title %>.</p> <p><%= activity_scores[index] %> out of a total <%= results[:completed] %> responses</p>" data-html="true" rel="tooltip">
+                <span class="hide"><%= percentage(activity_scores[index], results) %>% of organisations scored <%= index + 1 %> for <%= activity.title %>. <%= activity_scores[index] %> out of a total <%= results[:completed] %> responses</span></a>
+              </li>
+            <% end %>
+          </ul>
+          
+        </div>
+      <% end %>
+      
+    <% end %>
+  <% end %>    
+</section>

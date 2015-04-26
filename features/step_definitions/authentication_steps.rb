@@ -22,8 +22,25 @@ Given(/^I am logged in as a user$/) do
   
 end
 
+Given(/^I am logged in as an organisation user$/) do
+  
+  user =  FactoryGirl.create(:organisation_user)
+  @current_user = user
+  
+  visit '/users/sign_in'
+  fill_in "user_email", :with => user.email
+  fill_in "user_password", :with => user.password
+  click_button "Sign in"
+  
+end
+
 Given(/^there is a registered user$/) do
   FactoryGirl.create(:user)
+end
+
+Given(/^there is an organisation user$/) do
+  FactoryGirl.create(:organisation)
+  FactoryGirl.create(:organisation_user)
 end
 
 

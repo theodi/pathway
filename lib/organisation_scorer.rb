@@ -34,13 +34,16 @@ class OrganisationScorer
   end  
 
   def normalise_counts(results, bins=5)
-    bin_size = results[:completed] / bins
-    normalised = {}
+    bin_size = results[:completed].to_f / bins.to_f
+    normalised = {
+      activities: {},
+      children: results[:children],
+      completed: results[:completed]
+    }
     results[:activities].each do |name, counts|
-    normalised[name] = counts.map { |c| c == 0 ? 0 : (c.to_f / bin_size).ceil}
+      normalised[:activities][name] = counts.map { |c| c == 0 ? 0 : (c.to_f / bin_size).ceil}
     end
-    results[:activities] = normalised
-    results
+    normalised
   end
   
   
