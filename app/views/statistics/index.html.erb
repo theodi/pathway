@@ -33,7 +33,7 @@
       <% if current_user && (current_user.organisation.present? && current_user.organisation.parent.present?) %>
       <div role="tabpanel" class="tab-pane fade in" id="networkTab">
         <%= render 'organisations_tab', title: "all peer organisations", 
-            scorer: @scorer, results: @scorer.score_children( current_user.organisation ) %>
+            scorer: @scorer, results: @scorer.score_children( Organisation.find( current_user.organisation.parent ) ) %>
       </div>
       <% end %>
     </div>
