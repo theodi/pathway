@@ -7,6 +7,7 @@ Feature: Home page
     And I should see a link called "Terms of use" to "/terms-of-use"
     And I should see a link called "Sign in" to "/users/sign_in"
     And I should see a link called "Register" to "/users/sign_up" 
+    And I should see a link called "Statistics" to "/statistics"
 
   Scenario: Viewing the home page as a user
     Given I am logged in as a user

@@ -1,7 +1,12 @@
 Given(/^the following assessments:$/) do |table|
   table.hashes.each do |attributes|
-    attributes.merge!(user_id: @current_user.id)
-    FactoryGirl.create(:assessment, attributes)
+    attributes.merge!(user_id: @current_user.id) unless attributes[:user_id].present?
+    complete = attributes.delete("completed")
+    assessment = FactoryGirl.create(:assessment, attributes)
+    if complete == "yes"
+      AssessmentAnswer.create( assessment: assessment, question: Question.first, answer: Answer.find_by_code("Q1.2") )
+      assessment.complete
+    end
   end
 end
 

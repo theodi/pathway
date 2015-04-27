@@ -1,0 +1,48 @@
+<% content_for :title do %>Statistics<% end %>
+
+<div id="mainContent" class="container">
+
+  <div class="tabbable boxed parentTabs">
+    <!-- Nav tabs -->
+    <ul id="statisticsNav" class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#organisationTab" role="tab" data-toggle="tab">All organisations</a>
+      </li>
+      <li role="presentation">
+        <a href="#dguTab" role="tab" data-toggle="tab">All data.gov.uk organisations</a>
+      </li>
+         
+      <% if current_user && (current_user.organisation.present? && current_user.organisation.parent.present?) %>
+      <li role="presentation">
+        <a href="#networkTab" role="tab" data-toggle="tab">All in your parent organisation</a>
+      </li>
+      <% end %>
+        
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">    
+      <div role="tabpanel" class="tab-pane fade active in" id="organisationTab">
+        <%= render 'organisations_tab', title: "all organisations", 
+            scorer: @scorer, results: @scorer.score_all_organisations %>
+      </div>
+      <div role="tabpanel" class="tab-pane fade in" id="dguTab">
+        <%= render 'organisations_tab', title: "all data.gov.uk organisations", 
+            scorer: @scorer, results: @scorer.score_dgu_organisations %>
+      </div>
+      <% if current_user && (current_user.organisation.present? && current_user.organisation.parent.present?) %>
+      <div role="tabpanel" class="tab-pane fade in" id="networkTab">
+        <%= render 'organisations_tab', title: "all peer organisations", 
+            scorer: @scorer, results: @scorer.score_children( Organisation.find( current_user.organisation.parent ) ) %>
+      </div>
+      <% end %>
+    </div>
+    <!-- end tab panes -->
+  </div>
+</div>
+
+<% content_for :javascript_footer do %>
+     $('.heatmapResults').tooltip({
+       selector: "a[rel=tooltip]"
+     })
+<% end %>
