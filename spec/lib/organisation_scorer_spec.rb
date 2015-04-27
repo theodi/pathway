@@ -9,10 +9,10 @@ describe OrganisationScorer do
     config = File.join( __dir__, "test-survey.xls" )    
     QuestionnaireImporter.load(1, config)    
   end
-  
+      
   context ".score_organisations" do
     let!(:organisation) { FactoryGirl.create :organisation }
-    let!(:user) { FactoryGirl.create :organisation_user }
+    let!(:user) { FactoryGirl.create :organisation_user, organisation: organisation }
     let!(:assessment) { FactoryGirl.create :assessment, user: user }
     let!(:scorer) { OrganisationScorer.new }
   
@@ -51,7 +51,7 @@ describe OrganisationScorer do
   context ".score_all_organisations" do
 
     let!(:organisation) { FactoryGirl.create :organisation }
-    let!(:user) { FactoryGirl.create :organisation_user }
+    let!(:user) { FactoryGirl.create :organisation_user, organisation: organisation }
     let!(:assessment) { FactoryGirl.create :assessment, user: user }
     let!(:scorer) { OrganisationScorer.new }
   
@@ -77,7 +77,7 @@ describe OrganisationScorer do
   context ".score_dgu_organisations" do
 
     let!(:organisation) { FactoryGirl.create :organisation }
-    let!(:user) { FactoryGirl.create :organisation_user }
+    let!(:user) { FactoryGirl.create :organisation_user, organisation: organisation }
     let!(:assessment) { FactoryGirl.create :assessment, user: user }
     let!(:scorer) { OrganisationScorer.new }
   
