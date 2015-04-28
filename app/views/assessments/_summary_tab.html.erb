@@ -7,13 +7,23 @@
   </header>
 
   <% scores = scorer.score_dimensions_from_saved_results %>
+  <% total = 0; maximum = 0 %>
   <% for dimension in @dimensions %>
     <div class="theme clearfix">
      <h2><%= dimension.title %></h2>
+     <% total += scores[dimension.name][:score]; maximum += scores[dimension.name][:max] %>
      <span id="<%= dimension.name %>-score" class="score"><%= scores[dimension.name][:score] %> / <%= scores[dimension.name][:max] %></span>
     </div>
   <% end %>
-      
+    <div class="theme clearfix">
+     <h2>Total</h2>
+     <span id="total-score" class="score"><%= total %> / <%= maximum %></span>
+    </div>
+
+     
 </section>
+
+<a href="<%= report_path(@assessment, format: "csv", style: "dimension") %>">Download summary scores</a>  
+
 <!-- summaryTab -->
 

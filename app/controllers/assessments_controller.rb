@@ -59,9 +59,16 @@ class AssessmentsController < ApplicationController
     @scorer = AssessmentScorer.new(@assessment)
     authorize! :read, @assessment
 
-    render 'report'
+    respond_to do |format|
+      format.html {
+        render 'report'        
+      }
+      format.csv {
+        send_data @assessment.to_csv( params[:style].to_sym ), content_type: "text/csv; charset=utf-8"
+      }
+    end
   end
-
+  
   private
   
   def assessment_params

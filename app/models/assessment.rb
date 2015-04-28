@@ -8,6 +8,38 @@ class Assessment < ActiveRecord::Base
     where.not(completion_date: nil)
   end
 
+  def to_csv(style=:dimension)    
+    if style == :dimension
+      scores = AssessmentScorer.new(self).score_dimensions_from_saved_results()
+      total_score = 0
+      maximum = 0
+      data = CSV.generate({col_sep: ",", row_sep: "\r\n", quote_char: '"'}) do |csv|
+        csv << ["Theme", "Score", "Maximum"]
+        Questionnaire.current().dimensions.each do |dimension|
+          total_score += scores[dimension.name][:score]
+          maximum += scores[dimension.name][:max]
+          csv << [ dimension.title, scores[dimension.name][:score], scores[dimension.name][:max] ]
+        end
+        csv << ["Total", total_score, maximum]  
+      end
+    else
+      data = CSV.generate({col_sep: ",", row_sep: "\r\n", quote_char: '"'}) do |csv|
+        csv << ["Theme", "Activity", "Score", "Target"]
+        Questionnaire.current().dimensions.each do |dimension|
+          dimension.activities.each do |activity|
+            scores = self.scores.where(activity_id: activity.id)
+            csv << [ dimension.title, activity.title, scores.first.score, scores.first.target ] if scores.present?
+          end
+        end
+      end      
+    end
+    return data
+  end
+  
+  def foo
+    "bar"
+  end   
+   
   def status
     if start_date.blank?
       :not_started
@@ -37,7 +69,7 @@ class Assessment < ActiveRecord::Base
   def next_activity
     progress = ProgressCalculator.new(self)
     Questionnaire.current.activities.each do |activity|
-      Rails.logger.info("\n #{activity.title} - #{progress.progress_for_activity(activity)}")
+      #Rails.logger.info("\n #{activity.title} - #{progress.progress_for_activity(activity)}")
       return activity if [:not_started, :in_progress].include? progress.progress_for_activity(activity)
     end
     nil
@@ -62,4 +94,5 @@ class Assessment < ActiveRecord::Base
       nil
     end    
   end
+  
 end

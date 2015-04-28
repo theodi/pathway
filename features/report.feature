@@ -13,6 +13,7 @@ Feature: Viewing assessment reports
     And I should see "Detail"
     And I should see "Improvements"
     And I should see "Information"
+    And I should see a link called "Download summary scores" to "/assessments/1/report.csv?style=dimension"
     
   Scenario: I should see the activity scores
     Given the test survey has been loaded
@@ -25,6 +26,7 @@ Feature: Viewing assessment reports
     Then there should be "5" themes in the "activities" section
     And there should be "4" items listed in "#data-management-processes-activities"
     Then the element with id "#data-release-process-score" should have the content "1"      
+    And I should see a link called "Download activity scores" to "/assessments/1/report.csv?style=activity" 
             
   Scenario: I should see the report detail
     Given the test survey has been loaded
