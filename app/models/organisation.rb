@@ -7,7 +7,9 @@ class Organisation < ActiveRecord::Base
 
   before_save :set_name
 
-
+  def self.dgu
+    Organisation.where("dgu_id is not null")
+  end
     
   def to_s
     self.title
