@@ -17,14 +17,14 @@
         <a href="#networkTab" role="tab" data-toggle="tab">All in your parent organisation</a>
       </li>
       <% end %>
-        
+      <div class="pull-right" id="download"><a href="/statistics/data" class="btn orange">Download data</a></div>  
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">    
       <div role="tabpanel" class="tab-pane fade active in" id="organisationTab">
         <%= render 'organisations_tab', title: "all organisations", 
-            scorer: @scorer, results: @scorer.score_all_organisations %>
+            scorer: @scorer, results: @scorer.score_all_organisations %>                  
       </div>
       <div role="tabpanel" class="tab-pane fade in" id="dguTab">
         <%= render 'organisations_tab', title: "all data.gov.uk organisations", 
@@ -40,7 +40,6 @@
     <!-- end tab panes -->
   </div>
   
-  <a href="/statistics/data">Download all statistics</a>
 </div>
 
 <% content_for :javascript_footer do %>

@@ -36,11 +36,11 @@ Then(/^I should be on the homepage$/) do |text|
 end
 
 Then(/^I should see "(.*?)"$/) do |text|
-  page.body.should include(text)
+  page.body.should have_text(text)
 end
 
 Then(/^I should not see "(.*?)"$/) do |text|
-  page.body.should_not include(text)
+  page.body.should_not have_text(text)
 end
 
 When(/^I click on "(.*?)"$/) do |link|
