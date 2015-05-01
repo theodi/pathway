@@ -15,7 +15,7 @@ class OrganisationScorer
   def score_organisations(organisations)
     results = {
       activities: {},
-      children: organisations.size,
+      organisations: organisations.size,
       completed: 0  
     }    
     Questionnaire.current.activities.each do |activity|
@@ -37,7 +37,7 @@ class OrganisationScorer
     bin_size = results[:completed].to_f / bins.to_f
     normalised = {
       activities: {},
-      children: results[:children],
+      organisations: results[:organisations],
       completed: results[:completed]
     }
     results[:activities].each do |name, counts|

@@ -4,7 +4,7 @@ Feature: Statistics page
     Given the test survey has been loaded  
     When I go to "/statistics"
     Then I should see "None of the organisations have completed an assessment"
-    
+
   Scenario: Viewing organisational assessments as an anonymous user
     Given the test survey has been loaded
     Given there is an organisation user
@@ -39,3 +39,18 @@ Feature: Statistics page
     Then I should see "Data release process"
     Then I should see "100% of organisations scored 1 for Data release process"        
         
+  Scenario: There should be a link to the download page
+    Given the test survey has been loaded  
+    When I go to "/statistics"
+    Then I should see a link called "Download all statistics" to "/statistics/data"
+
+  Scenario: Viewing download statistics page
+    Given the test survey has been loaded  
+    When I go to "/statistics/data"
+    Then I should see a link called "JSON" to "/statistics/all_organisations.json"
+    And I should see a link called "CSV" to "/statistics/all_organisations.csv"
+    And I should see a link called "JSON" to "/statistics/all_dgu_organisations.json"
+    And I should see a link called "CSV" to "/statistics/all_dgu_organisations.csv"      
+    And I should see a link called "JSON" to "/statistics/summary.json"
+    And I should see a link called "CSV" to "/statistics/summary.csv"      
+    

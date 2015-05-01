@@ -22,7 +22,7 @@ describe OrganisationScorer do
     }
     
     it "should return organisation count" do
-      expect( scorer.score_organisations( Organisation.all )[:children] ).to eql(1)
+      expect( scorer.score_organisations( Organisation.all )[:organisations] ).to eql(1)
     end
     
     it "should return number of completed assessments" do
@@ -67,7 +67,7 @@ describe OrganisationScorer do
       AssessmentAnswer.create( assessment: a, question: Question.first, answer: Answer.find_by_code("Q1.2") )
       a.complete
       results = scorer.score_all_organisations
-      expect( results[:children] ).to eql(2)
+      expect( results[:organisations] ).to eql(2)
       expect( results[:completed] ).to eql(2)
       expect( results[:activities][ Activity.first.name ][0] ).to eql(2)
     end
@@ -94,7 +94,7 @@ describe OrganisationScorer do
       AssessmentAnswer.create( assessment: a, question: Question.first, answer: Answer.find_by_code("Q1.2") )
       a.complete
       results = scorer.score_dgu_organisations
-      expect( results[:children] ).to eql(1)
+      expect( results[:organisations] ).to eql(1)
       expect( results[:completed] ).to eql(1)
       expect( results[:activities][ Activity.first.name ][0] ).to eql(1)
     end
@@ -117,7 +117,7 @@ describe OrganisationScorer do
 
     it "should score children" do
       results = scorer.score_children(parent_organisation)
-      expect( results[:children] ).to eql(1)
+      expect( results[:organisations] ).to eql(1)
       expect( results[:completed] ).to eql(1)
       expect( results[:activities][ Activity.first.name ][0] ).to eql(1)
     end
@@ -126,7 +126,7 @@ describe OrganisationScorer do
       organisation.parent = nil
       organisation.save!
       results = scorer.score_children(parent_organisation)
-      expect( results[:children] ).to eql(0)
+      expect( results[:organisations] ).to eql(0)
       expect( results[:completed] ).to eql(0)
     end
       
@@ -142,11 +142,11 @@ describe OrganisationScorer do
           "standards" => [0, 15, 0, 0, 0],
           "governance" => [1, 10, 4, 0, 0]
         },
-        children: 15,
+        organisations: 15,
         completed: 15  
       }  
       normalised = scorer.normalise_counts(results)
-      expect( normalised[:children] ).to eql(15)
+      expect( normalised[:organisations] ).to eql(15)
       expect( normalised[:completed] ).to eql(15)
       expect( normalised[:activities]["data-management-processes"] ).to eql([0,1,2,2,0]) 
       expect( normalised[:activities]["standards"] ).to eql([0,5,0,0,0]) 
@@ -159,11 +159,11 @@ describe OrganisationScorer do
           "data-management-processes" => [1, 0, 0, 0, 0],
           "standards" => [0, 0, 0, 0, 0]
         },
-        children: 1000,
+        organisations: 1000,
         completed: 1  
       }  
       normalised = scorer.normalise_counts(results)
-      expect( normalised[:children] ).to eql(1000)
+      expect( normalised[:organisations] ).to eql(1000)
       expect( normalised[:completed] ).to eql(1)
       expect( normalised[:activities]["data-management-processes"] ).to eql([5,0,0,0,0]) 
       expect( normalised[:activities]["standards"] ).to eql([0,0,0,0,0]) 

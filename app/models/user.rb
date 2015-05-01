@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :terms_of_service, acceptance: true
   
+  def self.organisational_users
+    return User.where("organisation_id is not null")
+  end
+  
   def current_assessment
     assessments.where(:completion_date => nil).first
   end

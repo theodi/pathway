@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe Assessment do
 
+  before(:each) do
+    config = File.join( __dir__, "..", "lib", "test-survey.xls" )    
+    QuestionnaireImporter.load(1, config)    
+  end
+  
   context "when completing" do
     
-    before(:each) do
-      config = File.join( __dir__, "..", "lib", "test-survey.xls" )    
-      QuestionnaireImporter.load(1, config)    
-    end
-
     let(:assessment) { FactoryGirl.create :unfinished_assessment }
     let!(:assessment_answer) { AssessmentAnswer.create( assessment: assessment, question: Question.first, answer: Answer.find_by_code("Q1.2") ) }
           
@@ -58,7 +58,7 @@ describe Assessment do
         scores_changed = false
         score_targets.each do |score_id, target| 
           if Score.find(score_id).target == target 
-            Rails.logger.info "\n target equals #{score_id} - #{target}"
+            #Rails.logger.info "\n target equals #{score_id} - #{target}"
             scores_changed = true 
           end
         end
@@ -66,19 +66,46 @@ describe Assessment do
       end
     end
 
-    describe "#next_activity" do
-      it "should return the next unstarted activity" do
-        activity = Activity.first
-        AssessmentAnswer.destroy_all
-        expect( assessment.next_activity ).to eql(activity)
-      end
-
-      it "should return the next started but unfinished activity" do
-        activity = Activity.first
-        assessment_answer.update_attribute(:answer_id, Answer.find_by_code("Q1.1").id)
-        expect( assessment.next_activity ).to eql(activity)
-      end
-    end
   end 
 
+  describe "#next_activity" do
+    let(:assessment) { FactoryGirl.create :unfinished_assessment }
+    let!(:assessment_answer) { AssessmentAnswer.create( assessment: assessment, question: Question.first, answer: Answer.find_by_code("Q1.2") ) }
+    
+    it "should return the next unstarted activity" do
+      activity = Activity.first
+      AssessmentAnswer.destroy_all
+      expect( assessment.next_activity ).to eql(activity)
+    end
+
+    it "should return the next started but unfinished activity" do
+      activity = Activity.first
+      assessment_answer.update_attribute(:answer_id, Answer.find_by_code("Q1.1").id)
+      expect( assessment.next_activity ).to eql(activity)
+    end
+  end
+  
+  context ".to_csv" do
+    let(:assessment) { FactoryGirl.create :unfinished_assessment }
+    let!(:assessment_answer) { AssessmentAnswer.create( assessment: assessment, question: Question.first, answer: Answer.find_by_code("Q1.2") ) }
+
+    it "should serialise summary" do
+      assessment.complete
+      csv = assessment.to_csv
+      data = CSV.new(csv).to_a
+      expect( data[0] ).to eql(["Theme", "Score", "Maximum"])
+      expect( data[1] ).to eql(["Data management processes", "1", "5"])
+      expect( data.last ).to eql(["Total", "1", "5"])
+    end
+    
+    it "should serialise activity detail" do
+      assessment.complete
+      csv = assessment.to_csv(style=:activities)
+      data = CSV.new(csv).to_a
+      expect( data[0] ).to eql(["Theme", "Activity", "Score", "Target"])
+      expect( data[1] ).to eql(["Data management processes", "Data release process", "1", "2"])
+    end
+    
+  end
+  
 end
