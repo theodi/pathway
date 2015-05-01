@@ -15,9 +15,9 @@ Feature: Statistics page
     When I go to "/statistics"
     Then I should see "All organisations"
     Then I should see "All data.gov.uk organisations"
-    Then I should not see "All in your parent organisation"
+    Then I should not see "All peer organisations"
     Then I should see "Ratings for all organisations"
-    Then I should see "Showing aggregate results for 1 assessment from a total of 1 organisation"
+    Then I should see "Showing aggregate results for 1 assessment from a total of 1 organisations"
     Then I should see "Data release process"
     Then I should see "100% of organisations scored 1 for Data release process"
         
@@ -42,7 +42,7 @@ Feature: Statistics page
   Scenario: There should be a link to the download page
     Given the test survey has been loaded  
     When I go to "/statistics"
-    Then I should see a link called "Download all statistics" to "/statistics/data"
+    Then I should see a link called "Download data" to "/statistics/data"
 
   Scenario: Viewing download statistics page
     Given the test survey has been loaded  
