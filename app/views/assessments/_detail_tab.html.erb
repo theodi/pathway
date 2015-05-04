@@ -36,10 +36,6 @@
                   <p id="<%= question.code %>-answer" class="answer <%= assessment_answer.answer.positive? ? 'yes' : 'no' %>">
                     <%= assessment_answer.answer.text %>
                   </p>
-                 <!--
-                    <p>You are in the 67% of organisations who have published at least one dataset under an open licence.</p>
-                  </div>
-                 -->
                   <% if assessment_answer.additional_info? %>
                     <div class="additionalInfo">
                       <h4>Additional info</h4>
