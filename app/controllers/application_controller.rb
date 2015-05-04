@@ -18,12 +18,15 @@ class ApplicationController < ActionController::Base
   end
   
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = exception.message
-    redirect_to root_url
+    redirect_to(root_url, {:flash => { :alert => exception.message }})
   end  
 
   def after_sign_in_path_for(resource)
     assessments_path
   end
-    
+  
+  def current_ability
+      @current_ability ||= Ability.new(current_user, params[:token])
+  end
+        
 end

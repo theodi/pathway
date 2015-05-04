@@ -1,6 +1,10 @@
 <% content_for :title do %>
-  <%= current_user.organisation ? current_user.organisation.title : "" %> <%= @assessment.title %>
+  <%= @assessment.user.organisation ? @assessment.user.organisation.title : "" %> <%= @assessment.title %>
   <%= breadcrumb("Report") %>
+<% end %>
+
+<% if User.can_share?(current_user, @assessment) %>
+  <%= render 'share_modal', assessment: @assessment %>
 <% end %>
 
 <div id="mainContent" class="container">
@@ -9,10 +13,16 @@
         <!-- Nav tabs -->
         <ul id="reportNav" class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#summaryTab" aria-controls="summary" role="tab" data-toggle="tab">Summary</a></li>
-          <li role="presentation"><a href="#activitiesTab" aria-controls="activities" role="tab" data-toggle="tab">Activities</a></li>
-          <li role="presentation"><a href="#detailTab" aria-controls="detail" role="tab" data-toggle="tab">Detail</a></li>
-          <li role="presentation"><a href="#improvementsTab" aria-controls="improvements" role="tab" data-toggle="tab">Improvements</a></li>
-          <li role="presentation"><a href="#informationTab" aria-controls="information" role="tab" data-toggle="tab">Information</a></li>
+          <li role="presentation"><a href="#activitiesTab" aria-controls="activities" role="tab" data-toggle="tab">Maturity scores</a></li>
+          <li role="presentation"><a href="#detailTab" aria-controls="detail" role="tab" data-toggle="tab">Assessment answers</a></li>
+          <li role="presentation"><a href="#improvementsTab" aria-controls="improvements" role="tab" data-toggle="tab">Suggested improvements</a></li>
+          <li role="presentation"><a href="#informationTab" aria-controls="information" role="tab" data-toggle="tab">Background notes</a></li>
+          
+          <% if User.can_share?(current_user, @assessment) %>
+            <div class="pull-right" id="share-button">
+              <a class="btn orange" data-toggle="modal" data-target=".share-modal">Share your report</a>
+            </div> 
+          <% end %>
         </ul>
       
         <!-- Tab panes -->
@@ -35,7 +45,14 @@
         </div>
         
       </div>
-      
-</div>
     
+</div>
+
+<% if User.can_share?(current_user, @assessment) %>
+  <% content_for :javascript_footer do %>
+    $(document).ready(function(){
+      $('#bs-example-modal-sm').modal()
+    });
+  <% end %>
+<% end %>    
 

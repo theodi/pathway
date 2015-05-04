@@ -57,6 +57,7 @@ class Assessment < ActiveRecord::Base
   def complete
     return false unless ProgressCalculator.new(self).can_mark_completed?
     self.completion_date = DateTime.now
+    generate_share_token
     
     scorer = AssessmentScorer.new(self)
     Questionnaire.current.activities.each do |activity|
@@ -94,5 +95,12 @@ class Assessment < ActiveRecord::Base
       nil
     end    
   end
+  
+  def generate_share_token
+    self.token = loop do
+      random_code = SecureRandom.urlsafe_base64(nil, false)
+      break random_code unless self.class.exists?(token: random_code)
+    end
+  end  
   
 end
