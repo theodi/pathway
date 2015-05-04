@@ -32,7 +32,7 @@ Feature: Answering questions
     Given I have started an assessment
     When I go to the first question
     And I choose "Yes"
-    And I click on "Save and exit"
+    And I click on "Exit"
     Then I should see "Theme"
     And I should see "Activity"
 
