@@ -3,7 +3,7 @@
 
     <!-- question & answers -->
     <div id="question" class="form-group">
-      <h3><%= @question.text %></h3>
+      <h3><span style="color: red">* </span><%= @question.text %></h3>
 
       <%= render "shared/errors", object: f.object %>
       
@@ -39,7 +39,7 @@
   <!-- help -->
   <div id="helpColumn" class="col-md-4">
     <div class="helpWrapper">
-      <h4>Question Help</h4>
+      <h4>Question help</h4>
       <p><%= @question.notes %></p>
     </div>
   </div>

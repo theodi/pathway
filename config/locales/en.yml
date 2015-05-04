@@ -33,10 +33,10 @@ en:
   admin: "Admin"
   remember_me: "Keep me signed in"
   #Assessments    
-  my_assessments: "My Assessments"
+  my_assessments: "My assessments"
   
   not_started: "Begin"
-  in_progress: "In Progress"
+  in_progress: "In progress"
   complete: "Complete"
   
   enter_email: "Please enter a valid email address"
@@ -50,5 +50,5 @@ en:
     label:
       user:
         email: "Email"
-        name: "Full Name"
+        name: "Full name"
         associated_organisation: "Organisation"

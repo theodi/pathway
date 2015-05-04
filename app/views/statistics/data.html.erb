@@ -1,21 +1,21 @@
 <% content_for :title do %>Statistics download<% end %>
 
 <div id="mainContent" class="container" typeof="dcat:Dataset" resource="<%= request.original_url %>">
-  <h3 property="dct:title">Open Data Pathway Statistics</h3>
+  <h3 property="dct:title">Open Data Pathway statistics</h3>
   
   <p property="dct:description">Aggregate statistics on the usage of the Open Data Pathway tool and the scores generated for organisational assessments</p>
   
   <div property="dct:rights" resource="#rights">
     <div resource="#rights">
-          <h4 property="rdfs:label">Rights Statement</h4>
+          <h4 property="rdfs:label">Rights statement</h4>
           <ul>
-              <li>Data Licence: <a href="https://creativecommons.org/licenses/by/4.0/" property="odrs:dataLicense">Creative Commons Attribution (CC-BY) 4.0</a></li>
-              <li>Content Licence: <a href="https://creativecommons.org/licenses/by/4.0/" property="odrs:contentLicense">Creative Commons Attribution (CC-BY) 4.0</a></li>
+              <li>Data licence: <a href="https://creativecommons.org/licenses/by/4.0/" property="odrs:dataLicense">Creative Commons Attribution (CC-BY) 4.0</a></li>
+              <li>Content licence: <a href="https://creativecommons.org/licenses/by/4.0/" property="odrs:contentLicense">Creative Commons Attribution (CC-BY) 4.0</a></li>
           </ul>
           
           <p>
           If you would like to attribute this dataset, please use a link similar to the following: 
-            <a href="<%= request.original_url %>" property="odrs:attributionURL"><span property="odrs:attributionText">Open Data Pathway Statistics</span></a>.
+            <a href="<%= request.original_url %>" property="odrs:attributionURL"><span property="odrs:attributionText">Open Data Pathway statistics</span></a>.
           </p>
           
           <p>Data published by the 
@@ -27,11 +27,11 @@
           
   <table class="table">
     <thead>
-      <tr><th>Data File</th><th></th><th></th></tr>
+      <tr><th>Data</th><th></th><th></th></tr>
     </thead>
     <tbody>
       <tr>
-        <td>Application statistics</td>
+        <td>Summary usage statistics</td>
         <td><a href="/statistics/summary.json">JSON</a></td>
         <td><a href="/statistics/summary.csv">CSV</a></td>
       </tr>
@@ -41,7 +41,7 @@
         <td><a href="/statistics/all_organisations.csv">CSV</a></td>
       </tr>
       <tr>
-        <td>Aggregate statistics: All data.gov.uk organisational assessments</td>
+        <td>Aggregate statistics: all assessments from data.gov.uk organisations</td>
         <td><a href="/statistics/all_dgu_organisations.json">JSON</a></td>
         <td><a href="/statistics/all_dgu_organisations.csv">CSV</a></td>        
         
