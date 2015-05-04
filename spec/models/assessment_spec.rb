@@ -38,6 +38,11 @@ describe Assessment do
       expect( assessment.scores.length ).to eql(1)
       expect( Score.first.score ).to eql(1)
     end
+    
+    it "should generate a token" do
+      assessment.complete
+      expect( assessment.token ).to_not be_nil
+    end  
 
     describe "#update_targets" do 
       it "should change all the scores for an assessment" do

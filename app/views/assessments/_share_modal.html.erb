@@ -1,0 +1,21 @@
+<div class="modal fade share-modal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="shareModalLabel">Share Your Report</h4>
+        </div>
+        <div class="modal-body">
+        <p>Use the following link to share your report with colleagues or to publish it openly for others to read.
+        </p>
+        <p>
+        <%= link_to "Share report", report_path(@assessment, token: @assessment.token), id: "share-report-link" %>
+        </p>
+        <p>
+        Anyone accessing the link will be able to read the full report, including your scores, your answers, and the list 
+        of suggested improvements.
+        </p>
+        </div>
+    </div>
+  </div>
+</div>  

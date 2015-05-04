@@ -43,3 +43,12 @@ Then(/^there should be "(.*?)" items listed in "(.*?)"$/) do |count, selector|
   page.assert_selector("#{selector} li", :count => count.to_i)
 end
 
+Then(/^I should see a link to share the report$/) do
+  page.assert_selector("#share-report-link")
+end
+
+When(/^I click on the sharing link for the "(.*?)" assessment$/) do |title|
+  assessment = Assessment.where(title: title).first
+  path = "/assessments/#{assessment.id}/report?token=#{assessment.token}"
+  visit path
+end

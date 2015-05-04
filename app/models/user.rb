@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :terms_of_service, acceptance: true
   
+  def self.can_share?(user, assessment)
+    return true if (user.present? && user.id == assessment.user.id)
+  end
+  
   def self.organisational_users
     return User.where("organisation_id is not null")
   end
