@@ -31,6 +31,16 @@ $pathwayLightGrey: #f5f5f5;
   }
 }
 
+.odi-blue {
+  .page-title, .site-title .status {
+    background-color: $odiBlue;
+  }
+  .caret {
+    border-top-color: $odiBlue;
+    border-bottom-color: $odiBlue;
+  }
+}
+
 h1.site-title {
   font-size: 32px;
   margin: 10px 0;
