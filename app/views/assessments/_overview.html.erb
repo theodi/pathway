@@ -41,7 +41,7 @@
               <%= link_to t(status), assessment_question_path(@assessment, next_question), class: "btn orange" %>
             <% when :complete %>
               <% answer = @assessment.assessment_answers.where(question_id: activity.questions.pluck(:id).first).first %>
-              <%= link_to "Edit", assessment_edit_answer_path(@assessment, answer), class: "btn", title: t(status) %>
+              <%= link_to "Edit", assessment_edit_answer_path(@assessment, answer), class: "btn orange", title: t(status) %>
             <% end %>
           <% end %>
         </div>
