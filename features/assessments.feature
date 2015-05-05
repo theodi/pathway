@@ -38,7 +38,8 @@ Feature: Assessments
     Then I should see "Activity"
     Then I should see "Continue assessment"
     Then I should see "0%"
-  
+    And I should not see "You are now ready to complete your assessment"
+      
   Scenario: Continuing questions on an assessment
     Given the test survey has been loaded
     Given I am logged in as a user
@@ -63,6 +64,7 @@ Feature: Assessments
     Then I should see "Activity"
     Then I should see "100%"    
     Then I should see "Complete assessment"
+    And I should see "You are now ready to complete your assessment"
 
   Scenario: Completing an assessment
     Given the test survey has been loaded
