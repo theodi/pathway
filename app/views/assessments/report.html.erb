@@ -1,6 +1,8 @@
 <% content_for :title do %>
   <%= @assessment.user.organisation ? @assessment.user.organisation.title : "" %> <%= @assessment.title %>
-  <%= breadcrumb("Report") %>
+<% end %>
+<% content_for :breadcrumb do %>
+    <%= breadcrumb("Report") %>
 <% end %>
 
 <% if User.can_share?(current_user, @assessment) %>

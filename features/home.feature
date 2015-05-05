@@ -8,7 +8,8 @@ Feature: Home page
     And I should see a link called "Sign in" to "/users/sign_in"
     And I should see a link called "Register" to "/users/sign_up" 
     And I should see a link called "Statistics" to "/statistics"
-
+    And the page title should read "Open Data Pathway"
+    
   Scenario: Viewing the home page as a user
     Given I am logged in as a user
     When I go to the homepage

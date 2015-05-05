@@ -63,3 +63,7 @@ Then (/^(?:|I )should be on (.+)$/) do |page_name|
     assert_equal path_to(page_name), current_path
   end
 end
+
+Then(/^the page title should read "(.*?)"$/) do |title|
+  page.has_title? title
+end
