@@ -45,7 +45,7 @@
                     <p>No improvements necessary</p>
                   <% else %>
                     <ol class="improvements-list">
-                    <% assessment_answer.answer.improvements.each do |improvement| %>
+                    <% assessment_answer.answer.improvements.order(:id).each do |improvement| %>
                       <li id="<%= improvement.code %>"><%= improvement.notes %></li>
                     <% end %>
                     </ol>
