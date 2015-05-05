@@ -3,13 +3,13 @@
   <%= field_set_tag "" do %>
     <%= f.hidden_field :_destroy %>
 
-    <%= link_to 'Remove link', '#', class: "btn delete_association" %>
-
     <%= f.label :text, title: "The name of the link, e.g. Our Open Data Strategy" %>
-    <%= f.text_field :text, placholder: "Link content e.g. Open Data Strategy", class: "form-control" %><br/>
+    <%= f.text_field :text, placeholder: "Link text e.g. Open Data Strategy", class: "form-control" %><br/>
 
-    <%= f.label :link %>
-    <%= f.text_field :link, placholder: "http://example.org", class: "form-control" %>
+    <%= f.label :link, title: "The URL for the link, e.g. http://example.org" %>
+    <%= f.text_field :link, placeholder: "http://example.org", class: "form-control" %>
+
+    <%= link_to 'Remove link', '#', class: "btn delete_association" %>
 
   <% end %>
 
