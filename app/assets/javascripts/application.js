@@ -48,4 +48,5 @@ var attachTypeAhead = function(){
 
 $(document).ready(function() {
   $.validate({modules: 'security', form: "#new_user, #edit_user"});
+  $('[data-toggle="tooltip"]').tooltip();  
 });
