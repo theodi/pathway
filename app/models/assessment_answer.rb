@@ -1,5 +1,5 @@
 class AssessmentAnswer < ActiveRecord::Base
-  belongs_to :assessment
+  belongs_to :assessment, touch: true
   belongs_to :question
   belongs_to :answer
   has_many :links, dependent: :destroy
