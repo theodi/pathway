@@ -53,7 +53,7 @@
 <% if User.can_share?(current_user, @assessment) %>
   <% content_for :javascript_footer do %>
     $(document).ready(function(){
-      $('#bs-example-modal-sm').modal()
+      $('#share-modal').modal()
     });
   <% end %>
 <% end %>    
