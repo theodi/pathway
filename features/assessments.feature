@@ -38,6 +38,7 @@ Feature: Assessments
     Then I should see "Activity"
     Then I should see "Continue assessment"
     Then I should see "0%"
+    And I should not see "You are now ready to complete your assessment"
     And the page title should read "Open Data Pathway | 2014 Q4"
   
   Scenario: Continuing questions on an assessment
@@ -64,6 +65,7 @@ Feature: Assessments
     Then I should see "Activity"
     Then I should see "100%"    
     Then I should see "Complete assessment"
+    And I should see "You are now ready to complete your assessment"
 
   Scenario: Completing an assessment
     Given the test survey has been loaded

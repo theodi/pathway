@@ -36,10 +36,10 @@
       <hr/>
 
       <div id = "notes-display">
-        <h4>Background information</h4>
-        <p class = "italic"><%= @assessment.notes %>
-          <%= link_to 'Edit', '#title-form', class: "small toggle-target btn", id: "notes-toggle", 
+        <h4>Background information        <%= link_to 'Edit', '#title-form', class: "small toggle-target btn", id: "notes-toggle", 
               data: { target: "#notes-form,#notes-display" } %>
+        </h4>
+        <p class = "italic"><%= @assessment.notes %>
         </p>
         </h4>
       </div>
@@ -80,7 +80,7 @@
           <%= link_to "Completed", report_path(@assessment), class: "btn" %>
         <% else %>
           <% if @assessment.can_complete? %>
-            <%= link_to "Complete assessment", complete_assessment_path(@assessment), method: :post, class: "complete btn" %>
+            <%= link_to "Complete assessment", complete_assessment_path(@assessment), method: :post, class: "complete btn green" %>
           <% else %>
             <% if @assessment.status == :not_started %> 
               <%= link_to "Start assessment >", edit_assessment_path(@assessment), class: "btn green" %>
@@ -91,6 +91,14 @@
         <% end %>
       </div>
     </div>
+    <% if @assessment.can_complete? %>
+    <div class="row">
+      <div class="col-md-12">
+      <span class="small">You are now ready to complete your assessment. Once you have finished making any final revisions to 
+      your answers mark the assessment as complete to see your scores and review your final report.</span>
+      </div>
+    </div>    
+    <% end %>
     
     <hr/>
 

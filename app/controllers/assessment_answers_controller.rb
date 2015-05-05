@@ -34,6 +34,7 @@ class AssessmentAnswersController < ApplicationController
       else
         next_question = @activity.next_question_for(@assessment)
         redirection = next_question.blank? ? assessment_path(@assessment) : assessment_question_path(@assessment, next_question)
+        flash[:notice] = "Completed assessment of the \"#{@activity.title}\" activity" if next_question.blank?
       end
       redirect_to redirection
     else
