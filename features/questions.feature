@@ -9,6 +9,15 @@ Feature: Answering questions
     And I press "submit-bottom"
     Then I should see "Do you have a standard dataset release process?"
 
+  Scenario: Answering a question negatively
+    Given I am logged in as a user
+    Given the test survey has been loaded
+    Given I have started an assessment
+    When I go to the first question
+    And I choose "No"
+    And I press "submit-bottom"
+    Then I should see "Completed assessment"
+
   Scenario: Navigating back to revise a question
     Given I am logged in as a user
     Given the test survey has been loaded
