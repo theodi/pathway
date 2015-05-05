@@ -1,25 +1,32 @@
 <div class="row">
-  <div class="col-md-4"><h5>Theme <span class="glyphicon glyphicon-info-sign" aria-hidden="true" 
-                                  data-toggle="tooltip" data-placement="top" title="represents a broad area of operations within an organisation">
-                                  </span>
+  <div class="col-md-5"><h5 data-toggle="tooltip" 
+                            data-trigger="click hover focus" 
+                            data-placement="left" 
+                            title="represents a broad area of operations within an organisation">Theme 
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                         </h5>
   </div>
-  <div class="col-md-8"><h5>Activity <span class="glyphicon glyphicon-info-sign" aria-hidden="true" 
-                                      data-toggle="tooltip" data-placement="top" title="an activity carried out in the organisation">
-                                      </span>
+  <div class="col-md-7"><h5 data-toggle="tooltip" 
+                            data-trigger="click hover focus" 
+                            data-placement="left" 
+                            title="an activity carried out in the organisation">Activity 
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                         </h5>
   </div>
 </div>
 
 <% for dimension in @dimensions %>
   <div class="row highlight-dimension">
-    <div class="col-md-4"><h5><%= dimension.title %></h5>
-      <p class = "small"><%= content_tag :span, "#{dimension.questions.count} questions", class: ""%>
-        <!-- </br>
-      <span class="glyphicon glyphicon-download" aria-hidden="true"></span> <a href="#">Download questions</a> --> 
+    <div class="col-md-5">
+      <h5 data-toggle="tooltip"
+          data-placement="left"
+          data-trigger="click hover focus"
+          title="<%= t("#{dimension.name}") %>"><%= dimension.title %> <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></h5>
+      <p class = "small">
+        <%= content_tag :span, "#{dimension.questions.count} questions", class: ""%>
       </p>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-7">
 
       <% for activity in dimension.activities %>
         <% status = progress.progress_for_activity(activity) %>

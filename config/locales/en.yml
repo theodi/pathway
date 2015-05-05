@@ -52,3 +52,9 @@ en:
         email: "Email"
         name: "Full name"
         associated_organisation: "Organisation"
+
+  data-management-processes: "key business processes that underpin data management and publication, e.g. quality control, publication workflows, and the adoption of technical standards"
+  knowledge-skills: "the culture of open data within an organisation by identifying the knowledge sharing, training and learning required to embed an understanding of the benefits of open data"
+  customer-support-engagement: "the manner in which an organisation engages with both their data sources and their data re-users to provide sufficient support and feedback to make open data successful"
+  investment-financial-performance: "the level of knowledge an organisation has about the value of their datasets and the budgetary and financial oversight required to support their publication. For data consumers, it covers their understanding of the costs and value associated with the reuse of third-party datasets"
+  strategic-oversight: "an organisation's strategy for data sharing and reuse, and the leadership in place to deliver that strategy"
