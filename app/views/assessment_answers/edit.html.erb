@@ -12,7 +12,7 @@
     <header id="assessmentHeader" class="clearfix">
       <h2><em>Assessing:</em> <%= @activity.title %></h2>
       <div class="actions">
-        <%= link_to "Exit", assessment_path(@assessment), data: {confirm: "Any changes made to this page will be lost"}, class: "btn" %>
+        <%= f.submit "Save and exit", class: "btn" %>
         <%= f.submit "Next question &raquo;".html_safe, class: "btn green", id: "submit-top"  %>
       </div>
     </header>
