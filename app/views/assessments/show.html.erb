@@ -34,10 +34,10 @@
       <hr/>
 
       <div id = "notes-display">
-        <h4>Background information</h4>
-        <p class = "italic"><%= @assessment.notes %>
-          <%= link_to 'Edit', '#title-form', class: "small toggle-target btn", id: "notes-toggle", 
+        <h4>Background information        <%= link_to 'Edit', '#title-form', class: "small toggle-target btn", id: "notes-toggle", 
               data: { target: "#notes-form,#notes-display" } %>
+        </h4>
+        <p class = "italic"><%= @assessment.notes %>
         </p>
         </h4>
       </div>
