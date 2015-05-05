@@ -24,6 +24,21 @@ describe AssessmentAnswer do
     end
   end
 
+  it "should touch parent assessment" do
+    config = File.join( "#{Rails.root}/spec/lib", "test-survey.xls" )
+    QuestionnaireImporter.load(1, config)
+
+    activity = Activity.first
+    assessment = FactoryGirl.create(:assessment)
+    updated_at = assessment.updated_at
+    q1 = activity.questions.first
+    answer = Answer.where(code: "Q1.1").first
+    
+    a1 = FactoryGirl.create(:assessment_answer, question: q1, answer: answer, assessment: assessment)
+    
+    expect( assessment.updated_at ).to_not eql(updated_at)
+  end
+  
   describe "#proceeding_answers" do
     it "should return a collection of the next answers for an activity" do
       config = File.join( "#{Rails.root}/spec/lib", "test-survey.xls" )

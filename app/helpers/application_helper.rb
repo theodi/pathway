@@ -31,7 +31,7 @@ module ApplicationHelper
 
     breadcrumb << " > #{@activity.title}" if @activity
     breadcrumb << " > #{str}" unless str.blank?
-    content_tag :h4, breadcrumb, class: "breadcrumb"
+    breadcrumb
   end
 
 end

@@ -31,6 +31,9 @@
         <header class="page-title">
             <div class="container">
                 <h1><%= yield :title %></h1>
+                <% if content_for?(:breadcrumb) %>
+                  <h4 class="breadcrumb"><%= yield :breadcrumb %></h4>
+                <% end %>
             </div>
         </header>
       <% end %>
