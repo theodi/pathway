@@ -16,8 +16,20 @@ Feature: Answering questions
     When I go to the first question
     And I choose "No"
     And I press "submit-bottom"
-    Then I should see "Completed assessment"
+    And I should see "Completed assessment"
 
+  Scenario: After answering a question I can continue
+    Given I am logged in as a user
+    Given the test survey has been loaded
+    Given I have started an assessment
+    When I go to the first question
+    And I choose "Yes"
+    And I press "submit-bottom"
+    Then I should see "Do you have a standard dataset release process?"
+    When I click on "Exit"
+    And I click on "Continue assessment"
+    Then I should see "Do you have a standard dataset release process?"
+        
   Scenario: Navigating back to revise a question
     Given I am logged in as a user
     Given the test survey has been loaded

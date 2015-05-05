@@ -6,11 +6,10 @@
           <h4 class="modal-title" id="shareModalLabel">Share Your Report</h4>
         </div>
         <div class="modal-body">
-        <p>Use the following link to share your report with colleagues or to publish it openly for others to read.
-        </p>
         <p>
-        <%= link_to "Share report", report_path(@assessment, token: @assessment.token), id: "share-report-link" %>
+        Copy the following link to share your report with colleagues or to publish it openly for others to read.
         </p>
+        <textarea id="share-report-link" style="width: 100%"><%= request.base_url %><%= url_for report_path(@assessment, token: @assessment.token) %></textarea>
         <p>
         Anyone accessing the link will be able to read the full report, including your scores, your answers, and the list 
         of suggested improvements.

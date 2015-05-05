@@ -35,8 +35,8 @@ en:
   #Assessments    
   my_assessments: "My assessments"
   
-  not_started: "Begin"
-  in_progress: "In progress"
+  not_started: "Start"
+  in_progress: "Continue"
   complete: "Complete"
   
   enter_email: "Please enter a valid email address"
