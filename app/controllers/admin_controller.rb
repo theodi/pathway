@@ -3,7 +3,7 @@ class AdminController < ApplicationController
   
   def index
     authorize! :manage, :users
-    @users = User.all
+    @users = User.all.order(created_at: :asc)
   end
         
 end
