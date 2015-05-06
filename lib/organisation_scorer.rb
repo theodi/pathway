@@ -1,15 +1,18 @@
 class OrganisationScorer
   
   def score_all_organisations
-    score_organisations( Organisation.all )
+    set = User.all
+    score_organisations( set )
   end
   
   def score_dgu_organisations
-    score_organisations( Organisation.where("dgu_id is not null") )
+    set = Organisation.joins(:users).where("dgu_id is not null")
+    score_organisations( set )
   end
 
   def score_children(organisation)
-    score_organisations( Organisation.where("parent = ?", organisation.id) )
+    set = Organisation.joins(:users).where("dgu_id is not null and parent = ?", organisation.id)
+    score_organisations( set )
   end  
   
   def score_organisations(organisations)

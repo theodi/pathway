@@ -14,7 +14,7 @@
          
       <% if current_user && (current_user.organisation.present? && current_user.organisation.parent.present?) %>
       <li role="presentation">
-        <a href="#networkTab" role="tab" data-toggle="tab">All in your parent organisation</a>
+        <a href="#networkTab" role="tab" data-toggle="tab">All peer organisations</a>
       </li>
       <% end %>
       <div class="pull-right" id="download"><a href="/statistics/data" class="btn orange">Download data</a></div>  
@@ -24,16 +24,18 @@
     <div class="tab-content">    
       <div role="tabpanel" class="tab-pane fade active in" id="organisationTab">
         <%= render 'organisations_tab', title: "all organisations", 
-            scorer: @scorer, results: @scorer.score_all_organisations %>                  
+            scorer: @scorer, results: @scorer.score_all_organisations, note: "" %>                  
       </div>
       <div role="tabpanel" class="tab-pane fade in" id="dguTab">
-        <%= render 'organisations_tab', title: "all data.gov.uk organisations", 
-            scorer: @scorer, results: @scorer.score_dgu_organisations %>
+        <%= render 'organisations_tab', title: "data.gov.uk organisations", 
+            scorer: @scorer, results: @scorer.score_dgu_organisations, note: "" %>
       </div>
       <% if current_user && (current_user.organisation.present? && current_user.organisation.parent.present?) %>
       <div role="tabpanel" class="tab-pane fade in" id="networkTab">
         <%= render 'organisations_tab', title: "all peer organisations", 
-            scorer: @scorer, results: @scorer.score_children( Organisation.find( current_user.organisation.parent ) ) %>
+            scorer: @scorer, 
+            results: @scorer.score_children( Organisation.find( current_user.organisation.parent ) ),
+            note: "Peer organisations are those that are in the #{Organisation.find(current_user.organisation.parent).title} group on data.gov.uk" %>
       </div>
       <% end %>
     </div>
@@ -44,6 +46,7 @@
 
 <% content_for :javascript_footer do %>
      $('.heatmapResults').tooltip({
-       selector: "a[rel=tooltip]"
+       selector: "*[rel=tooltip]"
      })
+     
 <% end %>

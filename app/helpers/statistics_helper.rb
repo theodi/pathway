@@ -5,7 +5,7 @@ module StatisticsHelper
   end
    
   def percentage(count, results)
-    return count / results[:completed] * 100
+    return (count.to_f / results[:completed].to_f * 100).to_i
   end
    
   def create_public_scores(dimensions, scores)

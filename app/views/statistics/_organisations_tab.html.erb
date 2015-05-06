@@ -10,6 +10,7 @@
         <li class="medium"><span><a href="#"></a></span>Medium</li>
         <li class="high"><span><a href="#"></a></span>High</li>
         <li class="v-high"><span><a href="#"></a></span>Very High</li>
+        <li><span class="glyphicon glyphicon-home indicator"></span>Your scores</li>
       </ul>
     </div>
 
@@ -18,8 +19,10 @@
     <% else %>
   
       <p>Showing aggregate results for <% if results[:completed] > 1 %><strong><%= results[:completed] %></strong> assessments <% else %> <strong><%= results[:completed] %></strong> assessment<% end %>
-          from a total of <strong><%= results[:organisations] %></strong> organisations.</p>
+          from a total of <strong><%= results[:organisations] %></strong> registered organisations.</p>
   
+      <p><%= note %></p>
+      
       <%= render 'assessments/activity_label' %>
     
       <div class="scoresLabels clearfix">
@@ -42,6 +45,8 @@
     <% end %>
   </header>
 
+  <% user_latest_assessment = current_user.present? ? current_user.latest_completed_assessment : nil %>
+  
   <% if results[:completed] > 0 %>
     <% normalised_results = @scorer.normalise_counts(results) %>
   
@@ -59,8 +64,18 @@
             <% normalised_scores = normalised_results[:activities][activity.name] %>
             <% normalised_scores.each_with_index do |bin, index| %>            
               <li class="score-<%= index + 1 %> <%= heatmap_colour(bin) %>">
-               <a href="#" title="<p><em><%= percentage(activity_scores[index], results) %>%</em>of organisations scored <%= index + 1 %> for <%= activity.title %>.</p> <p><%= activity_scores[index] %> out of a total <%= results[:completed] %> responses</p>" data-html="true" rel="tooltip">
-                <span class="hide"><%= percentage(activity_scores[index], results) %>% of organisations scored <%= index + 1 %> for <%= activity.title %>. <%= activity_scores[index] %> out of a total <%= results[:completed] %> responses</span></a>
+
+               <% if user_latest_assessment.present? %>
+                <% maturity_score = user_latest_assessment.scores.where(activity: activity).first %>
+                <% if maturity_score.present? && maturity_score.score == (index + 1)%>
+                  <span class="glyphicon glyphicon-home indicator" title="<p><em><%= percentage(activity_scores[index], results) %>%</em>of organisations scored <%= index + 1 %> for <%= activity.title %>.</p> <p><%= activity_scores[index] %> out of a total <%= results[:completed] %> responses</p>" data-html="true" rel="tooltip"></span>
+                <% end %>
+               <% end %>
+               
+               <% if bin != 0 %>
+                 <a href="#" title="<p><em><%= percentage(activity_scores[index], results) %>%</em>of organisations scored <%= index + 1 %> for <%= activity.title %>.</p> <p><%= activity_scores[index] %> out of a total <%= results[:completed] %> responses</p>" data-html="true" rel="tooltip">
+                  <span class="hide"><%= percentage(activity_scores[index], results) %>% of organisations scored <%= index + 1 %> for <%= activity.title %>. <%= activity_scores[index] %> out of a total <%= results[:completed] %> responses</span></a>
+               <% end %>
               </li>
             <% end %>
           </ul>
