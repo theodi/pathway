@@ -39,9 +39,9 @@ module StatisticsHelper
   def create_summary_csv(summary)
     data = CSV.generate({col_sep: ",", row_sep: "\r\n", quote_char: '"'}) do |csv|
       csv << ["Statistic", "Value"]
-      csv << ["Registered Users", summary[:registered_users]]
+      csv << ["Registered users", summary[:registered_users]]
       csv << ["data.gov.uk organisations", summary[:organisations][:datagovuk] ]
-      csv << ["Total Organisations", summary[:organisations][:total] ]          
+      csv << ["Total organisations", summary[:organisations][:total] ]          
       csv << ["Organisations with users", summary[:organisations][:total_with_users] ]
       csv << ["Completed assessments", summary[:assessments][:completed] ]
       csv << ["Total assessments", summary[:assessments][:total] ]

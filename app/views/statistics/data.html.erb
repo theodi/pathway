@@ -3,7 +3,7 @@
 <div id="mainContent" class="container" typeof="dcat:Dataset" resource="<%= request.original_url %>">
   <h3 property="dct:title">Open Data Pathway statistics</h3>
   
-  <p property="dct:description">Aggregate statistics on the usage of the Open Data Pathway tool and the scores generated for organisational assessments</p>
+  <p property="dct:description">Aggregate statistics on the usage of the Open Data Pathway tool and the scores generated for organisational assessments.</p>
   
   <div property="dct:rights" resource="#rights">
     <div resource="#rights">
@@ -20,14 +20,16 @@
           
           <p>Data published by the 
             <span property="dct:publisher" typeof="foaf:Agent" resource="http://theodi.org">
-              <a href="http://theodi.org" property="foaf:homepage"><span property="foaf:name">Open Data Institute</span></a>
+              <a href="http://theodi.org" property="foaf:homepage"><span property="foaf:name">Open Data Institute</span></a>.
           </span>          
     </div>          
   </div>
           
+  <h3>Downloads</h3>
+          
   <table class="table">
     <thead>
-      <tr><th>Data</th><th></th><th></th></tr>
+      <tr><th>Distribution</th><th></th><th></th></tr>
     </thead>
     <tbody>
       <tr>
@@ -49,4 +51,106 @@
     </tbody>
   </table>
 
+  <h3>Documentation</h3>
+  
+  <p>
+  The following tables define the fields and/or data columns used in the data downloads.
+  </p>
+  
+  <h4>Summary usage statistics</h4>
+
+  <table class="table">
+    <thead>
+      <tr><th>Field</th><th>Definition</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>Registered users</code></td>
+        <td>Number of users registered on the website.</td>
+      </tr>
+      <tr>
+        <td><code>data.gov.uk organisations</code></td>
+        <td>Number of imported data.gov.uk organisations. These may not yet be registered.</td>
+      </tr>
+      <tr>
+        <td><code>Total organisations</code></td>
+        <td>Total number of organisations.</td>
+      </tr>
+      <tr>
+        <td><code>Organisations with users</code></td>
+        <td>Number of organisations with users.</td>
+      </tr>
+      <tr>
+        <td><code>Completed assessments</code></td>
+        <td>Total number of completed assessments. An organisation can have multiple completed assessments.</td>
+      </tr>
+      <tr>
+        <td><code>Total assessments</code></td>
+        <td>Total number of assessments. An organisation can have multiple assessments, including one in-progress and several completed.</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h4>Aggregate statistics</h4>
+
+  <p>
+  Both of the aggregate statistics files have the same content but aggregate statistics for different collections of organisations.
+  </p>
+  
+  <ul>
+    <li>"All organisations" refers to all users of the system</li>
+    <li>"All data.gov.uk organisations" refers to all users that have registered with an organisation defined in data.gov.uk.</li>
+  </ul>
+  
+  <p>
+  The CSV downloads have a simple tabular format that lists each of the activities and aggregate counts for the maturity scores.
+  The JSON files use a more slightly more idiomatic structure: hashes are used to group together themes and activities; and arrays 
+  are used for the aggregate counts of mature scores.
+  </p>
+  
+  <table class="table">
+    <thead>
+      <tr><th>Column</th><th>Definition</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>Theme</code></td>
+        <td>A theme defined in the open data maturity model.</td>
+      </tr>
+      <tr>
+        <td><code>Activity</code></td>
+        <td>An activity defined in the open data maturity model. Every activity is associated with a single theme.</td>
+      </tr>
+      <tr>
+        <td><code>1-Initial</code></td>
+        <td>Number of organisations that have been awarded a maturity score of 1 ("Initial") for an activity.</td>
+      </tr>
+      <tr>
+        <td><code>2-Repeatable</code></td>
+        <td>Number of organisations that have been awarded a maturity score of 2 ("Repeatable") for an activity.</td>
+      </tr>
+      <tr>
+        <td><code>3-Defined</code></td>
+        <td>Number of organisations that have been awarded a maturity score of 3 ("Defined") for an activity.</td>
+      </tr>
+      <tr>
+        <td><code>4-Managed</code></td>
+        <td>Number of organisations that have been awarded a maturity score of 4 ("Managed") for an activity.</td>
+      </tr>
+      <tr>
+        <td><code>5-Optimising</code></td>
+        <td>Number of organisations that have been awarded a maturity score of 5 ("Optimising") for an activity.</td>
+      </tr>
+      <tr>
+        <td><code>Completed</code></td>
+        <td>Number of completed assessments that have been scored for an activity.</td>
+      </tr>
+      <tr>
+        <td><code>Organisations</code></td>
+        <td>Number of organisations that have been scored for an activity.</td>
+      </tr>
+
+    </tbody>
+  </table>  
+  
 </div>
