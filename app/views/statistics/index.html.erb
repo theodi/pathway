@@ -27,7 +27,7 @@
             scorer: @scorer, results: @scorer.score_all_organisations, note: "" %>                  
       </div>
       <div role="tabpanel" class="tab-pane fade in" id="dguTab">
-        <%= render 'organisations_tab', title: "all data.gov.uk organisations", 
+        <%= render 'organisations_tab', title: "data.gov.uk organisations", 
             scorer: @scorer, results: @scorer.score_dgu_organisations, note: "" %>
       </div>
       <% if current_user && (current_user.organisation.present? && current_user.organisation.parent.present?) %>

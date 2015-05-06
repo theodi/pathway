@@ -5,7 +5,7 @@
  margin-bottom: 30px;
 
  .heatmapHeader {
-  h2 {margin-bottom: 20px; float: left;}
+  h2 {margin-bottom: 20px; float: left; font-size: 28px;}
    span.glyphicon {color: $odiGrey;}
   .activityColLabel {width: 30%; float: left; font-weight: 600; font-size: 14px}
   .scoresLabels {width: 70%; float: left; font-weight: 600;
@@ -86,7 +86,7 @@
    li {
     display: inline-block;
     list-style: none;
-    margin-right: 2em;
+    margin-right: 1em;
     &:last-child {margin-right: 0;}
 
     span {width: 1em; height: 1em; margin-right: 0.5em; display: inline-block;}
