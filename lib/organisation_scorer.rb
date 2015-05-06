@@ -49,5 +49,38 @@ class OrganisationScorer
     normalised
   end
   
+  def read_all_organisations
+    read_scores_from_statistics( Organisation.all_organisations_group, User.count )
+  end
   
+  def read_dgu_organisations
+    read_scores_from_statistics( Organisation.all_organisations_group, Organisation.joins(:users).where("dgu_id is not null").count )
+  end
+  
+  def read_group(organisation)
+    read_scores_from_statistics( organisation, Organisation.where("parent = ?", organisation.id).count )
+  end
+    
+  def read_scores_from_statistics(group, count)
+    results = {
+      activities: {},
+      organisations: count,
+      completed: 0  
+    }    
+    Questionnaire.current.activities.each do |activity|
+      results[:activities][activity.name] = [0,0,0,0,0]
+    end
+    results[:completed] = group.statistics.first.completed_assessments
+    group.statistics.each do |organisation_score|
+      results[:activities][organisation_score.activity.name] = 
+          [organisation_score.initial, 
+           organisation_score.repeatable, 
+           organisation_score.defined,
+           organisation_score.managed,
+           organisation_score.optimising]
+    end
+    results
+  end
+  
+    
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504121056) do
+ActiveRecord::Schema.define(version: 20150506111100) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "name"
@@ -87,6 +87,18 @@ ActiveRecord::Schema.define(version: 20150504121056) do
   end
 
   add_index "links", ["assessment_answer_id"], name: "index_links_on_assessment_answer_id"
+
+  create_table "organisation_scores", force: :cascade do |t|
+    t.integer  "organisation_id"
+    t.integer  "activity_id"
+    t.integer  "initial"
+    t.integer  "repeatable"
+    t.integer  "defined"
+    t.integer  "managed"
+    t.integer  "optimising"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "organisations", force: :cascade do |t|
     t.string   "name"

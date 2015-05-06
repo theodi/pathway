@@ -1,5 +1,5 @@
 module StatisticsHelper
-
+  
   def heatmap_colour(value)
     ["none", "v-low", "low", "medium", "high", "v-high"][value]
   end

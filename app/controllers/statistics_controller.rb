@@ -4,6 +4,15 @@ class StatisticsController < ApplicationController
   def index
     @dimensions = Questionnaire.current.dimensions
     @scorer = OrganisationScorer.new
+
+    @all_organisations = @scorer.read_all_organisations
+    @dgu_organisations = @scorer.read_dgu_organisations
+    
+    if current_user && (current_user.organisation.present? && current_user.organisation.parent.present?)
+      @parent_organisation = Organisation.find( current_user.organisation.parent )
+      @peer_organisations = @scorer.read_group( @parent_organisation )
+    end
+    
   end
   
   def data
@@ -12,7 +21,7 @@ class StatisticsController < ApplicationController
   def all_organisations
     @dimensions = Questionnaire.current.dimensions
     @scorer = OrganisationScorer.new
-    @scores = @scorer.score_all_organisations
+    @scores = @scorer.read_all_organisations
     respond_to do |format|
       format.json {
         render :json => create_public_scores(@dimensions, @scores)
@@ -26,7 +35,7 @@ class StatisticsController < ApplicationController
   def all_dgu_organisations
     @dimensions = Questionnaire.current.dimensions
     @scorer = OrganisationScorer.new
-    @scores = @scorer.score_dgu_organisations
+    @scores = @scorer.read_dgu_organisations
     respond_to do |format|
       format.json {
         render :json => create_public_scores(@dimensions, @scores)

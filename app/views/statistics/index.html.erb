@@ -24,18 +24,18 @@
     <div class="tab-content">    
       <div role="tabpanel" class="tab-pane fade active in" id="organisationTab">
         <%= render 'organisations_tab', title: "all organisations", 
-            scorer: @scorer, results: @scorer.score_all_organisations, note: "" %>                  
+            scorer: @scorer, results: @all_organisations, note: "" %>                  
       </div>
       <div role="tabpanel" class="tab-pane fade in" id="dguTab">
         <%= render 'organisations_tab', title: "data.gov.uk organisations", 
-            scorer: @scorer, results: @scorer.score_dgu_organisations, note: "" %>
+            scorer: @scorer, results: @dgu_organisations, note: "" %>
       </div>
-      <% if current_user && (current_user.organisation.present? && current_user.organisation.parent.present?) %>
+      <% if @parent_organisation.present? %>
       <div role="tabpanel" class="tab-pane fade in" id="networkTab">
         <%= render 'organisations_tab', title: "all peer organisations", 
             scorer: @scorer, 
-            results: @scorer.score_children( Organisation.find( current_user.organisation.parent ) ),
-            note: "Peer organisations are those that are in the #{Organisation.find(current_user.organisation.parent).title} group on data.gov.uk" %>
+            results: @peer_organisations,
+            note: "Peer organisations are those that are in the #{@parent_organisation.title} group on data.gov.uk" %>
       </div>
       <% end %>
     </div>
