@@ -1,6 +1,7 @@
 class Organisation < ActiveRecord::Base
 
   has_many :users
+  has_many :statistics, class_name: "OrganisationScore"
   
   validates :title, presence: true
   validates :title, uniqueness: true
@@ -11,6 +12,14 @@ class Organisation < ActiveRecord::Base
     Organisation.where("dgu_id is not null")
   end
     
+  def self.all_organisations_group
+    Organisation.find_by_title("All Organisations")
+  end
+  
+  def self.all_dgu_organisations_group
+    Organisation.find_by_title("All data.gov.uk organisations")
+  end
+  
   def to_s
     self.title
   end

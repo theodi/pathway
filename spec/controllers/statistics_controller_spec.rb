@@ -67,7 +67,12 @@ describe StatisticsController do
         assessment.complete
 
         FactoryGirl.create(:unfinished_assessment)
-  
+
+        Organisation.create!(title: "All Organisations")
+        Organisation.create!(title: "All data.gov.uk organisations")        
+        generator = StatisticsGenerator.new
+        generator.generate_all
+                  
         get "all_organisations", format: "json"
         expect( response ).to be_success
         @json = JSON.parse(response.body)      
