@@ -28,7 +28,8 @@ Rails.application.routes.draw do
   get '/privacy-policy' => 'high_voltage/pages#show', id: 'privacy_policy'
   get '/cookie-policy' => 'high_voltage/pages#show', id: 'cookie_policy'
   get '/about' => 'high_voltage/pages#show', id: 'about'
-    
+  get '/contact' => 'high_voltage/pages#show', id: 'contact'
+      
   get '/statistics' => 'statistics#index'
   get '/statistics/data' => 'statistics#data'
   get '/statistics/all_organisations' => 'statistics#all_organisations', defaults: {format: :json}
