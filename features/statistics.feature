@@ -32,7 +32,7 @@ Feature: Statistics page
     And I go to "/statistics"
     Then I should see "All organisations"
     Then I should see "All data.gov.uk organisations"
-    Then I should see "All in your parent organisation"
+    Then I should see "All peer organisations"
     Then I should see "Scores for all organisations"
     Then I should see "Scores for all peer organisations"
     Then I should see "Showing aggregate results for 2 assessments from a total of 2 registered organisations"
