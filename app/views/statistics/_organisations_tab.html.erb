@@ -14,8 +14,12 @@
       </ul>
     </div>
 
-    <% if results[:completed] == 0 %>
+    <% if results[:completed] == 0 %>    
       <p>None of the organisations have completed an assessment</p>
+    <% elsif results[:completed] < ODMAT::Application::HEATMAP_THRESHOLD %>
+    
+      <p>Not enough organisations have yet completed an assessment in order for statistics to be published</p>    
+      
     <% else %>
   
       <p>Showing aggregate results for <% if results[:completed] > 1 %><strong><%= results[:completed] %></strong> assessments <% else %> <strong><%= results[:completed] %></strong> assessment<% end %>
@@ -47,7 +51,7 @@
 
   <% user_latest_assessment = current_user.present? ? current_user.latest_completed_assessment : nil %>
   
-  <% if results[:completed] > 0 %>
+  <% if results[:completed] > 0 && results[:completed] >= ODMAT::Application::HEATMAP_THRESHOLD %>
     <% normalised_results = @scorer.normalise_counts(results) %>
   
     <% for dimension in @dimensions %>

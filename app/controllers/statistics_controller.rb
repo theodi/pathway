@@ -1,7 +1,7 @@
 class StatisticsController < ApplicationController
   include StatisticsHelper
   
-  def index
+  def index    
     @dimensions = Questionnaire.current.dimensions
     @scorer = OrganisationScorer.new
 
