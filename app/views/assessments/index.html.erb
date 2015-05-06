@@ -4,7 +4,10 @@
   <%= render 'first_assessment' %>
 <% else %>
   <% if !@assessments.empty? %>
-    <%= link_to "Set goals for the next assessment", edit_assessment_targets_path(@last_assessment), class: "btn next" %>
+    <div class="col-md-9"></div>
+    <div class="col-md-3" id="goals">
+      <%= link_to "Set goals for the next assessment", edit_assessment_targets_path(@last_assessment), class: "btn orange" %>
+    </div>
   <% end %>
   
   <ul id="myAssessments">
