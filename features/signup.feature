@@ -21,6 +21,7 @@ Feature: Signing up
     And I fill in "Password confirmation" with "password"
     And I fill in Associated organisation with "British Waterways"
     And I press "Register"
+    Then I should see "Oops - please try again"
     Then I should see "Terms of service must be accepted"
     
   Scenario: Sign up where organisation has been taken
