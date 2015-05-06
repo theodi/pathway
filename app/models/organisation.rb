@@ -34,7 +34,7 @@ class Organisation < ActiveRecord::Base
   def latest_completed_assessment
     user = users.first
     return nil unless user.present?
-    return user.assessments.where("completion_date is not null").order(completion_date: :desc).first
+    return user.latest_completed_assessment
   end  
   
 end

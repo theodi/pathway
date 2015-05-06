@@ -32,4 +32,7 @@ class User < ActiveRecord::Base
     self.organisation
   end
 
+  def latest_completed_assessment
+    return assessments.where("completion_date is not null").order(completion_date: :desc).first
+  end
 end

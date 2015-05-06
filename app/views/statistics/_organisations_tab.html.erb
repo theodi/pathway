@@ -59,8 +59,19 @@
             <% normalised_scores = normalised_results[:activities][activity.name] %>
             <% normalised_scores.each_with_index do |bin, index| %>            
               <li class="score-<%= index + 1 %> <%= heatmap_colour(bin) %>">
-               <a href="#" title="<p><em><%= percentage(activity_scores[index], results) %>%</em>of organisations scored <%= index + 1 %> for <%= activity.title %>.</p> <p><%= activity_scores[index] %> out of a total <%= results[:completed] %> responses</p>" data-html="true" rel="tooltip">
-                <span class="hide"><%= percentage(activity_scores[index], results) %>% of organisations scored <%= index + 1 %> for <%= activity.title %>. <%= activity_scores[index] %> out of a total <%= results[:completed] %> responses</span></a>
+
+               <% if current_user && current_user.latest_completed_assessment %>
+                <% a = current_user.latest_completed_assessment %>
+
+                <% if a.scores.where(activity: activity).first.score == (index + 1)%>
+                  <span class="glyphicon glyphicon-home indicator" title="<p><em><%= percentage(activity_scores[index], results) %>%</em>of organisations scored <%= index + 1 %> for <%= activity.title %>.</p> <p><%= activity_scores[index] %> out of a total <%= results[:completed] %> responses</p>" data-html="true" rel="tooltip"></span>
+                <% end %>
+               <% end %>
+               
+               <% if bin != 0 %>
+                 <a href="#" title="<p><em><%= percentage(activity_scores[index], results) %>%</em>of organisations scored <%= index + 1 %> for <%= activity.title %>.</p> <p><%= activity_scores[index] %> out of a total <%= results[:completed] %> responses</p>" data-html="true" rel="tooltip">
+                  <span class="hide"><%= percentage(activity_scores[index], results) %>% of organisations scored <%= index + 1 %> for <%= activity.title %>. <%= activity_scores[index] %> out of a total <%= results[:completed] %> responses</span></a>
+               <% end %>
               </li>
             <% end %>
           </ul>
