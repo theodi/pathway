@@ -64,7 +64,7 @@ Feature: Assessments
     Then I should see "Theme"
     Then I should see "Activity"
     Then I should see "100%"    
-    Then I should see "Complete assessment"
+    Then I should see "See my scores"
     And I should see "You are now ready to complete your assessment"
 
   Scenario: Completing an assessment
