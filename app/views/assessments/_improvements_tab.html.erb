@@ -33,7 +33,7 @@
           
             <% activity.questions.each do |question| %>
               <% assessment_answer = assessment.answer_for_question(question) %>
-              <% if assessment_answer %>
+              <% if assessment_answer && assessment_answer.answer.improvements.present? %>
                 <div id="<%= question.code %>-improvements" class="question">
                   <h3><%= question.text %></h3>                
                   <p class="answer <%= assessment_answer.answer.positive? ? 'yes' : 'no' %>">
