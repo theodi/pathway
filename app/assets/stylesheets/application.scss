@@ -79,3 +79,8 @@ h4.breadcrumb {
 
   a { color:white; }
 }
+
+label.required:after {
+    content: " *";
+    color: red;
+}
