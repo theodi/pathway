@@ -9,6 +9,7 @@ Feature: Home page
     And I should see a link called "Register" to "/users/sign_up" 
     And I should see a link called "Statistics" to "/statistics"
     And I should see a link called "Get in touch" to "/contact" 
+    And I should see a link called "Feedback" to "/contact" 
     And the page title should read "Open Data Pathway"
     
   Scenario: Viewing the home page as a user
