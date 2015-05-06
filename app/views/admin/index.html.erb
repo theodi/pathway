@@ -2,20 +2,34 @@
 
 <h2>Registered Users</h2>
 
+<p>
+List of registered users, ordered by the date they registered.
+</p>
+
 <table class="table">
   <thead>
     <tr>
-      <th>User</th><th>Admin?</th><th></th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Organisation</th>
+      <th>Registered</th>
+      <th>Last Login</th>
+      <th>Admin?</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= user.name %></td>
         <td><%= link_to user.email, edit_user_path(user.id), :class => 'navbar-link' %></td>
+        <td><%= user.organisation.title if user.organisation.present? %></td>
+        <td><%= user.created_at.to_formatted_s(:db)  %></td>
+        <td><%= user.last_sign_in_at.to_formatted_s(:db)  %></td>
         <td><%= user.admin? %></td>
         <td>
             <% unless user.email == current_user.email %>
-              <%= link_to "Delete User", user, :confirm => "Are you sure?", :method => :delete %>
+              <%= link_to "Delete User", user, data: {confirm: "Are you sure?"}, :method => :delete, class: "btn btn-danger" %>
             <% end %>
         </td>
       </tr>
