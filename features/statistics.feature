@@ -17,7 +17,7 @@ Feature: Statistics page
     Then I should see "All data.gov.uk organisations"
     Then I should not see "All peer organisations"
     Then I should see "Scores for all organisations"
-    Then I should see "Showing aggregate results for 1 assessment from a total of 1 organisations"
+    Then I should see "Showing aggregate results for 1 assessment from a total of 1 registered organisations"
     Then I should see "Data release process"
     Then I should see "100% of organisations scored 1 for Data release process"
         
@@ -35,7 +35,7 @@ Feature: Statistics page
     Then I should see "All in your parent organisation"
     Then I should see "Scores for all organisations"
     Then I should see "Scores for all peer organisations"
-    Then I should see "Showing aggregate results for 2 assessments from a total of 3 organisations"
+    Then I should see "Showing aggregate results for 2 assessments from a total of 2 registered organisations"
     Then I should see "Data release process"
     Then I should see "100% of organisations scored 1 for Data release process"        
         
