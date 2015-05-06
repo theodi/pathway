@@ -23,6 +23,8 @@
           <% if User.can_share?(current_user, @assessment) %>
             <div class="pull-right" id="share-button">
               <a class="btn orange" data-toggle="modal" data-target=".share-modal">Share your report</a>
+              <%= link_to "Set goals", edit_assessment_targets_path(@assessment), class: "btn orange" %>
+
             </div> 
           <% end %>
         </ul>
