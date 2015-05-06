@@ -27,5 +27,7 @@ module ODMAT
     config.middleware.use Rack::GoogleAnalytics, :tracker => ENV["GOOGLE_ANALYTICS_TRACKER"]
       
     config.autoload_paths += %W(#{config.root}/lib)
+    
+    HEATMAP_THRESHOLD= ENV["HEATMAP_THRESHOLD"].to_i || 5
   end
 end

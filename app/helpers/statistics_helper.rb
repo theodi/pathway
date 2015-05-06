@@ -20,7 +20,7 @@ module StatisticsHelper
       dimension.activities.each do |activity|
         data[:themes][dimension.title][activity.title] = scores[:activities][activity.name]
       end
-    end
+    end if scores[:completed] >= ODMAT::Application::HEATMAP_THRESHOLD
     return data
   end
   
@@ -31,7 +31,7 @@ module StatisticsHelper
         dimension.activities.each do |activity|
           csv << [ dimension.title, activity.title ] + scores[:activities][activity.name] + [scores[:completed], scores[:organisations]]
         end
-      end
+      end if scores[:completed] >= ODMAT::Application::HEATMAP_THRESHOLD
     end
     return data
   end
