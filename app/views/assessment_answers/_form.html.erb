@@ -41,7 +41,7 @@
     <% if @question.notes.present? %>
       <div class="helpWrapper">
         <h4>Question help</h4>
-        <p><%= @question.notes %></p>
+        <p><%= @question.notes.html_safe %></p>
       </div>
     <% end %>
   </div>
