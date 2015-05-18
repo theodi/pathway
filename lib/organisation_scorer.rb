@@ -54,7 +54,7 @@ class OrganisationScorer
   end
   
   def read_dgu_organisations
-    read_scores_from_statistics( Organisation.all_organisations_group, Organisation.joins(:users).where("dgu_id is not null").count )
+    read_scores_from_statistics( Organisation.all_dgu_organisations_group, Organisation.joins(:users).where("dgu_id is not null").count )
   end
   
   def read_group(organisation)
