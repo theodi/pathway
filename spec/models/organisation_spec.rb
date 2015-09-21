@@ -2,8 +2,18 @@ require 'spec_helper'
 
 describe Organisation do
 
+  describe "self.dgu" do
+    it "should only return dgu Organisations" do
+      FactoryGirl.create(:organisation, title: "Non-DGU organisation", dgu_id: nil)
+      FactoryGirl.create(:organisation, title: "DGU orginisation", dgu_id: 123)
+
+      expect(Organisation.dgu.count).to eq(1)
+      expect(Organisation.dgu.first.title).to eq("DGU orginisation")
+    end
+  end
+
   describe "#set_name" do
-    it "should set a name slug on create" do 
+    it "should set a name slug on create" do
       o = Organisation.new
       o.title = "Department of Stuff"
       o.save
