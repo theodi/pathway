@@ -26,4 +26,15 @@ describe OrganisationsController do
     expect(results.first["text"]).to eq("My Fantastic Organisation")
   end
 
+  it "replaces spaces with dashes" do
+    FactoryGirl.create(:organisation, name: "my-fantastic-organisation", title: "My Fantastic Organisation")
+
+    get "index", q: "my fant", format: "json"
+
+    results = JSON.parse(response.body)
+
+    expect(results.count).to eq(1)
+    expect(results.first["text"]).to eq("My Fantastic Organisation")
+  end
+
 end
