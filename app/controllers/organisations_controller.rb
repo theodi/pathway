@@ -4,7 +4,8 @@ class OrganisationsController < ApplicationController
 
   def index
     query = params[:q].to_s
-    @organisations = Organisation.where("name LIKE (?)", "%#{query.downcase}%")
+
+    @organisations = Organisation.dgu.where("name LIKE (?)", "%#{query.downcase}%")
     respond_with @organisations
   end
 
