@@ -53,8 +53,8 @@ When(/^I click on the sharing link for the "(.*?)" assessment$/) do |title|
   visit path
 end
 
-When(/^I click on the link to download summary scores$/) do
-  click_link "Download summary scores"
+When(/^I click on the "(.*?)" link$/) do |text|
+  click_link text
 end
 
 Then(/^the response should be "(.*?)"$/) do |code|
@@ -67,6 +67,6 @@ end
 
 Then(/^the CSV link should not contain a token$/) do
   link = find("a", text: /Download summary scores/)
-  
+
   expect(link[:href]).to_not match(/token=/)
 end

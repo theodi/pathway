@@ -26,8 +26,14 @@ Feature: Sharing reports
     Then I should see "Background notes"
     Then I should not see "Share your report"
 
-  Scenario: Attempting to download a report with a token
+  Scenario: Attempting to download summary scores CSV with a token
     When I click on the sharing link for the "2015 Q1" assessment
-    And I click on the link to download summary scores
+    And I click on the "Download summary scores" link
+    Then I should not see "You are not authorized to access this page."
+    And I should see a CSV
+
+  Scenario: Attempting to download activity scores CSV with a token
+    When I click on the sharing link for the "2015 Q1" assessment
+    And I click on the "Download activity scores" link
     Then I should not see "You are not authorized to access this page."
     And I should see a CSV
