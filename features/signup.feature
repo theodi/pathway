@@ -23,7 +23,7 @@ Feature: Signing up
     And I press "Register"
     Then I should see "Oops - please try again"
     Then I should see "Terms of service must be accepted"
-    
+
   Scenario: Sign up where organisation has been taken
     Given the test survey has been loaded
     Given a user is already associated with "British Waterways"
@@ -39,6 +39,15 @@ Feature: Signing up
     When I fill in "Your message to the user" with "Hello, can I get access too? Regards, Alex"
     And I press "Submit"
     Then I should see "A message was sent to the admin of British Waterways"
+
+  Scenario: Changing password
+    Given I am logged in as a user
+    And I visit the user admin page
+    And I fill in "Password" with "newpassword"
+    And I fill in "Password confirmation" with "newpassword"
+    And I fill in "Current password" with "somepassword"
+    And I press "Update"
+    Then I should see "Your account has been updated successfully"
 
   Scenario: View assessments after sign-in
     Given I am logged in as a user
