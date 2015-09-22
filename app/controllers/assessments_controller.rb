@@ -52,25 +52,26 @@ class AssessmentsController < ApplicationController
     @assessment.complete
     redirect_to report_path(@assessment)
   end
-  
+
   def report
     @assessment = Assessment.find(params[:id])
     @dimensions = Questionnaire.current.dimensions
     @scorer = AssessmentScorer.new(@assessment)
+    @token = params[:token]
     authorize! :read, @assessment
 
     respond_to do |format|
       format.html {
-        render 'report'        
+        render 'report'
       }
       format.csv {
         send_data @assessment.to_csv( params[:style].to_sym ), content_type: "text/csv; charset=utf-8"
       }
     end
   end
-  
+
   private
-  
+
   def assessment_params
     params.require(:assessment).permit(:title, :notes)
   end
