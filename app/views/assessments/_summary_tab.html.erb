@@ -20,10 +20,9 @@
      <span id="total-score" class="score"><%= total %> / <%= maximum %></span>
     </div>
 
-     
+
 </section>
 
-<a href="<%= report_path(@assessment, format: "csv", style: "dimension") %>">Download summary scores</a>  
+<a href="<%= report_path(@assessment, format: "csv", style: "dimension", token: @token) %>">Download summary scores</a>  
 
 <!-- summaryTab -->
-

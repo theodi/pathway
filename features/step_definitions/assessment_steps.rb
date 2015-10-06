@@ -52,3 +52,21 @@ When(/^I click on the sharing link for the "(.*?)" assessment$/) do |title|
   path = "/assessments/#{assessment.id}/report?token=#{assessment.token}"
   visit path
 end
+
+When(/^I click on the "(.*?)" link$/) do |text|
+  click_link text
+end
+
+Then(/^the response should be "(.*?)"$/) do |code|
+  expect(page.status_code).to eq(code.to_i)
+end
+
+Then(/^I should see a CSV$/) do
+  expect(page.response_headers['Content-Type']).to match /text\/csv/
+end
+
+Then(/^the CSV link should not contain a token$/) do
+  link = find("a", text: /Download summary scores/)
+
+  expect(link[:href]).to_not match(/token=/)
+end

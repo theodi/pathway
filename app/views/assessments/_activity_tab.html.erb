@@ -13,19 +13,19 @@
      <h2> <%= dimension.title %> </h2>
      <ul id="<%= dimension.name %>-activities" class="activities ">
       <% dimension.activities.each_with_index do |activity, index| %>
-        <li class="<%= 'active' if index == 0 %>"><%= activity.title %> 
+        <li class="<%= 'active' if index == 0 %>"><%= activity.title %>
         <% scores = assessment.scores.where(activity_id: activity.id) %>
-        
+
         <span id="<%= activity.name %>-target" class="target"><%= scores.first.target if scores.length > 0 %></span>
         <span id="<%= activity.name %>-score" class="score"><%= scores.first.score if scores.length > 0 %></span>
         </li>
       <% end %>
-     </ul>     
-  </div>     
+     </ul>
+  </div>
   <% end %>
 
 </section>
 
-<a href="<%= report_path(@assessment, format: "csv", style: "activity") %>">Download activity scores</a>
+<a href="<%= report_path(@assessment, format: "csv", style: "activity", token: @token) %>">Download activity scores</a>
 
 <!-- activitiesTab -->
