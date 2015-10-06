@@ -2,11 +2,11 @@
 
 .small { font-size: 0.7em; }
 
-#notes-form input[type="text"], 
+#notes-form input[type="text"],
 #title-form input[type="text"] {
   font-size: inherit;
   width:100%;
-  display: inline-block;  
+  display: inline-block;
   margin:0;
 }
 
@@ -40,7 +40,7 @@ ul#myAssessments {
   display: table;
   background: $pathwayLightGrey;
   font-size: 14px;
-  
+
   &.current {background: white;
 
    .details { color: black !important;}
@@ -80,7 +80,7 @@ ul#myAssessments {
 
    &.actions {
     text-align: center;
-    a.delete {color: $odiRed; margin-top: 0.5em; display: block;}
+    a.btn.red { margin-top: 1.5em; }
    }
 
    &:last-child {border-right: none;}
@@ -91,24 +91,24 @@ ul#myAssessments {
 }
 
 //ASSESSMENT PAGE
-#progress-bar { 
-  width: 280px; background-color:silver; 
+#progress-bar {
+  width: 280px; background-color:silver;
   background: none repeat scroll 0% 0% #F5F5F5;
   border: 1px solid #DDD;
   border-radius: 10px;
-  overflow: hidden; 
+  overflow: hidden;
   margin-top:2px;
 }
 #progress-bar div { background: none repeat scroll 0% 0% #FF6700; height:0.7em; }
 
 div.highlight-dimension { border-top: 1px solid #DDD; }
-div.highlight-dimension:nth-child(even) { 
+div.highlight-dimension:nth-child(even) {
   padding-top:5px; padding-bottom:5px;
   background: none repeat scroll 0% 0% #F5F5F5;
 }
 
-div.assessment-overview { 
-  h5 { font-weight:normal; font-size:1em; margin-top: 11px; } 
+div.assessment-overview {
+  h5 { font-weight:normal; font-size:1em; margin-top: 11px; }
   a.btn { width:70%; float:right; }
   div.activity { padding: 5px 0px; border-bottom: 1px solid white; margin-top:3px; }
   div.activity.complete { color:#0DBC37; }
