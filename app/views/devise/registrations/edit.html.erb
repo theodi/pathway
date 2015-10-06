@@ -24,7 +24,7 @@
 
   <div class="form-group">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", style: "width:40%;"%>
+    <%= f.password_field :password, autocomplete: "off", style: "width:40%;"%>
   </div>
 
   <div class="form-group">
@@ -49,7 +49,7 @@
 <%= link_to "Back", :back %>
 
 <% content_for :javascript_footer do %>
-  $(document).ready(function(){ 
-    attachTypeAhead(); 
+  $(document).ready(function(){
+    attachTypeAhead();
   });
 <% end %>
