@@ -2,9 +2,9 @@
 
 <div id="mainContent" class="container" typeof="dcat:Dataset" resource="<%= request.original_url %>">
   <h3 property="dct:title">Open Data Pathway statistics</h3>
-  
+
   <p property="dct:description">Aggregate statistics on the usage of the Open Data Pathway tool and the scores generated for organisational assessments.</p>
-  
+
   <div property="dct:rights" resource="#rights">
     <div resource="#rights">
           <h4 property="rdfs:label">Rights statement</h4>
@@ -12,21 +12,23 @@
               <li>Data licence: <a href="https://creativecommons.org/licenses/by/4.0/" property="odrs:dataLicense">Creative Commons Attribution (CC-BY) 4.0</a></li>
               <li>Content licence: <a href="https://creativecommons.org/licenses/by/4.0/" property="odrs:contentLicense">Creative Commons Attribution (CC-BY) 4.0</a></li>
           </ul>
-          
+
           <p>
-          If you would like to attribute this dataset, please use a link similar to the following: 
+          If you would like to attribute this dataset, please use a link similar to the following:
             <a href="<%= request.original_url %>" property="odrs:attributionURL"><span property="odrs:attributionText">Open Data Pathway statistics</span></a>.
           </p>
-          
-          <p>Data published by the 
+
+          <p>Data published by the
             <span property="dct:publisher" typeof="foaf:Agent" resource="http://theodi.org">
               <a href="http://theodi.org" property="foaf:homepage"><span property="foaf:name">Open Data Institute</span></a>.
-          </span>          
-    </div>          
+          </span>
+    </div>
   </div>
-          
+
+  <script src='https://certificates.theodi.org/datasets/24612/certificate/badge.js'></script>
+
   <h3>Downloads</h3>
-          
+
   <table class="table">
     <thead>
       <tr><th>Distribution</th><th></th><th></th></tr>
@@ -45,18 +47,18 @@
       <tr>
         <td>Aggregate statistics: all assessments from data.gov.uk organisations</td>
         <td><a href="/statistics/all_dgu_organisations.json">JSON</a></td>
-        <td><a href="/statistics/all_dgu_organisations.csv">CSV</a></td>        
-        
+        <td><a href="/statistics/all_dgu_organisations.csv">CSV</a></td>
+
       </tr>
     </tbody>
   </table>
 
   <h3>Documentation</h3>
-  
+
   <p>
   The following tables define the fields and/or data columns used in the data downloads.
   </p>
-  
+
   <h4>Summary usage statistics</h4>
 
   <table class="table">
@@ -90,24 +92,24 @@
       </tr>
     </tbody>
   </table>
-  
+
   <h4>Aggregate statistics</h4>
 
   <p>
   Both of the aggregate statistics files have the same content but aggregate statistics for different collections of organisations.
   </p>
-  
+
   <ul>
     <li>"All organisations" refers to all users of the system</li>
     <li>"All data.gov.uk organisations" refers to all users that have registered with an organisation defined in data.gov.uk.</li>
   </ul>
-  
+
   <p>
   The CSV downloads have a simple tabular format that lists each of the activities and aggregate counts for the maturity scores.
-  The JSON files use a more slightly more idiomatic structure: hashes are used to group together themes and activities; and arrays 
+  The JSON files use a more slightly more idiomatic structure: hashes are used to group together themes and activities; and arrays
   are used for the aggregate counts of mature scores.
   </p>
-  
+
   <table class="table">
     <thead>
       <tr><th>Column</th><th>Definition</th></tr>
@@ -151,6 +153,6 @@
       </tr>
 
     </tbody>
-  </table>  
-  
+  </table>
+
 </div>
