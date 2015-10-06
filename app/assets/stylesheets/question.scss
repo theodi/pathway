@@ -68,10 +68,14 @@
 }
 
 div.nested_object {
-  
+
   fieldset { margin: 1em; margin-right: 0em; }
   a.delete_association { float:right; }
   label { display: inline-block; width: 10%; }
   input.form-control { width: 69%; display: inline-block; margin-bottom:0.5em; }
 
+}
+
+.alert {
+  margin: 1em 0;
 }
