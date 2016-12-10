@@ -12,6 +12,19 @@ Feature: Signing up
     And I press "Register"
     Then I should see "Welcome! You have signed up successfully."
 
+  Scenario: Sign up with country
+      When I go to the register page
+      Then I should see "Register"
+      When I fill in "Email" with "test@email.com"
+      And I fill in "Full name" with "Peter Manion"
+      And I fill in "Password" with "password"
+      And I fill in "Password confirmation" with "password"
+      And I fill in Associated organisation with "British Waterways"
+      And I fill in Associated country with "United Kingdom"
+      And I check "user_terms_of_service"
+      And I press "Register"
+      Then I should see "Welcome! You have signed up successfully."
+
   Scenario: Sign up without accepting terms
     When I go to the register page
     Then I should see "Register"
