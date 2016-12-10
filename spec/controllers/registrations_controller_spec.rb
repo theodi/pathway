@@ -9,7 +9,7 @@ describe RegistrationsController do
   describe "GET #new" do
     it "should new user to view the sign up page" do
       get :new
-      response.should be_success
+      expect(response).to be_success
     end
   end
   

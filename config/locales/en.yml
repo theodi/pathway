@@ -52,6 +52,7 @@ en:
         email: "Email"
         name: "Full name"
         associated_organisation: "Organisation"
+        associated_country: "Country"
 
   data-management-processes: "key business processes that underpin data management and publication, e.g. quality control, publication workflows, and the adoption of technical standards"
   knowledge-skills: "the culture of open data within an organisation by identifying the knowledge sharing, training and learning required to embed an understanding of the benefits of open data"
