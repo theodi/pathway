@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   get '/statistics/all_organisations' => 'statistics#all_organisations', defaults: {format: :json}
   get '/statistics/all_dgu_organisations' => 'statistics#all_dgu_organisations', defaults: {format: :json}
   get '/statistics/summary' => 'statistics#summary', defaults: {format: :json}  
-
+  get '/statistics/country_summary' => 'statistics#country_summary', defaults: {format: :json}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

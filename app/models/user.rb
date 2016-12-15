@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
     return User.where("organisation_id is not null")
   end
 
+  def self.with_no_country
+    return User.where("country_id is null")
+  end
+
   def current_assessment
     assessments.where(:completion_date => nil).first
   end

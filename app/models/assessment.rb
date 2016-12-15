@@ -101,6 +101,10 @@ class Assessment < ActiveRecord::Base
       random_code = SecureRandom.urlsafe_base64(nil, false)
       break random_code unless self.class.exists?(token: random_code)
     end
-  end  
-  
+  end
+
+  def self.users_with_no_country
+    return Assessment.joins(:user).where("users.country_id is null")
+  end
+
 end

@@ -1,20 +1,20 @@
 class StatisticsController < ApplicationController
   include StatisticsHelper
-  
-  def index    
+
+  def index
     @dimensions = Questionnaire.current.dimensions
     @scorer = OrganisationScorer.new
 
     @all_organisations = @scorer.read_all_organisations
     @dgu_organisations = @scorer.read_dgu_organisations
-    
+
     if current_user && (current_user.organisation.present? && current_user.organisation.parent.present?)
       @parent_organisation = Organisation.find( current_user.organisation.parent )
       @peer_organisations = @scorer.read_group( @parent_organisation )
     end
-    
+
   end
-  
+
   def data
   end
 
@@ -30,7 +30,7 @@ class StatisticsController < ApplicationController
         send_data create_csv(@dimensions, @scores), content_type: "text/csv; charset=utf-8"
       }
     end
-  end      
+  end
 
   def all_dgu_organisations
     @dimensions = Questionnaire.current.dimensions
@@ -45,7 +45,7 @@ class StatisticsController < ApplicationController
       }
     end
 
-  end      
+  end
 
   def summary
     data = {
@@ -68,6 +68,42 @@ class StatisticsController < ApplicationController
       format.csv {
         send_data create_summary_csv(data), content_type: "text/csv; charset=utf-8"
       }
-    end    
+    end
+  end
+
+  def country_summary
+    @countries = Country.all
+    data = []
+    other = {
+      registered_users: 0,
+      organisations_with_users: 0,
+      assessments: {
+        completed: 0,
+        total: 0
+      },
+      questionnaire_version: Questionnaire.current.version
+    }
+    @countries.each { |c|
+      completed = c.users_with_completed_assessments.count
+      if (completed >= ODMAT::Application::HEATMAP_THRESHOLD)
+        data << create_country_summary_data(c)
+      else
+        other[:registered_users] +=  c.users.count
+        other[:organisations_with_users] += c.users_with_organisations.count
+        other[:assessments][:completed] += completed
+        other[:assessments][:total] += c.assessments.count
+      end
+    }
+    data
+      << create_no_country_summary_data()
+      << create_other_country_summary_data(other)
+    respond_to do |format|
+      format.json {
+        render :json => data
+      }
+      format.csv {
+        send_data create_country_summary_csv(data), content_type: "text/csv; charset=utf-8"
+      }
+    end
   end
 end
