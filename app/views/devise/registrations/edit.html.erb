@@ -1,6 +1,7 @@
 <% content_for :title do %>Edit <%= resource_name.to_s.humanize.downcase %><% end %>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+	<%= devise_error_messages! %>
+	<%= flash[:alert] = t('errors.messages.no_country') if resource.country.to_s.blank? %>
   <p><span style="color: red">*</span> Required field</p>
   <div class="form-group">
     <%= f.label :associated_organisation %><span class="inline italic"><%= t :organisation_registration %></span><br />
