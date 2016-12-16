@@ -45,7 +45,7 @@ Feature: Signing up
     And I fill in "Password" with "password"
     And I fill in "Password confirmation" with "password"
     And I fill in Associated organisation with "British Waterways"
-      And I fill in Associated country with ""
+    And I fill in Associated country with ""
     And I check "user_terms_of_service"
     And I press "Register"
     Then I should see "Welcome! You have signed up successfully."

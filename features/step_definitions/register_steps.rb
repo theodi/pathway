@@ -5,7 +5,7 @@ end
 
 When(/^I fill in Associated country with "([^"]*)"$/) do |value|
   hidden_field = find :xpath, "//input[@id='user_associated_country']"
-  user = FactoryGirl.build(:country_user)
+  user = FactoryGirl.build(:country_user2)
   user.save
   hidden_field.set value
 end
