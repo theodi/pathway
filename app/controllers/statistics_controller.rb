@@ -76,7 +76,7 @@ class StatisticsController < ApplicationController
     data = []
     other = {
       registered_users: 0,
-      organisations_with_users: 0,
+      users_with_organisations: 0,
       assessments: {
         completed: 0,
         total: 0

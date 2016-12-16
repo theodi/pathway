@@ -42,7 +42,7 @@ module StatisticsHelper
       csv << ["Registered users", summary[:registered_users]]
       csv << ["data.gov.uk organisations", summary[:organisations][:datagovuk] ]
       csv << ["Total organisations", summary[:organisations][:total] ]
-      csv << ["Organisations with users", summary[:organisations][:total_with_users] ]
+      csv << ["Users with organisations", summary[:organisations][:total_with_users] ]
       csv << ["Completed assessments", summary[:assessments][:completed] ]
       csv << ["Total assessments", summary[:assessments][:total] ]
       csv << ["Questionnaire version", summary[:questionnaire_version] ]
