@@ -54,7 +54,7 @@ module StatisticsHelper
     return {
         country: country.name,
         registered_users:  country.users.count,
-        organisations_with_users: country.users_with_organisations.count,
+        users_with_organisations: country.users_with_organisations.count,
         assessments: {
           completed: completed,
           total: country.assessments.count
@@ -67,7 +67,7 @@ module StatisticsHelper
     return {
         country: "Not specified",
         registered_users:  User.with_no_country.count,
-        organisations_with_users: User.organisational_users.with_no_country.count,
+        users_with_organisations: User.organisational_users.with_no_country.count,
         assessments: {
           completed: Assessment.users_with_no_country.completed.count,
           total: Assessment.users_with_no_country.count
@@ -80,7 +80,7 @@ module StatisticsHelper
     return {
         country: "All other countries",
         registered_users:  other[:registered_users],
-        organisations_with_users: other[:organisations_with_users],
+        users_with_organisations: other[:users_with_organisations],
         assessments: {
           completed: other[:assessments][:completed],
           total: other[:assessments][:total]
@@ -94,7 +94,7 @@ module StatisticsHelper
     data = CSV.generate({col_sep: ",", row_sep: "\r\n", quote_char: '"'}) do |csv|
       csv << ["Country", "Registered Users", "Organisations With Users", "Completed Assessments","Total Assessments","Questionnaire Version"]
       country_summary.each do |cs|
-        csv << [cs[:country],cs[:registered_users],cs[:organisations_with_users],cs[:assessments][:completed],cs[:assessments][:total],cs[:questionnaire_version]]
+        csv << [cs[:country],cs[:registered_users],cs[:users_with_organisations],cs[:assessments][:completed],cs[:assessments][:total],cs[:questionnaire_version]]
       end
     end
     return data

@@ -89,7 +89,7 @@ class StatisticsController < ApplicationController
         data << create_country_summary_data(c, completed)
       else
         other[:registered_users] +=  c.users.count
-        other[:organisations_with_users] += c.users_with_organisations.count
+        other[:users_with_organisations] += c.users_with_organisations.count
         other[:assessments][:completed] += completed
         other[:assessments][:total] += c.assessments.count
       end
