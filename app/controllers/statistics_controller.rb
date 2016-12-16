@@ -94,9 +94,7 @@ class StatisticsController < ApplicationController
         other[:assessments][:total] += c.assessments.count
       end
     }
-    data
-      << create_no_country_summary_data()
-      << create_other_country_summary_data(other)
+    data << create_no_country_summary_data() << create_other_country_summary_data(other)
     respond_to do |format|
       format.json {
         render :json => data
