@@ -12,6 +12,7 @@ List of registered users, ordered by the date they registered.
       <th>Name</th>
       <th>Email</th>
       <th>Organisation</th>
+      <th>Country</th>
       <th>Registered</th>
       <th>Last Login</th>
       <th>Admin?</th>
@@ -24,6 +25,7 @@ List of registered users, ordered by the date they registered.
         <td><%= user.name %></td>
         <td><%= link_to user.email, edit_user_path(user.id), :class => 'navbar-link' %></td>
         <td><%= user.organisation.title if user.organisation.present? %></td>
+        <td><%= user.country.name if user.country.present? %></td>
         <td><%= user.created_at.to_formatted_s(:db)  %></td>
         <td><%= user.last_sign_in_at.to_formatted_s(:db) if user.last_sign_in_at.present?  %></td>
         <td><%= user.admin? %></td>

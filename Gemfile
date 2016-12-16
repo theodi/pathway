@@ -39,11 +39,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rails_12factor' # For heroku
 
-gem 'devise'
+gem 'devise', '~> 3.5.10'
+gem 'bcrypt', '~> 3.1.11'
 gem 'cancancan', '~> 1.10'
 gem 'spreadsheet'
 
-gem "select2-rails"
+gem 'select2-rails', '~> 3.5.9.3'
 gem 'rack-google-analytics'
 
 gem 'high_voltage', '~> 2.2.1'
@@ -60,7 +61,7 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   #gem 'spring'
-  
+
   gem 'rspec-rails', '~> 3.1'
   gem 'cucumber-rails', require: false
   gem 'poltergeist'

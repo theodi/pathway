@@ -1,28 +1,28 @@
 class UserController < ApplicationController
   load_and_authorize_resource param_method: :my_sanitizer
-  
+
   def index
     @users = User.excludes(:id => current_user.id)
   end
-  
+
   def new
     @user = User.new
   end
-  
+
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:notice] = "Successfully created User." 
+      flash[:notice] = "Successfully created User."
       redirect_to root_path
     else
       render :action => 'new'
     end
   end
-  
+
   def edit
     @user = User.find(params[:id])
   end
-  
+
   def update
     @user = User.find(params[:id])
     params[:user].delete(:password) if params[:user][:password].blank?
@@ -34,7 +34,7 @@ class UserController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
@@ -42,10 +42,10 @@ class UserController < ApplicationController
       redirect_to admin_path
     end
   end
-  
+
   def user_params
     params.require(:user).permit([:email, :admin, :name])
   end
 
-     
+
 end

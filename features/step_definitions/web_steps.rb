@@ -67,3 +67,7 @@ end
 Then(/^the page title should read "(.*?)"$/) do |title|
   page.has_title? title
 end
+
+Then(/^I should see the page heading "(.*?)"$/) do |title|
+  expect(find('.page-title').find('h1')).to have_content(title)
+end

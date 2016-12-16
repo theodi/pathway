@@ -25,7 +25,7 @@ class RegistrationsController < Devise::RegistrationsController
       if @validatable
         @minimum_password_length = resource_class.password_length.min
       end
-      
+
       if resource.errors.include?(:organisation_id)
         redirect_to contact_organisation_admin_path(resource.organisation_id, email: resource.email)
       else
@@ -37,12 +37,12 @@ class RegistrationsController < Devise::RegistrationsController
   def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) do |u|
         u.permit(:name,
-          :email, :password, :password_confirmation, :associated_organisation, :terms_of_service)
-      end 
+          :email, :password, :password_confirmation, :associated_organisation, :associated_country, :terms_of_service)
+      end
     devise_parameter_sanitizer.for(:account_update) do |u|
       u.permit(:name,
-        :email, :password, :password_confirmation, :current_password, :associated_organisation, :terms_of_service, :name)
+        :email, :password, :password_confirmation, :current_password, :associated_organisation, :associated_country, :terms_of_service)
     end
   end
-    
+
 end

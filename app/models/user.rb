@@ -5,20 +5,25 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :organisation
+  belongs_to :country
   has_many :assessments, dependent: :destroy
 
   validates :organisation_id, uniqueness: true, unless: "organisation_id.nil?"
   validates :name, presence: true
   validates :terms_of_service, acceptance: true
-  
+
   def self.can_share?(user, assessment)
     return true if (user.present? && user.id == assessment.user.id)
   end
-  
+
   def self.organisational_users
     return User.where("organisation_id is not null")
   end
-  
+
+  def self.with_no_country
+    return User.where("country_id is null")
+  end
+
   def current_assessment
     assessments.where(:completion_date => nil).first
   end
@@ -32,6 +37,13 @@ class User < ActiveRecord::Base
     self.organisation
   end
 
+def associated_country=(name)
+    country = Country.where(name: name).first
+    self.country = country
+  end
+def associated_country
+  self.country
+end
   def latest_completed_assessment
     return assessments.where("completion_date is not null").order(completion_date: :desc).first
   end
