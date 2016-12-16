@@ -86,7 +86,7 @@ class StatisticsController < ApplicationController
     @countries.each { |c|
       completed = c.users_with_completed_assessments.count
       if (completed >= ODMAT::Application::HEATMAP_THRESHOLD)
-        data << create_country_summary_data(c)
+        data << create_country_summary_data(c, completed)
       else
         other[:registered_users] +=  c.users.count
         other[:organisations_with_users] += c.users_with_organisations.count

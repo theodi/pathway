@@ -50,7 +50,7 @@ module StatisticsHelper
     return data
   end
 
-  def create_country_summary_data(country)
+  def create_country_summary_data(country,completed)
     return {
         country: country.name,
         registered_users:  country.users.count,
