@@ -15,6 +15,11 @@ class OrganisationScorer
     score_organisations( set )
   end  
   
+  def score_country(country)
+    set = country.users_with_organisations
+    score_organisations( set )
+  end  
+  
   def score_organisations(organisations)
     results = {
       activities: {},
@@ -51,6 +56,10 @@ class OrganisationScorer
   
   def read_all_organisations
     read_scores_from_statistics( Organisation.all_organisations_group, User.count )
+  end
+  
+  def read_all_country_organisations(country)
+    read_scores_from_statistics( country, country.users_with_organisations.count )
   end
   
   def read_dgu_organisations

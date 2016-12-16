@@ -7,6 +7,13 @@ class StatisticsGenerator
     generate(group, scorer.score_all_organisations)
   end
 
+  def generate_stats_for_all_countries_with_users_with_organisations
+    scorer = OrganisationScorer.new
+    Country.all.each do |country|
+      generate( country, scorer.score_country(country) ) if country.users_with_organisations.count > 0
+    end
+  end
+
   def generate_stats_for_dgu_organisations
     group = Organisation.all_dgu_organisations_group
     raise "Unable to find 'All data.gov.uk organisations' group" unless group.present?
