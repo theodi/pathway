@@ -18,4 +18,8 @@
   def users_with_organisations
       return users.where("organisation_id is not null")
   end
+
+  def users_with_completed_assessments
+      return assessments.where("completion_date is not null")
+  end
 end
