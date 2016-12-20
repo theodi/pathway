@@ -135,4 +135,113 @@ describe StatisticsController do
 
     end
   end
+  
+  context "when request all organisations by country" do
+
+    before(:each) do
+      FactoryGirl.create(:organisation)
+      FactoryGirl.create(:user)
+      country = FactoryGirl.create(:country)
+      [1,2,3,4,5].each do |count|
+         FactoryGirl.create(:"organisation#{count}")
+         user = FactoryGirl.create(:organisation_user2, email: "user#{count}@example.org", country_id: country.id, organisation_id: count)
+         assessment = FactoryGirl.create(:assessment, user: user)
+         AssessmentAnswer.create(assessment: assessment, question: Question.first, answer: Answer.find_by_code("Q1.2") )
+         assessment.complete
+      end
+
+      generator = StatisticsGenerator.new
+      generator.generate_stats_for_all_countries
+      
+      CountryScoresDatum.all.each do | score|
+        puts "next datum: #{score.inspect}"
+      end
+      get "all_organisations_by_country", format: "json"
+      expect( response ).to be_success
+      @json = JSON.parse(response.body)
+    end
+
+    it "should return all organisations by country, including not specified, and all other countries" do
+      expect( @json).to eql(JSON.parse('[
+      {"country":"United Kingdom",
+         "completed":5,
+         "organisations":5,
+         "themes":
+          {"Data management processes":
+            {"Data release process":[5, 0, 0, 0, 0],
+             "Standards development & adoption":[0, 0, 0, 0, 0],
+             "Data governance":[0, 0, 0, 0, 0],
+             "Data defusing":[0, 0, 0, 0, 0]},
+           "Knowledge & skills":
+            {"Open data expertise":[0, 0, 0, 0, 0],
+             "Knowledge management":[0, 0, 0, 0, 0]},
+           "Customer support & engagement":
+            {"Engagement process":[0, 0, 0, 0, 0],
+             "Open data documentation":[0, 0, 0, 0, 0],
+             "Reuser support processes":[0, 0, 0, 0, 0],
+             "Community norms":[0, 0, 0, 0, 0]},
+           "Investment & financial performance":
+            {"Financial oversight":[0, 0, 0, 0, 0],
+             "Dataset valuation process":[0, 0, 0, 0, 0],
+             "Open data in procurement":[0, 0, 0, 0, 0]},
+           "Strategy & governance":
+            {"Open data strategy":[0, 0, 0, 0, 0],
+             "Asset catalogue":[0, 0, 0, 0, 0]}}},
+         
+         {"country":"All other countries",
+          "completed":0,
+          "organisations":0,
+         "themes":
+          {"Data management processes":
+            {"Data release process":[0, 0, 0, 0, 0],
+             "Standards development & adoption":[0, 0, 0, 0, 0],
+             "Data governance":[0, 0, 0, 0, 0],
+             "Data defusing":[0, 0, 0, 0, 0]},
+           "Knowledge & skills":
+            {"Open data expertise":[0, 0, 0, 0, 0],
+             "Knowledge management":[0, 0, 0, 0, 0]},
+           "Customer support & engagement":
+            {"Engagement process":[0, 0, 0, 0, 0],
+             "Open data documentation":[0, 0, 0, 0, 0],
+             "Reuser support processes":[0, 0, 0, 0, 0],
+             "Community norms":[0, 0, 0, 0, 0]},
+           "Investment & financial performance":
+            {"Financial oversight":[0, 0, 0, 0, 0],
+             "Dataset valuation process":[0, 0, 0, 0, 0],
+             "Open data in procurement":[0, 0, 0, 0, 0]},
+           "Strategy & governance":
+            {"Open data strategy":[0, 0, 0, 0, 0],
+             "Asset catalogue":[0, 0, 0, 0, 0]}}},
+        
+        {"country":"Not specified",
+         "completed":0,
+         "organisations":0,
+         "themes":
+          {"Data management processes":
+            {"Data release process":[0, 0, 0, 0, 0],
+             "Standards development & adoption":[0, 0, 0, 0, 0],
+             "Data governance":[0, 0, 0, 0, 0],
+             "Data defusing":[0, 0, 0, 0, 0]},
+           "Knowledge & skills":
+            {"Open data expertise":[0, 0, 0, 0, 0],
+             "Knowledge management":[0, 0, 0, 0, 0]},
+           "Customer support & engagement":
+            {"Engagement process":[0, 0, 0, 0, 0],
+             "Open data documentation":[0, 0, 0, 0, 0],
+             "Reuser support processes":[0, 0, 0, 0, 0],
+             "Community norms":[0, 0, 0, 0, 0]},
+           "Investment & financial performance":
+            {"Financial oversight":[0, 0, 0, 0, 0],
+             "Dataset valuation process":[0, 0, 0, 0, 0],
+             "Open data in procurement":[0, 0, 0, 0, 0]},
+           "Strategy & governance":
+            {"Open data strategy":[0, 0, 0, 0, 0],
+             "Asset catalogue":[0, 0, 0, 0, 0]}}},
+        {"level_names":
+          ["Initial", "Repeatable", "Defined", "Managed", "Optimising"]}
+       ]'
+         ))
+    end
+  end
+
 end
