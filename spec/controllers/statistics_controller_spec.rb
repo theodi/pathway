@@ -144,7 +144,7 @@ describe StatisticsController do
       country = FactoryGirl.create(:country)
       [1,2,3,4,5].each do |count|
          FactoryGirl.create(:"organisation#{count}")
-         user = FactoryGirl.create(:organisation_user2, email: "user#{count}@example.org", country_id: country.id, organisation_id: count)
+         user = FactoryGirl.create(:organisation_user, email: "user#{count}@example.org", country_id: country.id, organisation_id: count)
          assessment = FactoryGirl.create(:assessment, user: user)
          AssessmentAnswer.create(assessment: assessment, question: Question.first, answer: Answer.find_by_code("Q1.2") )
          assessment.complete
