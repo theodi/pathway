@@ -64,7 +64,7 @@ describe StatisticsController do
       FactoryGirl.create(:country_user)
       FactoryGirl.create(:country_organisation_user_with_assessments)
 
-      get "country_summary", format: "json"
+      get "summary_by_country", format: "json"
       expect( response ).to be_success
       @json = JSON.parse(response.body)
     end

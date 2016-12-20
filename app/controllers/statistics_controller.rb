@@ -31,6 +31,25 @@ class StatisticsController < ApplicationController
       }
     end
   end
+  
+  def all_organisations_by_country
+    json_data = []
+    csv_data = create_country_csv_header()
+    CountryScoresDatum.all.each do |country_score|
+      next_json = JSON.parse(country_score[:data])
+      json_data << next_json
+      csv_data << create_country_csv_row(country_score[:name], @dimensions, next_json) 
+    end
+    json_data << {:level_names => ["Initial", "Repeatable", "Defined", "Managed", "Optimising"]}
+    respond_to do |format|
+      format.json {
+        render :json => json_data
+      }
+      format.csv {
+        send_data csv_data, content_type: "text/csv; charset=utf-8"
+      }
+    end
+  end
 
   def all_dgu_organisations
     @dimensions = Questionnaire.current.dimensions
@@ -71,7 +90,7 @@ class StatisticsController < ApplicationController
     end
   end
 
-  def country_summary
+  def summary_by_country
     @countries = Country.all
     data = []
     other = {

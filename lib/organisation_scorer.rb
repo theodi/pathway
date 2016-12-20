@@ -58,7 +58,7 @@ class OrganisationScorer
     read_scores_from_statistics( Organisation.all_organisations_group, User.count )
   end
   
-  def read_all_country_organisations(country)
+  def read_country_organisations(country)
     read_scores_from_statistics( country, country.users_with_organisations.count )
   end
   
@@ -79,7 +79,7 @@ class OrganisationScorer
     Questionnaire.current.activities.each do |activity|
       results[:activities][activity.name] = [0,0,0,0,0]
     end
-    results[:completed] = group.statistics.first.completed_assessments
+    results[:completed] = group.statistics.first ? group.statistics.first.completed_assessments : 0
     group.statistics.each do |organisation_score|
       results[:activities][organisation_score.activity.name] = 
           [organisation_score.initial, 

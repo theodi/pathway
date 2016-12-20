@@ -7,7 +7,7 @@ module StatisticsHelper
   def percentage(count, results)
     return (count.to_f / results[:completed].to_f * 100).to_i
   end
-
+   
   def create_public_scores(dimensions, scores)
     data = {
       completed: scores[:completed],
@@ -32,6 +32,24 @@ module StatisticsHelper
           csv << [ dimension.title, activity.title ] + scores[:activities][activity.name] + [scores[:completed], scores[:organisations]]
         end
       end if scores[:completed] >= ODMAT::Application::HEATMAP_THRESHOLD
+    end
+    return data
+  end
+  
+  def create_country_csv_header() 
+    data = CSV.generate({col_sep: ",", row_sep: "\r\n", quote_char: '"'}) do |csv|
+      csv << ["Country", "Theme", "Activity", "1-Initial", "2-Repeatable", "3-Defined", "4-Managed", "5-Optimising", "Completed", "Organisations"]
+    end
+    return data
+  end
+  
+  def create_country_csv_row(country, dimensions, scores) 
+    data = CSV.generate({col_sep: ",", row_sep: "\r\n", quote_char: '"'}) do |csv|
+      Questionnaire.current.dimensions.each do |dimension|
+        dimension.activities.each do |activity|       
+          csv << [ country, dimension.title, activity.title ] + scores["themes"][dimension.title][activity.title] + [scores["completed"], scores["organisations"]]
+        end
+      end
     end
     return data
   end
@@ -90,7 +108,6 @@ module StatisticsHelper
   end
 
   def create_country_summary_csv(country_summary)
-    # csv_summary = ["Statistic", "Value"] << summary
     data = CSV.generate({col_sep: ",", row_sep: "\r\n", quote_char: '"'}) do |csv|
       csv << ["Country", "Registered Users", "Organisations With Users", "Completed Assessments","Total Assessments","Questionnaire Version"]
       country_summary.each do |cs|

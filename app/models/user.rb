@@ -37,13 +37,14 @@ class User < ActiveRecord::Base
     self.organisation
   end
 
-def associated_country=(name)
-    country = Country.where(name: name).first
-    self.country = country
+  def associated_country=(name)
+      country = Country.where(name: name).first
+      self.country = country
+    end
+  def associated_country
+    self.country
   end
-def associated_country
-  self.country
-end
+  
   def latest_completed_assessment
     return assessments.where("completion_date is not null").order(completion_date: :desc).first
   end

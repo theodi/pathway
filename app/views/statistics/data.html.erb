@@ -40,9 +40,9 @@
         <td><a href="/statistics/summary.csv">CSV</a></td>
       </tr>
       <tr>
-      <td>Summary usage statistics by country</td>
-        <td><a href="/statistics/country_summary.json">JSON</a></td>
-        <td><a href="/statistics/country_summary.csv">CSV</a></td>
+        <td>Summary usage statistics by country</td>
+        <td><a href="/statistics/summary_by_country.json">JSON</a></td>
+        <td><a href="/statistics/summary_by_country.csv">CSV</a></td>
       </tr>
       <tr>
         <td>Aggregate statistics: all organisational assessments</td>
@@ -50,10 +50,14 @@
         <td><a href="/statistics/all_organisations.csv">CSV</a></td>
       </tr>
       <tr>
+        <td>Aggregate statistics: all organisational assessments by country</td>
+        <td><a href="/statistics/all_organisations_by_country.json">JSON</a></td>
+        <td><a href="/statistics/all_organisations_by_country.csv">CSV</a></td>
+      </tr>
+      <tr>
         <td>Aggregate statistics: all assessments from data.gov.uk organisations</td>
         <td><a href="/statistics/all_dgu_organisations.json">JSON</a></td>
         <td><a href="/statistics/all_dgu_organisations.csv">CSV</a></td>
-
       </tr>
     </tbody>
   </table>
@@ -100,20 +104,50 @@
 
   <h4>Summary usage statistics by country</h4>
   <p>
-  The summary usage statistics by country file groups usage statistics by <code>Country</code>.
+  The summary usage statistics by country data groups usage statistics by <code>Country</code>.
   </p>
   <ul>
-    <li>Where registered organisations have not yet nominated their country, their statistics are grouped under "Not specified".</li>
+    <li>Where registered users have not yet nominated their country, their statistics are grouped under "Not specified".</li>
+    <li>Where the number of assessments for a country is below the privacy threshold, statistics are grouped under "All other countries".</li>
   </ul>
+
+  <table class="table">
+    <thead>
+      <tr><th>Field</th><th>Definition</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>Country</code></td>
+        <td>A country name or a grouping where country isn't specified or would risk disclosing individual results.</td>
+      </tr>
+      <tr>
+        <td><code>Registered users</code></td>
+        <td>Number of users registered on the website.</td>
+      </tr>
+      <tr>
+        <td><code>Users with organisations</code></td>
+        <td>Number of users that have specified an organisation.</td>
+      </tr>
+      <tr>
+        <td><code>Completed assessments</code></td>
+        <td>Total number of completed assessments. A user can have multiple completed assessments.</td>
+      </tr>
+      <tr>
+        <td><code>Total assessments</code></td>
+        <td>Total number of assessments. A user can have multiple assessments, including one in-progress and several completed.</td>
+      </tr>
+    </tbody>
+  </table>
 
   <h4>Aggregate statistics</h4>
 
   <p>
-  Both of the aggregate statistics files have the same content but aggregate statistics for different collections of organisations.
+  The aggregate statistics files have similar content but aggregate statistics for different collections of organisations or group statistics by country.
   </p>
 
   <ul>
-    <li>"All organisations" refers to all users of the system</li>
+    <li>"All organisations" refers to all users of the system.</li>
+    <li>"All organisations by country" refers to all users of the system, grouped by country.</li>
     <li>"All data.gov.uk organisations" refers to all users that have registered with an organisation defined in data.gov.uk.</li>
   </ul>
 
@@ -128,6 +162,10 @@
       <tr><th>Column</th><th>Definition</th></tr>
     </thead>
     <tbody>
+      <tr>
+        <td><code>Country</code></td>
+        <td>A country name or a grouping where country isn't specified or would risk disclosing an individual organisation's results (only included for statistics by country)</td>
+      </tr>
       <tr>
         <td><code>Theme</code></td>
         <td>A theme defined in the open data maturity model.</td>

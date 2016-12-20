@@ -8,10 +8,13 @@ namespace :statistics do
     
     puts "Generating all orgs"
     generator.generate_stats_for_all_organisations
-    
+
+    puts "Generating all countries orgs"
+    generator.generate_stats_for_all_countries
+        
     puts "Generating d.g.u orgs"
     generator.generate_stats_for_dgu_organisations
-
+ 
     puts "Generating all parent groups"
     generator.generate_stats_for_dgu_groups
     

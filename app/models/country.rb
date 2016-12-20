@@ -1,6 +1,7 @@
   class Country < ActiveRecord::Base
   has_many :users
   has_many :assessments, through: :users
+  has_many :statistics, class_name: "CountryScore"
 
   validates :name, presence: true
   validates :name, uniqueness: true
@@ -17,6 +18,10 @@
 
   def users_with_organisations
       return users.where("organisation_id is not null")
+  end
+  
+  def users_with_no_organisation
+      return users.where("organisation_id is null")
   end
 
   def users_with_completed_assessments
