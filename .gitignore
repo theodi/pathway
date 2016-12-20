@@ -28,5 +28,5 @@ coverage
 
 #OS stuff
 app/assets/images/Thumbs.db
-
+local_scripts/
 *.iml
