@@ -48,7 +48,6 @@
   },
   "addons": [
     "scheduler",
-    "heroku-postgresql",
     "heroku-postgresql"
   ],
   "buildpacks": [
