@@ -1,0 +1,57 @@
+{
+  "name": "pathway",
+  "description": "",
+  "scripts": {
+  },
+  "env": {
+    "ADMIN_EMAIL": {
+      "required": true
+    },
+    "ADMIN_PASSWORD": {
+      "required": true
+    },
+    "GOOGLE_ANALYTICS_TRACKER": {
+      "required": true
+    },
+    "HEATMAP_THRESHOLD": {
+      "required": true
+    },
+    "HEROKU_POSTGRESQL_BLACK_URL": {
+      "required": true
+    },
+    "HEROKU_POSTGRESQL_ROSE_URL": {
+      "required": true
+    },
+    "LANG": {
+      "required": true
+    },
+    "MANDRILL_APIKEY": {
+      "required": true
+    },
+    "MANDRILL_USERNAME": {
+      "required": true
+    },
+    "RACK_ENV": {
+      "required": true
+    },
+    "RAILS_ENV": {
+      "required": true
+    },
+    "RAILS_SERVE_STATIC_FILES": {
+      "required": true
+    },
+    "SECRET_KEY_BASE": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "scheduler",
+    "heroku-postgresql",
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+
+  ]
+}
