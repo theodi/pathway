@@ -52,7 +52,10 @@ en:
         email: "Email"
         name: "Full name"
         associated_organisation: "Organisation"
+        associated_country: "Country"
 
+  organisation_registration: " (check if your organisation already has an account)"
+  country_registration: " (we use your country to create aggregate statistics)"
   data-management-processes: "key business processes that underpin data management and publication, e.g. quality control, publication workflows, and the adoption of technical standards"
   knowledge-skills: "the culture of open data within an organisation by identifying the knowledge sharing, training and learning required to embed an understanding of the benefits of open data"
   customer-support-engagement: "the manner in which an organisation engages with both their data sources and their data re-users to provide sufficient support and feedback to make open data successful"

@@ -2,14 +2,26 @@
 
 <div class="row">
   <div class="col-md-12">
+    <div>
+      Register for the Open Data Pathway to record your maturity assessment scores and targets.
+      <ul>
+        <li>Your results are private unless you decide to share.
+        <li>Each organisation can have only one account.
+      </ul>
+    </div>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
       <p><span style="color: red">*</span> Required field</p>
       <div class="form-group">
-        <%= f.label :associated_organisation %><br />
+        <%= f.label :associated_organisation %><span class="inline italic"><%= t :organisation_registration %></span><br />
         <%= f.hidden_field :associated_organisation, class: 'select2 ajax', data: { source: organisations_path(format: :json) }, style: "width:40%;" %>
       </div>
       
+      <div class="form-group">
+        <%= f.label :associated_country %><span class="inline italic"><%= t :country_registration %></span><br />
+        <%= f.hidden_field :associated_country, class: 'select2 ajax', data: { source: countries_path(format: :json) }, style: "width:40%;" %>
+      </div>
+
       <div class="form-group">
         <%= f.label :name, class: "required" %><br />
         <%= f.text_field :name, "data-validation": "required", "data-validation-error-msg": t(:name_validation), style: "width:40%;" %>

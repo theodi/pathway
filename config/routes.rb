@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :user, :controller => "user"
   
   get 'organisations' => 'organisations#index', as: 'organisations'
+  get 'countries' => 'countries#index', as: 'countries'
   get 'assessments/begin' => 'assessments#begin', as: 'begin_assessment'
   
   get 'assessments/:id/report' => 'assessments#report', as: 'report'

@@ -6,6 +6,15 @@ FactoryGirl.define do
     encrypted_password Devise.bcrypt(User, 'somepassword')
   end
 
+  factory :country_user, class: User do
+    name "Peter Manion"
+    email "org@example.org"
+    password 'somepassword'
+    country_id 235
+    association :country, factory: :country
+    encrypted_password Devise.bcrypt(User, 'somepassword')
+  end
+
   # This will use the User class (Admin would have been guessed)
   factory :admin, class: User do
     name "Peter Manion"
@@ -14,7 +23,7 @@ FactoryGirl.define do
     encrypted_password Devise.bcrypt(User, 'otherpassword')
     admin true
   end
-  
+
   factory :organisation_user, class: User do
     name "Peter Manion"
     email "org@example.org"
@@ -22,5 +31,5 @@ FactoryGirl.define do
     encrypted_password Devise.bcrypt(User, 'somepassword')
     organisation_id 1
   end
-  
+
 end

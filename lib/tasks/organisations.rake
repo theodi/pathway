@@ -11,6 +11,8 @@ namespace :organisations do
 
   desc "Imports organisations from the data.gov.uk hierarchy"
   task :import => :environment do
+    Organisation.create(title: "All Organisations")
+    Organisation.create(title: "All data.gov.uk organisations")
     uri = URI("https://data.gov.uk/api/action/group_tree?type=organization")
     response = Net::HTTP.get_response(uri)
     json = JSON.parse(response.body)

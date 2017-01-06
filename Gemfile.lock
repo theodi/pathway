@@ -55,8 +55,7 @@ GEM
     badgerbadgerbadger (0.12.0)
       git (~> 1.2)
       thor (~> 0.18)
-    bcrypt (3.1.10)
-    bcrypt (3.1.10-x86-mingw32)
+    bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.3)
@@ -99,7 +98,7 @@ GEM
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
-    devise (3.4.1)
+    devise (3.5.10)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -332,13 +331,14 @@ PLATFORMS
 
 DEPENDENCIES
   badgerbadgerbadger
+  bcrypt (~> 3.1.11)
   bootstrap-sass (~> 3.3.3)
   byebug
   cancancan (~> 1.10)
   coffee-rails (~> 4.1.0)
   cucumber-rails
   database_cleaner
-  devise
+  devise (~> 3.5.10)
   dotenv-rails
   factory_girl_rails
   font-awesome-rails
