@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104002323) do
+ActiveRecord::Schema.define(version: 20161218043408) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "name"
@@ -71,9 +71,28 @@ ActiveRecord::Schema.define(version: 20161104002323) do
   add_index "countries", ["name"], name: "index_countries_on_name", unique: true
 
   create_table "country_scores", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "country_id"
+    t.integer  "activity_id"
+    t.integer  "initial"
+    t.integer  "repeatable"
+    t.integer  "defined"
+    t.integer  "managed"
+    t.integer  "optimising"
+  end
+
+  add_index "country_scores", ["activity_id"], name: "index_country_scores_on_activity_id"
+  add_index "country_scores", ["country_id"], name: "index_country_scores_on_country_id"
+
+  create_table "country_scores_data", force: :cascade do |t|
+    t.string   "name"
+    t.string   "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "country_scores_data", ["name"], name: "index_country_scores_data_on_name", unique: true
 
   create_table "dimensions", force: :cascade do |t|
     t.string   "name"

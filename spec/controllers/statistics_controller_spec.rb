@@ -95,7 +95,6 @@ describe StatisticsController do
   context "when requesting organisational stats" do
 
     context "as json" do
-
       before(:each) do
         org = FactoryGirl.create(:organisation)
         user = FactoryGirl.create(:organisation_user, email: "other@example.org", organisation: org)
@@ -110,32 +109,63 @@ describe StatisticsController do
         Organisation.create!(title: "All data.gov.uk organisations")
         generator = StatisticsGenerator.new
         generator.generate_all
-
-        get "all_organisations", format: "json"
-        expect( response ).to be_success
-        @json = JSON.parse(response.body)
-
       end
 
-      it "should return number of organisations" do
-        expect( @json["organisations"] ).to eql(1)
+      context "given heatmap threshold is 1" do
+        before(:each) do
+          stub_const("ODMAT::Application::HEATMAP_THRESHOLD", 1)
+          get "all_organisations", format: "json"
+          expect( response ).to be_success
+          @json = JSON.parse(response.body)
+        end
+
+        it "should return number of organisations" do
+          expect( @json["organisations"] ).to eql(1)
+        end
+
+        it "should return number of assessments" do
+          expect( @json["completed"] ).to eql(1)
+        end
+
+        it "should return scores" do
+          expect( @json["themes"]["Data management processes"]["Data release process"] ).to eql([1,0,0,0,0])
+        end
+
+        it "should return level names" do
+          expect( @json["level_names"] ).to eql( ["Initial", "Repeatable", "Defined", "Managed", "Optimising"] )
+        end
       end
 
-      it "should return number of assessments" do
-        expect( @json["completed"] ).to eql(1)
+      context "given heatmap threshold is 5" do
+        before(:each) do
+          stub_const("ODMAT::Application::HEATMAP_THRESHOLD", 5)
+          get "all_organisations", format: "json"
+          expect( response ).to be_success
+          @json = JSON.parse(response.body)
+        end
+
+        it "should return number of organisations" do
+          expect( @json["organisations"] ).to eql(1)
+        end
+
+        it "should return number of assessments" do
+          expect( @json["completed"] ).to eql(1)
+        end
+
+        it "should return scores" do
+          expect( @json["themes"]).to eql({})
+        end
+
+        it "should return level names" do
+          expect( @json["level_names"] ).to eql( ["Initial", "Repeatable", "Defined", "Managed", "Optimising"] )
+        end
       end
 
-      it "should return scores" do
-        expect( @json["themes"]["Data management processes"]["Data release process"] ).to eql([1,0,0,0,0])
-      end
-
-      it "should return level names" do
-        expect( @json["level_names"] ).to eql( ["Initial", "Repeatable", "Defined", "Managed", "Optimising"] )
-      end
 
     end
+
   end
-  
+
   context "when request all organisations by country" do
 
     before(:each) do
@@ -152,7 +182,7 @@ describe StatisticsController do
 
       generator = StatisticsGenerator.new
       generator.generate_stats_for_all_countries
-      
+
       CountryScoresDatum.all.each do | score|
         puts "next datum: #{score.inspect}"
       end
@@ -187,7 +217,7 @@ describe StatisticsController do
            "Strategy & governance":
             {"Open data strategy":[0, 0, 0, 0, 0],
              "Asset catalogue":[0, 0, 0, 0, 0]}}},
-         
+
          {"country":"All other countries",
           "completed":0,
           "organisations":0,
@@ -212,7 +242,7 @@ describe StatisticsController do
            "Strategy & governance":
             {"Open data strategy":[0, 0, 0, 0, 0],
              "Asset catalogue":[0, 0, 0, 0, 0]}}},
-        
+
         {"country":"Not specified",
          "completed":0,
          "organisations":0,
