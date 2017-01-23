@@ -20,11 +20,3 @@ notifications:
     - "%{repository} %{branch} - %{message} %{build_url}"
     on_success: change
     on_failure: always
-deploy:
-  provider: heroku
-  app: odmat-staging
-  run: 
-    - "rake db:migrate"
-    - restart
-  api_key:
-    secure: a2Tuz4rT6F7F7ThoYx8u62yRd/mSmfI4JL1kH0Zk4FBNHo5tgUAscSSxQOUxk1irBMdG5zqF28m4SUGLtep3i/0h9JE3ygKnhq6aPGsh5a/OSZWAi7lbpIJgB77m6vx4jiVTX0SqMHLUs3IT4DUkFYwIAwKCPoRXTHEHtdIs7qw=
