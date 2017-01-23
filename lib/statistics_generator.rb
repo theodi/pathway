@@ -73,7 +73,7 @@ class StatisticsGenerator
   end
   
   def sum_not_specified_scores(user, not_specified_scores) 
-    scores = @scorer.read_group(user.associated_organisation)
+    scores = @scorer.score_organisations([user.associated_organisation])
     sum_scores(not_specified_scores, scores)
   end
   
