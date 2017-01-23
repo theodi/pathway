@@ -109,7 +109,7 @@ module StatisticsHelper
 
   def create_country_summary_csv(country_summary)
     data = CSV.generate({col_sep: ",", row_sep: "\r\n", quote_char: '"'}) do |csv|
-      csv << ["Country", "Registered Users", "Organisations With Users", "Completed Assessments","Total Assessments","Questionnaire Version"]
+      csv << ["Country", "Registered Users", "Users With Organisations", "Completed Assessments","Total Assessments","Questionnaire Version"]
       country_summary.each do |cs|
         csv << [cs[:country],cs[:registered_users],cs[:users_with_organisations],cs[:assessments][:completed],cs[:assessments][:total],cs[:questionnaire_version]]
       end
