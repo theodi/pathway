@@ -67,8 +67,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'simplecov', :group => :test
 
-  gem 'travisify', github: 'theodi/travisify'
-  gem 'badgerbadgerbadger'
   gem 'dotenv-rails'
 end
 
