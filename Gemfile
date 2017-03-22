@@ -37,8 +37,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'rails_12factor' # For heroku
-
 gem 'devise', '~> 3.5.10'
 gem 'bcrypt', '~> 3.1.11'
 gem 'cancancan', '~> 1.10'
@@ -77,6 +75,7 @@ end
 group :production do
   # Postgres on Heroku in production
   gem 'pg'
+  gem 'rails_12factor' # For heroku
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
