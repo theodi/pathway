@@ -1,17 +1,5 @@
 Feature: Signing up
 
-  Scenario: Standard sign up
-    When I go to the register page
-    Then I should see "Register"
-    When I fill in "Email" with "test@email.com"
-    And I fill in "Full name" with "Peter Manion"
-    And I fill in "Password" with "password"
-    And I fill in "Password confirmation" with "password"
-    And I fill in Associated organisation with "British Waterways"
-    And I check "user_terms_of_service"
-    And I press "Register"
-    Then I should see "Welcome! You have signed up successfully."
-
   Scenario: Sign up without accepting terms
     When I go to the register page
     Then I should see "Register"
@@ -26,7 +14,7 @@ Feature: Signing up
 
   Scenario: Sign up where organisation has been taken
     Given the test survey has been loaded
-    Given a user is already associated with "British Waterways"
+    Given a user is associated with an organisation named "British Waterways"
     When I go to the register page
     And I fill in "Email" with "alex@email.com"
     And I fill in "Full name" with "Alex Manion"
@@ -49,7 +37,30 @@ Feature: Signing up
     And I press "Update"
     Then I should see "Your account has been updated successfully"
 
-  Scenario: View assessments after sign-in
-    Given I am logged in as a user
-    Then I should see "Signed in successfully"
-    Then I should see "My assessments"
+  Scenario: Sign up with no country
+    When I go to the register page
+    Then I should see "Register"
+    When I fill in "Email" with "test@email.com"
+    And I fill in "Full name" with "Peter Manion"
+    And I fill in "Password" with "password"
+    And I fill in "Password confirmation" with "password"
+    And I fill in Associated organisation with "British Waterways"
+    And I fill in Associated country with ""
+    And I check "user_terms_of_service"
+    And I press "Register"
+    Then I should see "Welcome! You have signed up successfully."
+    And I should see the page heading "Edit user"
+
+  Scenario: Sign up with country
+    When I go to the register page
+    Then I should see "Register"
+    When I fill in "Email" with "test@email.com"
+    And I fill in "Full name" with "Peter Manion"
+    And I fill in "Password" with "password"
+    And I fill in "Password confirmation" with "password"
+    And I fill in Associated organisation with "British Waterways"
+    And I fill in Associated country with "United Kingdom"
+    And I check "user_terms_of_service"
+    And I press "Register"
+    Then I should see "Welcome! You have signed up successfully."
+    And I should see the page heading "My assessments"

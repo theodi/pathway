@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506111100) do
+ActiveRecord::Schema.define(version: 20161218043408) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "name"
@@ -59,6 +59,40 @@ ActiveRecord::Schema.define(version: 20150506111100) do
   end
 
   add_index "assessments", ["user_id"], name: "index_assessments_on_user_id"
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "countries", ["code"], name: "index_countries_on_code", unique: true
+  add_index "countries", ["name"], name: "index_countries_on_name", unique: true
+
+  create_table "country_scores", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "country_id"
+    t.integer  "activity_id"
+    t.integer  "initial"
+    t.integer  "repeatable"
+    t.integer  "defined"
+    t.integer  "managed"
+    t.integer  "optimising"
+  end
+
+  add_index "country_scores", ["activity_id"], name: "index_country_scores_on_activity_id"
+  add_index "country_scores", ["country_id"], name: "index_country_scores_on_country_id"
+
+  create_table "country_scores_data", force: :cascade do |t|
+    t.string   "name"
+    t.string   "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "country_scores_data", ["name"], name: "index_country_scores_data_on_name", unique: true
 
   create_table "dimensions", force: :cascade do |t|
     t.string   "name"
@@ -154,8 +188,10 @@ ActiveRecord::Schema.define(version: 20150506111100) do
     t.boolean  "admin",                  default: false
     t.integer  "organisation_id"
     t.string   "name"
+    t.integer  "country_id"
   end
 
+  add_index "users", ["country_id"], name: "index_users_on_country_id"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 

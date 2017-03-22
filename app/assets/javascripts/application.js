@@ -48,8 +48,8 @@ var attachTypeAhead = function(){
 
 $(document).ready(function() {
   $.validate({modules: 'security', form: "#new_user, #edit_user"});
-  $('[data-toggle="tooltip"]').tooltip();  
-  
+  $('[data-toggle="tooltip"]').tooltip();
+
   $('.activities li a[data-toggle="tab"]').on('show.bs.tab', function (e) {
     $('.activities li.active').removeClass('active');
   })

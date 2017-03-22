@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :user, :controller => "user"
   
   get 'organisations' => 'organisations#index', as: 'organisations'
+  get 'countries' => 'countries#index', as: 'countries'
   get 'assessments/begin' => 'assessments#begin', as: 'begin_assessment'
   
   get 'assessments/:id/report' => 'assessments#report', as: 'report'
@@ -33,9 +34,10 @@ Rails.application.routes.draw do
   get '/statistics' => 'statistics#index'
   get '/statistics/data' => 'statistics#data'
   get '/statistics/all_organisations' => 'statistics#all_organisations', defaults: {format: :json}
+  get '/statistics/all_organisations_by_country' => 'statistics#all_organisations_by_country', defaults: {format: :json}
   get '/statistics/all_dgu_organisations' => 'statistics#all_dgu_organisations', defaults: {format: :json}
   get '/statistics/summary' => 'statistics#summary', defaults: {format: :json}  
-
+  get '/statistics/summary_by_country' => 'statistics#summary_by_country', defaults: {format: :json}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

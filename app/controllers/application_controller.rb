@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  
+
   def index
   end
 
@@ -16,17 +16,21 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:account_update) << :name
   end
-  
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to(root_url, {:flash => { :alert => exception.message }})
-  end  
+  end
 
   def after_sign_in_path_for(resource)
-    assessments_path
+    if current_user.associated_country.blank?
+      edit_user_registration_path
+    else
+      assessments_path
+    end
   end
-  
+
   def current_ability
       @current_ability ||= Ability.new(current_user, params[:token])
   end
-        
+
 end
