@@ -26,6 +26,9 @@ coverage
 .buildpath
 .project
 
+# RubyMine project files
+.idea
+
 #OS stuff
 app/assets/images/Thumbs.db
 local_scripts/
