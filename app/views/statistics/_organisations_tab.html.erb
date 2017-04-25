@@ -14,17 +14,18 @@
       </ul>
     </div>
 
-    <% if results[:completed] == 0 %>    
+    <% if results[:completed] == 0 %>
+
       <p>None of the organisations have completed an assessment</p>
     <% elsif results[:completed] < ODMAT::Application::HEATMAP_THRESHOLD %>
-    
+
       <p>Not enough organisations have yet completed an assessment in order for statistics to be published</p>    
       
     <% else %>
-  
-      <p>Showing aggregate results for <% if results[:completed] > 1 %><strong><%= results[:completed] %></strong> completed assessments <% else %> <strong><%= results[:completed] %></strong> assessment<% end %>
-          from a total of <strong><%= results[:organisations] %></strong> registered users.</p>
-  
+        <% #byebug %>
+        <p>Showing aggregate results for <% if results[:completed] > 1 %><strong><%= results[:completed] %></strong> assessments <% else %> <strong><%= results[:completed] %></strong> assessment<% end %>
+          from a total of <strong> <% if results[:registered_users].present? %>  <%= results[:registered_users] %>  <% else %> <%= results[:organisations] %><% end %></strong> registered organisations.</p>
+        <% #results[:registered_users]%>
       <p><%= note %></p>
       
       <%= render 'assessments/activity_label' %>
