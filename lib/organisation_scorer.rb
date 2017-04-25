@@ -26,6 +26,9 @@ class OrganisationScorer
       organisations: organisations.size,
       completed: 0  
     }    
+    if organisations.respond_to? :organisational_users
+      results[:registered_users] = organisations.organisational_users.count
+    end
     Questionnaire.current.activities.each do |activity|
       results[:activities][activity.name] = [0,0,0,0,0]
     end
