@@ -67,6 +67,18 @@ describe OrganisationScorer do
       expect( results[:organisations] ).to eql(1)
     end
 
+    it "should count only registered users" do
+      u = FactoryGirl.create :user, email: "unaffiliated@example.org"
+      a = FactoryGirl.create :assessment, user: u
+      AssessmentAnswer.create( assessment: a, question: Question.first, answer: Answer.find_by_code("Q1.2") )
+      a.complete
+      results = scorer.score_all_organisations
+      # byebug
+      expect(User.count).to eql(2)
+      expect(Assessment.count).to eql(2)
+      expect( results[:registered_users] ).to eql(1)
+      expect( results[:organisations] ).to eql(1)
+    end
 
     it "should count all organisations" do
       org = FactoryGirl.create :organisation, title: "other"

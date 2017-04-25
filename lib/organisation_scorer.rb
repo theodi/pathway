@@ -23,11 +23,13 @@ class OrganisationScorer
   def score_organisations(organisations)
     results = {
       activities: {},
-      organisations: organisations.size,
+      organisations: 0,
       completed: 0  
-    }    
+    }
     if organisations.respond_to? :organisational_users
       results[:registered_users] = organisations.organisational_users.count
+    else
+      results[:organisations] = organisations.size
     end
     Questionnaire.current.activities.each do |activity|
       results[:activities][activity.name] = [0,0,0,0,0]
