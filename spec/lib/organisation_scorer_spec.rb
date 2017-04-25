@@ -23,6 +23,7 @@ describe OrganisationScorer do
     
     it "should return organisation count" do
       expect( scorer.score_organisations( Organisation.all )[:organisations] ).to eql(1)
+
     end
     
     it "should return number of completed assessments" do
@@ -59,7 +60,14 @@ describe OrganisationScorer do
       AssessmentAnswer.create( assessment: assessment, question: Question.first, answer: Answer.find_by_code("Q1.2") )
       assessment.complete
     }
-        
+
+    it "should return registered user count" do
+      results = scorer.score_all_organisations
+      expect( results[:registered_users] ).to eql(1)
+      expect( results[:organisations] ).to eql(1)
+    end
+
+
     it "should count all organisations" do
       org = FactoryGirl.create :organisation, title: "other"
       u = FactoryGirl.create :user, organisation: org, email: "other@example.org"
