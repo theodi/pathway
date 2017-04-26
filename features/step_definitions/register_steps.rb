@@ -1,10 +1,10 @@
 When(/^I fill in Associated organisation with "([^"]*)"$/) do |value|
-  hidden_field = find :xpath, "//input[@id='user_associated_organisation']"
+  hidden_field = find :xpath, "//input[@id='user_associated_organisation']", visible: false
   hidden_field.set value
 end
 
 When(/^I fill in Associated country with "([^"]*)"$/) do |value|
-  hidden_field = find :xpath, "//input[@id='user_associated_country']"
+  hidden_field = find :xpath, "//input[@id='user_associated_country']", visible: false
   user = FactoryGirl.build(:country)
   user.save
   hidden_field.set value
