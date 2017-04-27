@@ -13,6 +13,10 @@ To help benchmark organisations, and to provide a sense of the maturity of the o
 
 ## Summary of features
 
+Open Data Pathway is a rails app that currently supports the following user features.
+
+Follow the [public feature roadmap for Open Data Pathway](https://trello.com/b/2xc7Q0kd/labs-public-toolbox-roadmap?menu=filter&filter=label:Pathway)
+
 ### Assessments
 
 * User can register with the site to create one or more assessments
@@ -44,6 +48,9 @@ To help benchmark organisations, and to provide a sense of the maturity of the o
 [![Code Climate](http://img.shields.io/codeclimate/github/theodi/ODMAT.svg)](https://codeclimate.com/github/theodi/ODMAT)
 [![Badges](http://img.shields.io/:badges-4/4-ff6799.svg)](https://github.com/badges/badgerbadgerbadger)
 
+### Requirements
+Ruby 2.4.1
+
 ### Environment variables
 
 The `.env` file in the application directory should contain:
@@ -64,27 +71,20 @@ The variables are:
 * `ADMIN_EMAIL` and `ADMIN_PASSWORD` are read during `rake db:seed` to create a default admin user in the system with the given credentials
 * `HEATMAP_THRESHOLD` is the number of completed assessments that must be in the system before the statistics are shown to users. Helps to anonymise data when there are only a small number of completed assessments in the system or from a specific data.gov.uk organisation. Recommend to use `1` in development and `5` in production.
 
-These environment variables should also be configured on Heroku. The Mandrill ones (and those for Postgres which are not shown here) are handled when the addon is deployed for the app. The others needs to be manually added.
+These environment variables should also be configured on Heroku - see below #TODO. The Mandrill ones (and those for Postgres which are not shown here) are handled when the addon is deployed for the app. The others needs to be manually added.
 
-### Deployment on Heroku
+### Development: Running the full application locally
 
-Currently there are two deployment: a live site and a test server. Both use the following add-ons:
+Checkout the repository and run ```bundle``` in the checked out directory.
+To start the application run `rails s` in the checked out directory
 
-* Heroku Postgres
-* Mandrill
-* Heroku Scheduler - for running the data.gov.uk download and statistics generation
+### Tests
 
-The Travis build is configured to automatically deploy successful builds of master to the `odmat-staging` application. 
+Open Data Pathway uses ```rspec``` and ```cucumber``` frameworks and requires an ```.env``` file with the variables stipulated above
 
-Releases to production have so far been done manually: the production heroku app is set up as a remote git repo and code is pushed to that (`git push production master`).
+To run unit tests execute `bundle exec rspec`
 
-```
-$ git remote -v
-origin	git@github.com:theodi/ODMAT.git (fetch)
-origin	git@github.com:theodi/ODMAT.git (push)
-production	https://git.heroku.com/odmat.git (fetch)
-production	https://git.heroku.com/odmat.git (push)
-```
+To run Cucumber features execute `bundle exec cucumber`
 
 ### Rake Tasks
 
@@ -145,3 +145,24 @@ The `improvements` worksheet is structured as follows:
 
 An answer may have several improvements associated with it, e.g. a list of recommended tasks. These are displayed to the user based ordered by the ID in the spreadsheet.
 
+## Deployment
+
+### Deployment on Heroku
+
+Currently there are two deployment: a live site and a test server. Both use the following add-ons:
+
+* Heroku Postgres
+* Mandrill
+* Heroku Scheduler - for running the data.gov.uk download and statistics generation
+
+The Travis build is configured to automatically deploy successful builds of master to the `odmat-staging` application. 
+
+Releases to production have so far been done manually: the production heroku app is set up as a remote git repo and code is pushed to that (`git push production master`).
+
+```
+$ git remote -v
+origin	git@github.com:theodi/ODMAT.git (fetch)
+origin	git@github.com:theodi/ODMAT.git (push)
+production	https://git.heroku.com/odmat.git (fetch)
+production	https://git.heroku.com/odmat.git (push)
+```
