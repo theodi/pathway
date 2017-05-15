@@ -71,7 +71,7 @@ The variables are:
 * `ADMIN_EMAIL` and `ADMIN_PASSWORD` are read during `rake db:seed` to create a default admin user in the system with the given credentials
 * `HEATMAP_THRESHOLD` is the number of completed assessments that must be in the system before the statistics are shown to users. Helps to anonymise data when there are only a small number of completed assessments in the system or from a specific data.gov.uk organisation. Recommend to use `1` in development and `5` in production.
 
-These environment variables should also be configured on Heroku - see [below](https://github.com/theodi/pathway#deployment-on-heroku). The Mandrill ones (and those for Postgres which are not shown here) are handled when the addon is deployed for the app. The others needs to be manually added.
+These environment variables should also be configured on Heroku - see [below](#deployment-on-heroku). The Mandrill ones (and those for Postgres which are not shown here) are handled when the addon is deployed for the app. The others needs to be manually added.
 
 ### Development: Running the full application locally
 
