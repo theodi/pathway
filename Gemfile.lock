@@ -239,7 +239,7 @@ GEM
     turbolinks-source (5.0.0)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2017.1)
+    tzinfo-data (1.2017.2)
       tzinfo (>= 1.0.0)
     uglifier (3.1.9)
       execjs (>= 0.3.0, < 3)
