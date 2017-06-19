@@ -37,7 +37,7 @@ gem 'sdoc', '~> 0.4', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'devise', '~> 3.5'
+gem 'devise', '~> 4.3'
 gem 'bcrypt', '~> 3.1'
 gem 'cancancan', '~> 2.0'
 gem 'spreadsheet'
