@@ -1,6 +1,6 @@
-# ODMAT
+# Open Data Pathway
 
-[Open Data Pathway](http://pathway.theodi.org) is a tool to help organisations carry out an assessment of their open data maturity.
+[Open Data Pathway](http://pathway.theodi.org) is a tool to help organisations carry out an assessment of their open data maturity (ODMAT).
 
 The tool allows users to complete a series of short questionnaires to help calculate the maturity of a number of processes in the 
 organisation, e.g. how data is released and governed.
