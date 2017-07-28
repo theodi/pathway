@@ -6,7 +6,7 @@
 ## Current Behaviour
 <!--- What currently happens that isn't what's expected? -->
 
-## Desired Behaviour (for enhancement suggestions)
+## Desired Behaviour (for improvement suggestions)
 <!--- if relevant include images or hyperlinks to other resources that clarify the enhancement you're seeking -->
 
 ## Steps to Reproduce (for problems)
