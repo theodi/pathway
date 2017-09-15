@@ -42,7 +42,7 @@ gem 'bcrypt', '~> 3.1'
 gem 'cancancan', '~> 2.0'
 gem 'spreadsheet'
 
-gem 'select2-rails', '~> 3.5'
+gem 'select2-rails', '~> 4.0'
 gem 'rack-google-analytics'
 
 gem 'high_voltage', '~> 3.0'
