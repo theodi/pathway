@@ -39,7 +39,7 @@ gem 'sdoc', '~> 0.4', group: :doc
 
 gem 'devise', '~> 3.5'
 gem 'bcrypt', '~> 3.1'
-gem 'cancancan', '~> 2.0'
+gem 'cancancan', '~> 2.2'
 gem 'spreadsheet'
 
 gem 'select2-rails', '~> 3.5'
