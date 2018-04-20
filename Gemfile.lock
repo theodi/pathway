@@ -81,7 +81,7 @@ GEM
       nokogiri (~> 1.5)
       railties (>= 4, < 5.2)
     cucumber-wire (0.0.1)
-    database_cleaner (1.6.1)
+    database_cleaner (1.7.0)
     debug_inspector (0.0.3)
     devise (3.5.10)
       bcrypt (~> 3.0)
