@@ -45,7 +45,7 @@ gem 'spreadsheet'
 gem 'select2-rails', '~> 3.5'
 gem 'rack-google-analytics'
 
-gem 'high_voltage', '~> 3.0'
+gem 'high_voltage', '~> 3.1'
 
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
