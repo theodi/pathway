@@ -274,7 +274,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-form-validator-rails
   jquery-rails
-  pg
+  pg (= 0.21.0)
   poltergeist
   rack-google-analytics
   rails (~> 4.2)
@@ -295,4 +295,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.14.6
+   1.16.2
