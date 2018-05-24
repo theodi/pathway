@@ -37,11 +37,11 @@ var observe_fields_for_links = function(){
 };
 
 var observe_toggles = function(){
-  $('.toggle-target').each(function(){  
+  $('.toggle-target').each(function(){
     $(this).click(function(){
       var target = $(this).data('target');
-      console.log($(this));
       $(target).toggle();
+			return false
     });
   });
 };

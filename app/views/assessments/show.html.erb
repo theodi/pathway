@@ -7,16 +7,16 @@
 
 <div class = "row">
   <div class = "col-md-4 sidebar">
-    
+
     <% if @assessment.start_date.blank? %>
-      
+
       <h3>You are about to start a new assessment</h3>
       <p>You can click on the start assessment button to start from the beginning or you can click on one of the 'start' buttons to begin the assessment at a particular activity.</p>
 
     <% else %>
 
       <div id = "title-display">
-        <h3><%= @assessment.title %> 
+        <h3><%= @assessment.title %>
           <%= link_to 'Edit', '#', id: "title-toggle", class: "small toggle-target btn orange", data: { target: "#title-form,#title-display" } %></h3>
       </div>
 
@@ -27,7 +27,7 @@
           <%= link_to 'Cancel', '#', class: "toggle-target btn btn-default", data: { target: "#title-form,#title-display" } %>
         <% end %>
       </div>
-      
+
       <hr/>
 
       <p class = "small">&#x1f4c5;  <span class = "italic">Started <%= pretty_date(@assessment.start_date) %></span><br/>
@@ -36,7 +36,7 @@
       <hr/>
 
       <div id = "notes-display">
-        <h4>Background information        <%= link_to 'Edit', '#title-form', class: "small toggle-target btn orange", id: "notes-toggle", 
+        <h4>Background information        <%= link_to 'Edit', '#title-form', class: "small toggle-target btn orange", id: "notes-toggle",
               data: { target: "#notes-form,#notes-display" } %>
         </h4>
         <p class = "small italic">
@@ -65,28 +65,28 @@
       <div id="reference-display">
         <h4>Reference Documentation</h4>
         <p class="small">
-        The assessment questionnaire has been based on the <a href="http://theodi.org/guides/maturity-model">open data maturity model</a>.  
+        The assessment questionnaire has been based on the <a href="http://theodi.org/guides/maturity-model">open data maturity model</a>.
         </p>
         <p class="small">Read the reference documentation for further information and suggestions about how to conduct a review.
         </p>
       </div>
-      
+
     <div class="importantLinks ">
-      <p><span class="glyphicon glyphicon-download" aria-hidden="true"></span> 
+      <p><span class="glyphicon glyphicon-download" aria-hidden="true"></span>
         <%= link_to "Download maturity model assessment grid", "https://drive.google.com/uc?export=download&id=0B4rriq9nxtslOHRQMEhZOFRXSTg", target: "_blank" %>
       </p>
-      <p><span class="glyphicon glyphicon-download" aria-hidden="true"></span> 
+      <p><span class="glyphicon glyphicon-download" aria-hidden="true"></span>
         <%= link_to "Download maturity model guide", "https://drive.google.com/uc?export=download&id=0B4rriq9nxtslYmdBckNZYXoyU1U", target: "_blank" %>
       </p>
     </div>
 
   </div>
   <div class = "col-md-8 assessment-overview">
-  
+
     <div class="row">
       <div class="col-md-8">
         This assessment is <%= progress = @progress.percentage_progress %>% complete
-        <%= progress_bar(progress) %> 
+        <%= progress_bar(progress) %>
       </div>
       <div class="col-md-4">
         <% if @assessment.status == :complete %>
@@ -95,11 +95,11 @@
           <% if @assessment.can_complete? %>
             <%= link_to "See my scores", complete_assessment_path(@assessment), method: :post, data: {confirm: "You will not be able to edit your answers after this point"}, class: "complete btn green" %>
           <% else %>
-            <% if @assessment.assessment_answers.empty? %> 
+            <% if @assessment.assessment_answers.empty? %>
               <%= link_to "Start assessment >", continue_assessment_path(@assessment), class: "btn green" %>
-            <% else %> 
+            <% else %>
               <%= link_to "Continue assessment >", continue_assessment_path(@assessment), class: "btn green" %>
-            <% end %> 
+            <% end %>
           <% end %>
         <% end %>
       </div>
@@ -107,12 +107,12 @@
     <% if @assessment.can_complete? %>
     <div class="row">
       <div class="col-md-12">
-      <span class="small">You are now ready to complete your assessment. Once you have finished making any final revisions to 
+      <span class="small">You are now ready to complete your assessment. Once you have finished making any final revisions to
       your answers mark the assessment as complete to see your scores and review your final report.</span>
       </div>
-    </div>    
+    </div>
     <% end %>
-    
+
     <hr/>
 
     <%= render 'overview', assessment: @assessment, progress: @progress %>
