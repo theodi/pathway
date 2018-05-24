@@ -70,7 +70,7 @@ end
 
 group :production do
   # Postgres on Heroku in production
-  gem 'pg'
+  gem 'pg', '0.21.0'
   gem 'rails_12factor' # For heroku
 end
 
