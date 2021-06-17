@@ -1,4 +1,5 @@
 require 'country_importer'
+require 'net/http'
 
 namespace :countries do
 

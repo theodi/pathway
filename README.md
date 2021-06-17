@@ -76,7 +76,17 @@ These environment variables should also be configured on Heroku - see [below](#d
 ### Development: Running the full application locally
 
 Checkout the repository and run ```bundle``` in the checked out directory.
+
+Intialise the database with 
+```
+rake db:migrate
+rake countries:import
+rake questionnaire:import
+```
+
 To start the application run `rails s` in the checked out directory
+
+Application should be available in a web browser at `http://localhost:3000/`
 
 ### Tests
 
